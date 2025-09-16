@@ -1,42 +1,202 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+@font-face {
+  font-family: "Pretendard-Light";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff")
+    format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Pretendard-SemiBold";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff")
+    format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Pretendard-Bold";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff")
+    format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+/* @font-face {
+  font-family: "Pretendard-ExtraBold";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff")
+    format("woff");
+  font-weight: 800;
+  font-style: normal;
+} */
+
+@keyframes upDown {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@keyframes upDown2 {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes blink {
+  0%,
+  80%,
+  100% {
+    opacity: 0.2;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+body {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  color: #000;
   text-align: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  z-index: -99;
+}
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #000;
+  text-decoration: inherit;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+input {
+  box-sizing: border-box;
+  border: none;
+  background-color: transparent;
+  font-family: Pretendard-Light;
+  font-size: clamp(14px, 2.2vw, 16px);
+  color: #000;
+  outline: none;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+input::placeholder {
+  font-family: Pretendard-Light;
+  font-size: clamp(14px, 2.2vw, 16px);
+  color: #aaa;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+textarea::placeholder {
+  font-family: Pretendard-Light;
+  font-size: 16px;
+  color: #777;
+}
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  width: 120px;
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+}
+.title::placeholder {
+  font-family: Pretendard-Bold;
+  font-size: 28px;
+  color: #777;
+}
+/* type="number" 화살표 제거 */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox  */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+select {
+  outline: none;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav_text {
+  text-align: center;
+  font-family: Pretendard-Light;
+  font-size: 16px;
+  color: #000;
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+.nav_text:hover {
+  font-family: Pretendard-SemiBold;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.side_nav_list {
+  font-family: Pretendard-Light;
+  font-size: 16px;
+  color: #555;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 20px;
+  display: flex;
 }
 
-.card {
-  padding: 2em;
+.popup-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-x: auto;
 }
-
-.read-the-docs {
-  color: #888;
+.popup-content {
+  width: 1300px;
+  height: 650px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
 }
