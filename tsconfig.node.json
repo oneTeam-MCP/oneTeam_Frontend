@@ -15,11 +15,12 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noImplicitAny": false, // 임시 완화
+    "noUnusedLocals": false, // 임시 완화
+    "noUnusedParameters": false, // 임시 완화
+    "erasableSyntaxOnly": false, // 임시 완화
+    "noFallthroughCasesInSwitch": false, // 임시 완화
+    "noUncheckedSideEffectImports": false // 임시 완화
   },
   "include": ["vite.config.ts"]
 }

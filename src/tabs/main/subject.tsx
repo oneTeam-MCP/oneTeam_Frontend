@@ -25,32 +25,40 @@ const data = [
     time: { 월: [7, 8, 9] },
     place: "G310",
     prof: "홍철의",
+    color: "",
   },
   {
     title: "컴퓨터네트워크프로그래밍",
     time: { 수: [4, 5, 6] },
     place: "G311",
     prof: "정진우",
+    color: "",
   },
   {
     title: "잉파",
     time: { 화: [4, 5], 목: [3] },
     place: "N202",
     prof: "줄리엔",
+    color: "",
   },
   {
     title: "휴먼지능종합설계2",
     time: { 금: [1], 토: [1] },
     place: "G308",
     prof: "이의철, 김동근",
+    color: "",
   },
 ];
 
 export default function Dashboard() {
   const [open, setOpen] = useState(true);
 
-  const timetable: (null | { title: string; place: string; prof: string })[][] =
-    Array.from({ length: 12 }, () => Array(6).fill(null));
+  const timetable: (null | {
+    title: string;
+    place: string;
+    prof: string;
+    color: string;
+  })[][] = Array.from({ length: 12 }, () => Array(6).fill(null));
 
   const colorMap: Record<string, string> = {};
   let colorIndex = 0;

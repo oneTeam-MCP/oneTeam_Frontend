@@ -1,4 +1,4 @@
-import React from "react";
+// src/components/button.tsx
 import { useState } from "react";
 import styled, { css } from "styled-components";
 import "../App.css";
@@ -10,6 +10,7 @@ type ButtonType =
   | "logIn"
   | "submit"
   | "disabled";
+
 type Size = "xsmall" | "small" | "medium" | "large" | "xlarge" | "logIn";
 
 type ButtonProps = {
@@ -19,41 +20,41 @@ type ButtonProps = {
   title: string;
 };
 
-const ButtonContainer = styled.div<{
-  type: "primary" | "secondary" | "third" | "logIn" | "submit" | "disabled";
-  size: "xsmall" | "small" | "medium" | "large" | "xlarge" | "logIn";
-}>`
-  border: ${(props) => (props.type === "logIn" ? "none" : "none")};
-  border-radius: ${(props) => (props.type === "logIn" ? "0" : "15px")};
+const ButtonContainer = styled.div<{ $variant: ButtonType; $size: Size }>`
+  border: ${(p) => (p.$variant === "logIn" ? "none" : "none")};
+  border-radius: ${(p) => (p.$variant === "logIn" ? "0" : "15px")};
   justify-content: center;
   align-items: center;
   display: flex;
-  opacity: ${(props) => (props.type === "disabled" ? 1 : 0.8)};
+  opacity: ${(p) => (p.$variant === "disabled" ? 1 : 0.8)};
   transition: all 0.3s ease;
-  background-color: ${(props) =>
-    props.type === "primary"
+
+  background-color: ${(p) =>
+    p.$variant === "primary"
       ? "#114DF0"
-      : props.type === "secondary"
+      : p.$variant === "secondary"
       ? "#8AA7F8"
-      : props.type === "third"
+      : p.$variant === "third"
       ? "#EEF0FE"
-      : props.type === "disabled"
+      : p.$variant === "disabled"
       ? "#555"
       : "#2156C6"};
-  color: ${(props) =>
-    props.type === "primary"
+
+  color: ${(p) =>
+    p.$variant === "primary"
       ? "#fff"
-      : props.type === "secondary"
+      : p.$variant === "secondary"
       ? "#114DF0"
-      : props.type === "third"
+      : p.$variant === "third"
       ? "#114DF0"
-      : props.type === "disabled"
+      : p.$variant === "disabled"
       ? "#999"
       : "#fff"};
-  cursor: ${(props) => (props.type === "disabled" ? "default" : "pointer")};
 
-  ${(props) =>
-    props.size === "xlarge" &&
+  cursor: ${(p) => (p.$variant === "disabled" ? "default" : "pointer")};
+
+  ${(p) =>
+    p.$size === "xlarge" &&
     css`
       height: 45px;
       font-size: 18px;
@@ -61,8 +62,8 @@ const ButtonContainer = styled.div<{
       width: 500px;
       text-align: center;
     `}
-  ${(props) =>
-    props.size === "large" &&
+  ${(p) =>
+    p.$size === "large" &&
     css`
       height: 50px;
       font-size: 18px;
@@ -70,8 +71,8 @@ const ButtonContainer = styled.div<{
       width: 450px;
       text-align: center;
     `}
-  ${(props) =>
-    props.size === "medium" &&
+  ${(p) =>
+    p.$size === "medium" &&
     css`
       height: 40px;
       font-size: 18px;
@@ -79,36 +80,33 @@ const ButtonContainer = styled.div<{
       width: 200px;
       text-align: center;
     `}
-    ${(props) =>
-    props.size === "small" &&
+  ${(p) =>
+    p.$size === "small" &&
     css`
       height: 30px;
       font-size: 16px;
       width: 120px;
       text-align: center;
     `}
-    ${(props) =>
-    props.size === "xsmall" &&
+  ${(p) =>
+    p.$size === "xsmall" &&
     css`
       height: 25px;
       font-size: 16px;
       width: 80px;
       text-align: center;
     `}
-    ${(props) =>
-    props.size === "logIn" &&
+  ${(p) =>
+    p.$size === "logIn" &&
     css`
       height: 60px;
       font-size: 18px;
       width: 180px;
       text-align: center;
     `}
-    &:hover {
+
+  &:hover {
     opacity: 1;
-    // & p {
-    //   transition: all 0.3s ease;
-    //   text-shadow: 0 0 0.1em, 0 0 0.3em;
-    // }
   }
 `;
 
@@ -117,12 +115,20 @@ const ButtonTitle = styled.p`
 `;
 
 export default function Button(props: ButtonProps) {
-  const { type, size, title, onClick = () => {} } = props;
-  const [hover, setHover] = useState(false);
+  // 기본값을 지정해 undefined를 제거
+  const {
+    type = "primary",
+    size = "medium",
+    title,
+    onClick = () => {},
+  } = props;
+
+  const [hover, setHover] = useState(false); // 현재 미사용. 필요없다면 제거해도 OK.
+
   return (
     <ButtonContainer
-      type={type}
-      size={size}
+      $variant={type}
+      $size={size}
       onClick={onClick}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
