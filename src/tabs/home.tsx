@@ -69,7 +69,7 @@ export default function Home() {
             <div
               style={{
                 fontFamily: "Pretendard-Light",
-                fontSize: "30px",
+                fontSize: "20px",
                 color: "#fff",
                 marginBottom: "15px",
               }}
