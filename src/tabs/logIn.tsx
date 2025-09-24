@@ -32,29 +32,29 @@ export default function Login() {
 
     console.log(e.StudentNum, e.Password);
 
-    fetch(
-      "https://685hwzfiu3.execute-api.ap-northeast-2.amazonaws.com/funcionecampus/smu-dash",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userId: e.StudentNum,
-          password: e.Password,
-          action: "login",
-        }),
-      }
-    )
-      .then((res) => {
-        console.log(res.json());
-      })
-      .then((data) => {
-        alert("로그인 성공");
-        window.location.href = "/dashboard";
-        console.log(data);
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
+    // fetch(
+    //   "https://685hwzfiu3.execute-api.ap-northeast-2.amazonaws.com/funcionecampus/smu-dash",
+    //   {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({
+    //       userId: e.StudentNum,
+    //       password: e.Password,
+    //       action: "login",
+    //     }),
+    //   }
+    // )
+    //   .then((res) => {
+    //     console.log(res.json());
+    //   })
+    //   .then((data) => {
+    //     alert("로그인 성공");
+    //     window.location.href = "/dashboard";
+    //     console.log(data);
+    //   })
+    //   .finally(() => {
+    //     setIsSubmitting(false);
+    //   });
 
     // try {
     //   console.log(e, "onValid");

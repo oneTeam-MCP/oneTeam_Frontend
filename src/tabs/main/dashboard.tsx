@@ -470,7 +470,8 @@ export default function Dashboard() {
                         marginBottom: "20px",
                         padding: "12px 0",
                         cursor: "pointer",
-                        fontFamily: "Pretendard-SemiBold",
+                        fontFamily: "Pretendard",
+                        fontWeight: alertTab === tab ? 600 : 400,
                         fontSize: "16px",
                         background: alertTab === tab ? "#FAFAFC" : "#FAFAFC",
                         borderBottom:
@@ -478,7 +479,6 @@ export default function Dashboard() {
                             ? "1px solid #CED0F8"
                             : "1px solid #CED0F8",
                         color: alertTab === tab ? "#4C6EF5" : "#aaa",
-                        fontWeight: alertTab === tab ? 700 : 500,
                         borderTopLeftRadius: "20px",
                         borderTopRightRadius: "20px",
                         boxShadow:
@@ -555,15 +555,15 @@ export default function Dashboard() {
                         marginBottom: "20px",
                         padding: "12px 0",
                         cursor: "pointer",
-                        fontFamily: "Pretendard-SemiBold",
+                        fontFamily: "Pretendard",
+                        fontWeight: noticeTab === tab ? 600 : 400,
                         fontSize: "16px",
-                        background: alertTab === tab ? "#FAFAFC" : "#FAFAFC",
+                        background: noticeTab === tab ? "#FAFAFC" : "#FAFAFC",
                         borderBottom:
                           noticeTab === tab
                             ? "1px solid #CED0F8"
                             : "1px solid #CED0F8",
                         color: noticeTab === tab ? "#4C6EF5" : "#aaa",
-                        fontWeight: alertTab === tab ? 700 : 500,
                         borderTopLeftRadius: "20px",
                         borderTopRightRadius: "20px",
                         boxShadow:

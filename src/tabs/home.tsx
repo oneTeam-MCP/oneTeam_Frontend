@@ -68,7 +68,8 @@ export default function Home() {
           <div style={{ width: "400px", padding: "50px" }}>
             <div
               style={{
-                fontFamily: "Pretendard-Light",
+                fontFamily: "Pretendard",
+                fontWeight: 400,
                 fontSize: "25px",
                 color: "#fff",
                 marginBottom: "15px",
