@@ -41,6 +41,7 @@ export default function Login() {
           userId: e.StudentNum,
           userPw: e.Password,
           action: "crawl",
+          saveDB: true,
         }),
       }
     )
