@@ -40,7 +40,7 @@ export default function Login() {
         body: JSON.stringify({
           userId: e.StudentNum,
           userPw: e.Password,
-          action: "crawl",
+          action: "message",
           saveDB: true,
         }),
       }

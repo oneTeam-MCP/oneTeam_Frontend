@@ -20,7 +20,7 @@ export default function Nav({ type }: NavProps) {
     <div
       style={{
         position: "fixed",
-        top: " 0",
+        top: "0",
         width: "100%",
         zIndex: "99",
       }}
@@ -102,13 +102,16 @@ export default function Nav({ type }: NavProps) {
               <div
                 onClick={() => scrollToSection("team")}
                 style={{
-                  width: "120px",
+                  marginRight: "20px",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
                 }}
               >
-                <img src="../icon/profile.png" style={{ width: "30px" }} />
+                <img
+                  src="../icon/profile.png"
+                  style={{ width: "35px", cursor: "pointer" }}
+                />
               </div>
             </>
           )}
