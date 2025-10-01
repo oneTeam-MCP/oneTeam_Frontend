@@ -38,7 +38,7 @@ const ButtonContainer = styled.div<{ $variant: ButtonType; $size: Size }>`
       ? "#EEF0FE"
       : p.$variant === "disabled"
       ? "#555"
-      : "#2156C6"};
+      : "#114DF0"};
 
   color: ${(p) =>
     p.$variant === "primary"

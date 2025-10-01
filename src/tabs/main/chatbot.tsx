@@ -344,7 +344,8 @@ export default function Chatbot() {
         >
           <div
             style={{
-              fontFamily: "Pretendard-SemiBold",
+              fontFamily: "Pretendard",
+              fontWeight: "500",
               fontSize: "25px",
               width: "250px",
               minWidth: "200px",
@@ -432,16 +433,21 @@ export default function Chatbot() {
                     <IntroBubble
                       style={{ top: 30, left: "2.5vw" }}
                       animate="upDown"
-                      text="김진석 군대 빨리 가라."
+                      text="오늘 올라온 새로운 공지 알려줘."
                       onClick={() =>
-                        handleSubmit(undefined, "김진석 군대 빨리 가라.")
+                        handleSubmit(
+                          undefined,
+                          "오늘 올라온 새로운 공지 알려줘."
+                        )
                       }
                     />
                     <IntroBubble
                       style={{ top: 50, right: "2.5vw" }}
                       animate="upDown2"
-                      text="염다인 out"
-                      onClick={() => handleSubmit(undefined, "염다인 out")}
+                      text="알림 온 거 있어?"
+                      onClick={() =>
+                        handleSubmit(undefined, "알림 온 거 있어?")
+                      }
                     />
                     <IntroBubble
                       style={{ top: 120, left: "25vw" }}
