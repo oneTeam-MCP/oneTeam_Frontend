@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import Button from "../components/button.tsx";
 import "../App.css";
 
-export default function Nav() {
+type NavType = "login" | "logout";
+type NavProps = {
+  type?: NavType;
+};
+
+export default function Nav({ type }: NavProps) {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -56,39 +61,57 @@ export default function Nav() {
             alignItems: "center",
           }}
         >
-          <div
-            className="nav_text"
-            onClick={() => scrollToSection("home")}
-            style={{ width: "120px" }}
-          >
-            Home
-          </div>
-          <div
-            className="nav_text"
-            onClick={() => scrollToSection("introduction")}
-            style={{ width: "140px" }}
-          >
-            Introduction
-          </div>
-          <div
-            className="nav_text"
-            onClick={() => scrollToSection("what_is_mcp")}
-            style={{ width: "150px" }}
-          >
-            What is MCP
-          </div>
-          <div
-            className="nav_text"
-            onClick={() => scrollToSection("team")}
-            style={{ width: "120px" }}
-          >
-            Team
-          </div>
-          <Link to="/login">
-            <div className="nav_text" style={{ width: "120px" }}>
-              Log In
-            </div>
-          </Link>
+          {type === "login" ? (
+            <>
+              <div
+                className="nav_text"
+                onClick={() => scrollToSection("home")}
+                style={{ width: "120px" }}
+              >
+                Home
+              </div>
+              <div
+                className="nav_text"
+                onClick={() => scrollToSection("introduction")}
+                style={{ width: "140px" }}
+              >
+                Introduction
+              </div>
+              <div
+                className="nav_text"
+                onClick={() => scrollToSection("what_is_mcp")}
+                style={{ width: "150px" }}
+              >
+                What is MCP
+              </div>
+              <div
+                className="nav_text"
+                onClick={() => scrollToSection("team")}
+                style={{ width: "120px" }}
+              >
+                Team
+              </div>
+              <Link to="/login">
+                <div className="nav_text" style={{ width: "120px" }}>
+                  Log In
+                </div>
+              </Link>
+            </>
+          ) : (
+            <>
+              <div
+                onClick={() => scrollToSection("team")}
+                style={{
+                  width: "120px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <img src="../icon/profile.png" style={{ width: "30px" }} />
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

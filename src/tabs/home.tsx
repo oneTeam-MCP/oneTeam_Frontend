@@ -9,7 +9,7 @@ import "../App.css";
 export default function Home() {
   return (
     <div>
-      <Nav />
+      <Nav type="login" />
       <div style={{ width: "100%" }}>
         <div
           style={{

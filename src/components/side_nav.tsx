@@ -77,7 +77,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
             />
           </Link>
         </div>
-        <div style={{ width: "80%", height: "80%" }}>
+        <div style={{ width: "80%", height: "70%" }}>
           <Link to="/dashboard" style={{ textDecoration: "none" }}>
             <div
               className="side_nav_list"
@@ -176,31 +176,6 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
                 style={{ width: "20px" }}
               />
               <div style={{ marginLeft: "5px" }}>Chatbot AI</div>
-            </div>
-          </Link>
-          <Link to="/setting" style={{ textDecoration: "none" }}>
-            <div
-              className="side_nav_list"
-              style={
-                type === "setting"
-                  ? {
-                      color: "#fff",
-                      background: "#8AA7F8",
-                      borderRadius: "5px",
-                    }
-                  : {}
-              }
-            >
-              <img
-                src={
-                  type === "setting"
-                    ? "../icon/setting_enabled.png"
-                    : "../icon/setting_disabled.png"
-                }
-                alt="setting"
-                style={{ width: "20px" }}
-              />
-              <div style={{ marginLeft: "5px" }}>Setting</div>
             </div>
           </Link>
         </div>
