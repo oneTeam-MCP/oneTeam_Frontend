@@ -12,7 +12,7 @@ export default async function SignupAPI(
   console.log(email, password, name, major, studentId, phoneNumber);
 
   try {
-    const signupResponse = await fetch(API_SERVER_DOMAIN + "/api/members", {
+    const signupResponse = await fetch(API_SERVER_DOMAIN + "/api/v1/members", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,9 +20,7 @@ export default async function SignupAPI(
       body: JSON.stringify({
         email: email,
         password: password,
-        name: name,
         major: major,
-        studentId: studentId,
         phoneNumber: phoneNumber,
       }),
     });

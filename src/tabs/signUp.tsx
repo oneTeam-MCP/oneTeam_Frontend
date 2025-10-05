@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 
 import Button from "../components/button.tsx";
 
+import SignupAPI from "../api/api/members/signupAPI.tsx";
+
 import "../App.css";
 
 const majors = [
@@ -40,10 +42,18 @@ export default function SignUp() {
   const onValid = async (e: any) => {
     if (isSubmitting) return;
     setIsSubmitting(true);
+    const email = e.StudentNum + "@sangmyung.kr";
     e.PhoneNum = e.PhoneNum.replace(/-/g, "");
     try {
       console.log(e, "onValid");
-      //   await SignupAPI(email, e.Password, e.Name, e.Major, e.PhoneNum);
+      await SignupAPI(
+        email,
+        e.Password,
+        e.Name,
+        e.Major,
+        e.StudentNum,
+        e.PhoneNum
+      );
     } catch (error) {
       console.error("회원가입 실패:", error);
     } finally {
@@ -74,7 +84,7 @@ export default function SignUp() {
     /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*.,/])[a-zA-Z\d!@#$%^&*.,/]{8,24}$/;
 
   const autoSeparate = (id: string) => {
-    let input = document.getElementById(id) as HTMLInputElement | null;
+    const input = document.getElementById(id) as HTMLInputElement | null;
 
     if (!input) {
       console.error(`Element with id "${id}" not found.`);

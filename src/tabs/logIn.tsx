@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 import Button from "../components/button.tsx";
 
-// import LogInAPI from "../api/members/logInAPI.tsx";
+import LogInAPI from "../api/api/auth/loginAPI.tsx";
 // import ExistsAPI from "../api/members/existsAPI.tsx";
 // import VerificationRequestsAPI from "../api/emails/verificationReauestsAPI.tsx";
 // import VerificationsAPI from "../api/emails/verificationsAPI.tsx";
@@ -32,39 +32,42 @@ export default function Login() {
 
     console.log(e.StudentNum, e.Password);
 
-    fetch(
-      "https://685hwzfiu3.execute-api.ap-northeast-2.amazonaws.com/funcionecampus/smu-dash",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userId: e.StudentNum,
-          userPw: e.Password,
-          action: "message",
-          saveDB: true,
-        }),
-      }
-    )
-      .then((res) => {
-        console.log(res.json());
-      })
-      .then((data) => {
-        alert("로그인 성공");
-        window.location.href = "/dashboard";
-        console.log(data);
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
+    // fetch(
+    //   "https://685hwzfiu3.execute-api.ap-northeast-2.amazonaws.com/funcionecampus/smu-dash",
+    //   {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({
+    //       userId: e.StudentNum,
+    //       userPw: e.Password,
+    //       action: "message",
+    //       saveDB: true,
+    //     }),
+    //   }
+    // )
+    //   .then((res) => {
+    //     console.log(res.json());
+    //   })
+    //   .then((data) => {
+    //     alert("로그인 성공");
+    //     window.location.href = "/dashboard";
+    //     console.log(data);
+    //   })
+    //   .finally(() => {
+    //     setIsSubmitting(false);
+    //   });
 
-    // try {
-    //   console.log(e, "onValid");
-    //   await new Promise((resolve) => setTimeout(resolve, 1000));
-    //   await LogInAPI(e.StudentNum, e.Password);
-    // } catch (error) {
-    //   console.error("로그인 실패:", error);
-    //   setIsSubmitting(false);
-    // }
+    const email = e.StudentNum + "@sangmyung.kr";
+
+    try {
+      console.log(e, "onValid");
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await LogInAPI(email, e.Password);
+    } catch (error) {
+      console.error("로그인 실패:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   const onInvalid = (e: any) => {
     console.log(e, "onInvalid");

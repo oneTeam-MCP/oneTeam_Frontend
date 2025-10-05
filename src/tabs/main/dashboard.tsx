@@ -434,7 +434,8 @@ export default function Dashboard() {
                   alt="add"
                   style={{
                     width: "100%",
-                    objectFit: "cover",
+                    height: "100%",
+                    objectFit: "fill",
                   }}
                 />
               </motion.div>
