@@ -36,7 +36,7 @@ export default function Dashboard() {
         >
           <div
             style={{
-              fontFamily: "Pretendard-SemiBold",
+              fontFamily: "Suit-SemiBold",
               fontSize: "25px",
               width: "250px",
               minWidth: "200px",

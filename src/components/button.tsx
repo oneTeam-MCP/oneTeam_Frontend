@@ -111,7 +111,7 @@ const ButtonContainer = styled.div<{ $variant: ButtonType; $size: Size }>`
 `;
 
 const ButtonTitle = styled.p`
-  font-family: Pretendard-Regular;
+  font-family: Suit-Regular;
 `;
 
 export default function Button(props: ButtonProps) {

@@ -33,7 +33,7 @@ const StyledCalendarWrapper = styled.div`
   }
   /* 네비게이션 폰트 설정 */
   .react-calendar__navigation button {
-    font-family: Pretendard-SemiBold;
+    font-family: Suit-SemiBold;
     font-size: 30px;
     color: #000;
     border-radius: 10px;
@@ -64,7 +64,7 @@ const StyledCalendarWrapper = styled.div`
 
   /* 요일 밑줄 제거 */
   .react-calendar__month-view__weekdays abbr {
-    font-family: Pretendard-ExtraBold;
+    font-family: Suit-ExtraBold;
     font-size: 20px;
     color: #0d2259;
     text-decoration: none;
@@ -90,7 +90,7 @@ const StyledCalendarWrapper = styled.div`
   /* 일 날짜 스타일 적용 */
   .react-calendar__month-view__days__day {
     border-bottom: 2px #eee solid;
-    font-family: Pretendard-SemiBold;
+    font-family: Suit-SemiBold;
     padding: 10px 5px 80px;
     position: relative;
     text-align: left;
@@ -108,7 +108,7 @@ const StyledCalendarWrapper = styled.div`
     margin-inline-end: 5px !important;
     margin-block-end: 10px;
     padding: 30px 6.6667px;
-    font-family: Pretendard-ExtraBold;
+    font-family: Suit-ExtraBold;
     font-size: 14px;
     color: #000;
   }
@@ -150,7 +150,7 @@ const StyledTodayBtn = styled.div`
   text-align: center;
   margin: 0 auto;
   border-radius: 15px;
-  font-family: Pretendard-Regular;
+  font-family: Suit-Regular;
   font-size: 15px;
   cursor: pointer;
   &:hover {
@@ -292,7 +292,7 @@ const BigCalendar: React.FC<BigCalendarProps> = ({ onDateSelect }) => {
                 height: "25px",
                 backgroundColor: rowIndex === 0 ? "#EEF0FE" : "#C9D9FD",
                 fontSize: "13px",
-                fontFamily: "Pretendard-Regular",
+                fontFamily: "Suit-Regular",
                 padding: "0 5px",
                 display: "flex",
                 alignItems: "center",
@@ -322,7 +322,7 @@ const BigCalendar: React.FC<BigCalendarProps> = ({ onDateSelect }) => {
                 right: `calc(${((6 - colStart) / 7) * 100}% + 10px)`,
                 height: "20px",
                 fontSize: "12px",
-                fontFamily: "Pretendard-Regular",
+                fontFamily: "Suit-Regular",
                 color: "#666",
                 textAlign: "center",
                 lineHeight: "20px",

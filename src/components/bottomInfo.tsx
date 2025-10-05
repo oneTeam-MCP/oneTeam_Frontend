@@ -24,7 +24,7 @@ export default function BottomInfo() {
       >
         <div
           style={{
-            fontFamily: "Pretendard-Light",
+            fontFamily: "Suit-Light",
             fontSize: "14px",
             color: "#fff",
           }}
@@ -53,7 +53,7 @@ export default function BottomInfo() {
       >
         <div
           style={{
-            fontFamily: "Pretendard-SemiBold",
+            fontFamily: "Suit-SemiBold",
             fontSize: "18px",
             color: "#fff",
             marginBottom: "20px",
@@ -63,7 +63,7 @@ export default function BottomInfo() {
           <br />
           <span
             style={{
-              fontFamily: "Pretendard-Regular",
+              fontFamily: "Suit-Regular",
               fontSize: "14px",
               color: "#fff",
             }}
@@ -74,7 +74,7 @@ export default function BottomInfo() {
           <br />
           <span
             style={{
-              fontFamily: "Pretendard-Regular",
+              fontFamily: "Suit-Regular",
               fontSize: "14px",
               color: "#fff",
             }}
@@ -89,7 +89,7 @@ export default function BottomInfo() {
         </div>
         <div
           style={{
-            fontFamily: "Pretendard-SemiBold",
+            fontFamily: "Suit-SemiBold",
             fontSize: "18px",
             color: "#fff",
           }}

@@ -344,8 +344,7 @@ export default function Chatbot() {
         >
           <div
             style={{
-              fontFamily: "Pretendard",
-              fontWeight: "500",
+              fontFamily: "Suit-SemiBold",
               fontSize: "25px",
               width: "250px",
               minWidth: "200px",
@@ -394,7 +393,7 @@ export default function Chatbot() {
                   <div style={{ height: "100px", marginBottom: "10px" }}>
                     <div
                       style={{
-                        fontFamily: "Pretendard-SemiBold",
+                        fontFamily: "Suit-SemiBold",
                         fontSize: "25px",
                       }}
                     >
@@ -405,7 +404,7 @@ export default function Chatbot() {
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
-                        fontFamily: "Pretendard-Bold",
+                        fontFamily: "Suit-Bold",
                         fontSize: "30px",
                       }}
                     >
@@ -424,7 +423,7 @@ export default function Chatbot() {
                   <div
                     style={{
                       position: "relative",
-                      fontFamily: "Pretendard-Regular",
+                      fontFamily: "Suit-Regular",
                       fontSize: "16px",
                       width: "100%",
                       height: "300px",
@@ -531,7 +530,7 @@ export default function Chatbot() {
                   onKeyDown={handleKeyDown}
                   placeholder="메시지를 입력하세요..."
                   style={{
-                    fontFamily: "Pretendard-Regular",
+                    fontFamily: "Suit-Regular",
                     fontSize: "18px",
                     lineHeight: `${LINE_HEIGHT_PX}px`,
                     width: "90%",

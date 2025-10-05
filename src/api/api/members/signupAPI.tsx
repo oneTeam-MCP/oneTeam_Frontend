@@ -18,6 +18,7 @@ export default async function SignupAPI(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        name: name,
         email: email,
         password: password,
         major: major,

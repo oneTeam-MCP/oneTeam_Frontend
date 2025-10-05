@@ -192,13 +192,13 @@ export default function Login() {
                     maxWidth: "250px",
                     height: "40px",
                     borderRadius: "10px",
-                    fontFamily: "Pretendard-Light",
+                    fontFamily: "Suit-Light",
                     fontSize: "18px",
                   }}
                 />
                 <div
                   style={{
-                    fontFamily: "Pretendard-Regular",
+                    fontFamily: "Suit-Regular",
                     fontSize: "clamp(14px, 2vw, 16px)",
                     color: "#777",
                   }}
@@ -230,7 +230,7 @@ export default function Login() {
                     maxWidth: "360px",
                     height: "40px",
                     borderRadius: "10px",
-                    fontFamily: "Pretendard-Light",
+                    fontFamily: "Suit-Light",
                     fontSize: "18px",
                   }}
                 />
@@ -350,7 +350,7 @@ export default function Login() {
           </div>
           <div
             style={{
-              fontFamily: "Pretendard-Light",
+              fontFamily: "Suit-Light",
               fontSize: "14px",
               color: "#333",
               marginTop: "80px",

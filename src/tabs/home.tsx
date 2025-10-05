@@ -68,8 +68,7 @@ export default function Home() {
           <div style={{ width: "400px", padding: "50px" }}>
             <div
               style={{
-                fontFamily: "Pretendard",
-                fontWeight: 400,
+                fontFamily: "Suit-Regular",
                 fontSize: "25px",
                 color: "#fff",
                 marginBottom: "15px",
@@ -113,7 +112,7 @@ export default function Home() {
             >
               <div
                 style={{
-                  fontFamily: "Pretendard-Light",
+                  fontFamily: "Suit-Light",
                   fontSize: "20px",
                   color: "#fff",
                   marginBottom: "5px",
@@ -148,7 +147,7 @@ export default function Home() {
           <div style={{ width: "70%", textAlign: "center" }}>
             <div
               style={{
-                fontFamily: "Pretendard-Bold",
+                fontFamily: "Suit-Bold",
                 fontSize: "40px",
                 marginBottom: "20px",
                 color: "#111",
@@ -158,7 +157,7 @@ export default function Home() {
             </div>
             <div
               style={{
-                fontFamily: "Pretendard-Regular",
+                fontFamily: "Suit-Regular",
                 fontSize: "20px",
                 color: "#555",
                 lineHeight: "1.6",
@@ -167,11 +166,11 @@ export default function Home() {
               }}
             >
               상명대학교 통합관리 LLM 서비스는{" "}
-              <span style={{ fontWeight: 600, color: "#4E7AF4" }}>
+              <span style={{ fontFamily: "Suit-SemiBold", color: "#4E7AF4" }}>
                 학내 정보 통합
               </span>
               과{" "}
-              <span style={{ fontWeight: 600, color: "#4E7AF4" }}>
+              <span style={{ fontFamily: "Suit-SemiBold", color: "#4E7AF4" }}>
                 AI 기반 지원
               </span>
               을 통해 학생과 교직원 모두에게 더 편리한 환경을 제공합니다.
@@ -219,7 +218,7 @@ export default function Home() {
             <div>
               <div
                 style={{
-                  fontFamily: "Pretendard-Bold",
+                  fontFamily: "Suit-Bold",
                   fontSize: "40px",
                   marginBottom: "20px",
                   color: "#111",
@@ -229,14 +228,14 @@ export default function Home() {
               </div>
               <div
                 style={{
-                  fontFamily: "Pretendard-Regular",
+                  fontFamily: "Suit-Regular",
                   fontSize: "20px",
                   color: "#555",
                   lineHeight: "1.6",
                 }}
               >
                 MCP(Model Context Protocol)은{" "}
-                <span style={{ fontWeight: 600, color: "#4F46E5" }}>
+                <span style={{ fontFamily: "Suit-SemiBold", color: "#4F46E5" }}>
                   모델과 애플리케이션을 안전하고 일관된 방식으로 연결
                 </span>
                 하기 위한 오픈 표준입니다.
@@ -267,7 +266,7 @@ export default function Home() {
         >
           <div
             style={{
-              fontFamily: "Pretendard-Bold",
+              fontFamily: "Suit-Bold",
               fontSize: "40px",
               marginBottom: "40px",
               color: "#111",
@@ -335,7 +334,7 @@ export default function Home() {
                 />
                 <div
                   style={{
-                    fontFamily: "Pretendard-SemiBold",
+                    fontFamily: "Suit-SemiBold",
                     fontSize: "20px",
                     marginBottom: "8px",
                   }}
@@ -344,7 +343,7 @@ export default function Home() {
                 </div>
                 <div
                   style={{
-                    fontFamily: "Pretendard-Light",
+                    fontFamily: "Suit-Light",
                     fontSize: "16px",
                     color: "#666",
                   }}

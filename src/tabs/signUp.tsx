@@ -184,7 +184,7 @@ export default function SignUp() {
               <div>
                 <div
                   style={{
-                    fontFamily: "Pretendard-Regular",
+                    fontFamily: "Suit-Regular",
                     fontSize: "16px",
                   }}
                 >
@@ -224,7 +224,7 @@ export default function SignUp() {
                   />
                   <div
                     style={{
-                      fontFamily: "Pretendard-Regular",
+                      fontFamily: "Suit-Regular",
                       fontSize: "clamp(14px, 2vw, 16px)",
                       color: "#777",
                     }}
@@ -236,7 +236,7 @@ export default function SignUp() {
               <div>
                 <div
                   style={{
-                    fontFamily: "Pretendard-Regular",
+                    fontFamily: "Suit-Regular",
                     fontSize: "16px",
                   }}
                 >
@@ -299,7 +299,7 @@ export default function SignUp() {
               <div>
                 <div
                   style={{
-                    fontFamily: "Pretendard-Regular",
+                    fontFamily: "Suit-Regular",
                     fontSize: "16px",
                   }}
                 >
@@ -364,7 +364,7 @@ export default function SignUp() {
               <div>
                 <div
                   style={{
-                    fontFamily: "Pretendard-Regular",
+                    fontFamily: "Suit-Regular",
                     fontSize: "16px",
                   }}
                 >
@@ -380,7 +380,7 @@ export default function SignUp() {
                     border: "none",
                     borderBottom: "1px solid #777",
                     marginBottom: "20px",
-                    fontFamily: "Pretendard-Light",
+                    fontFamily: "Suit-Light",
                     fontSize: "clamp(14px, 2.2vw, 18px)",
                     color: selectedMajor === "학과 선택" ? "#aaa" : "#000",
                     cursor: "pointer",
@@ -416,7 +416,7 @@ export default function SignUp() {
               <div>
                 <div
                   style={{
-                    fontFamily: "Pretendard-Regular",
+                    fontFamily: "Suit-Regular",
                     fontSize: "16px",
                   }}
                 >

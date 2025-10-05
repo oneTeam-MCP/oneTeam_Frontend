@@ -60,7 +60,7 @@ export default function Calendar() {
         >
           <div
             style={{
-              fontFamily: "Pretendard-SemiBold",
+              fontFamily: "Suit-SemiBold",
               fontSize: "25px",
               width: "250px",
               minWidth: "200px",
@@ -101,7 +101,7 @@ export default function Calendar() {
               <div
                 style={{
                   boxSizing: "border-box",
-                  fontFamily: "Pretendard-SemiBold",
+                  fontFamily: "Suit-SemiBold",
                   fontSize: "20px",
                   width: "100%",
                   padding: "10px 15px",
@@ -130,7 +130,7 @@ export default function Calendar() {
                   >
                     <div
                       style={{
-                        fontFamily: "Pretendard-SemiBold",
+                        fontFamily: "Suit-SemiBold",
                         fontSize: "20px",
                         paddingTop: "150px",
                       }}
@@ -139,7 +139,7 @@ export default function Calendar() {
                     </div>
                     <div
                       style={{
-                        fontFamily: "Pretendard-Regular",
+                        fontFamily: "Suit-Regular",
                         fontSize: "13px",
                         color: "#888",
                         marginTop: "8px",
@@ -179,7 +179,7 @@ export default function Calendar() {
                           <div
                             style={{
                               boxSizing: "border-box",
-                              fontFamily: "Pretendard-Regular",
+                              fontFamily: "Suit-Regular",
                               fontSize: "12px",
                               padding: "5px 0",
                               background: "#eee",
@@ -191,7 +191,7 @@ export default function Calendar() {
                         <div>
                           <div
                             style={{
-                              fontFamily: "Pretendard-SemiBold",
+                              fontFamily: "Suit-SemiBold",
                               fontSize: "18px",
                             }}
                           >
@@ -199,7 +199,7 @@ export default function Calendar() {
                           </div>
                           <div
                             style={{
-                              fontFamily: "Pretendard-Regular",
+                              fontFamily: "Suit-Regular",
                               fontSize: "12px",
                               color: "#888",
                               marginTop: "5px",

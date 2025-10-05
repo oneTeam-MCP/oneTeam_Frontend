@@ -107,7 +107,7 @@ export default function Dashboard() {
         >
           <div
             style={{
-              fontFamily: "Pretendard-SemiBold",
+              fontFamily: "Suit-SemiBold",
               fontSize: "25px",
               width: "250px",
               minWidth: "200px",
@@ -149,7 +149,7 @@ export default function Dashboard() {
                     borderCollapse: "separate",
                     borderSpacing: 0,
                     textAlign: "center",
-                    fontFamily: "Pretendard-Regular",
+                    fontFamily: "Suit-Regular",
                     fontSize: "14px",
                   }}
                 >
@@ -166,7 +166,7 @@ export default function Dashboard() {
                         <th
                           key={d}
                           style={{
-                            fontFamily: "Pretendard-SemiBold",
+                            fontFamily: "Suit-SemiBold",
                             fontSize: "16px",
                             width: "40px",
                             border: "1px solid #eee",
@@ -182,7 +182,7 @@ export default function Dashboard() {
                       <tr key={i} style={{ height: "80px" }}>
                         <td
                           style={{
-                            fontFamily: "Pretendard-SemiBold",
+                            fontFamily: "Suit-SemiBold",
                             fontSize: "14px",
                             border: "1px solid #eee",
                           }}
@@ -191,7 +191,7 @@ export default function Dashboard() {
                           <br />
                           <span
                             style={{
-                              fontFamily: "Pretendard-Regular",
+                              fontFamily: "Suit-Regular",
                               fontSize: "10px",
                             }}
                           >
@@ -235,7 +235,7 @@ export default function Dashboard() {
                               }}
                             >
                               <div>
-                                <div style={{ fontWeight: "bold" }}>
+                                <div style={{ fontFamily: "Suit-SemiBold" }}>
                                   {cell.title}
                                 </div>
                                 <div
@@ -279,7 +279,7 @@ export default function Dashboard() {
                 <div
                   style={{
                     boxSizing: "border-box",
-                    fontFamily: "Pretendard-SemiBold",
+                    fontFamily: "Suit-SemiBold",
                     fontSize: "20px",
                     width: "100%",
                     padding: "10px 15px",
@@ -309,7 +309,7 @@ export default function Dashboard() {
                       width: "10%",
                       padding: "3px 0",
                       background: "#FFD9CF",
-                      fontFamily: "Pretendard-SemiBold",
+                      fontFamily: "Suit-SemiBold",
                       fontSize: "18px",
                       color: "#E82E2E",
                       borderRadius: "10px",
@@ -324,7 +324,7 @@ export default function Dashboard() {
                       boxSizing: "border-box",
                       width: "35%",
                       padding: "0 10px",
-                      fontFamily: "Pretendard-Regular",
+                      fontFamily: "Suit-Regular",
                       fontSize: "16px",
                     }}
                   >
@@ -354,7 +354,7 @@ export default function Dashboard() {
                       boxSizing: "border-box",
                       width: "10%",
                       padding: "0 10px",
-                      fontFamily: "Pretendard-Light",
+                      fontFamily: "Suit-Light",
                       fontSize: "12px",
                       color: "#555",
                     }}
@@ -382,7 +382,7 @@ export default function Dashboard() {
                       width: "10%",
                       padding: "3px 0",
                       background: "#FFD9CF",
-                      fontFamily: "Pretendard-SemiBold",
+                      fontFamily: "Suit-SemiBold",
                       fontSize: "18px",
                       color: "#E82E2E",
                       borderRadius: "10px",
@@ -397,7 +397,7 @@ export default function Dashboard() {
                       boxSizing: "border-box",
                       width: "35%",
                       padding: "0 10px",
-                      fontFamily: "Pretendard-Regular",
+                      fontFamily: "Suit-Regular",
                       fontSize: "16px",
                     }}
                   >
@@ -427,7 +427,7 @@ export default function Dashboard() {
                       boxSizing: "border-box",
                       width: "10%",
                       padding: "0 10px",
-                      fontFamily: "Pretendard-Light",
+                      fontFamily: "Suit-Light",
                       fontSize: "12px",
                       color: "#555",
                     }}
@@ -448,7 +448,7 @@ export default function Dashboard() {
                 <div
                   style={{
                     boxSizing: "border-box",
-                    fontFamily: "Pretendard-SemiBold",
+                    fontFamily: "Suit-SemiBold",
                     fontSize: "20px",
                     width: "100%",
                     padding: "10px 15px",
@@ -478,7 +478,7 @@ export default function Dashboard() {
                       width: "10%",
                       padding: "3px 0",
                       background: "#FFD9CF",
-                      fontFamily: "Pretendard-SemiBold",
+                      fontFamily: "Suit-SemiBold",
                       fontSize: "18px",
                       color: "#E82E2E",
                       borderRadius: "10px",
@@ -493,7 +493,7 @@ export default function Dashboard() {
                       boxSizing: "border-box",
                       width: "35%",
                       padding: "0 10px",
-                      fontFamily: "Pretendard-Regular",
+                      fontFamily: "Suit-Regular",
                       fontSize: "16px",
                     }}
                   >
@@ -523,7 +523,7 @@ export default function Dashboard() {
                       boxSizing: "border-box",
                       width: "10%",
                       padding: "0 10px",
-                      fontFamily: "Pretendard-Light",
+                      fontFamily: "Suit-Light",
                       fontSize: "12px",
                       color: "#555",
                     }}
