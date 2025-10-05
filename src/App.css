@@ -138,18 +138,18 @@ input {
   box-sizing: border-box;
   border: none;
   background-color: transparent;
-  font-family: Suit-Light;
-  font-size: clamp(14px, 2.2vw, 16px);
+  font-family: Suit-Regular;
+  font-size: clamp(14px, 2.2vw, 18px);
   color: #000;
   outline: none;
 }
 input::placeholder {
-  font-family: Suit-Light;
-  font-size: clamp(14px, 2.2vw, 16px);
+  font-family: Suit-Regular;
+  font-size: clamp(14px, 2.2vw, 18px);
   color: #aaa;
 }
 textarea::placeholder {
-  font-family: Suit-Light;
+  font-family: Suit-Regular;
   font-size: 16px;
   color: #777;
 }
@@ -183,7 +183,7 @@ select {
 
 .nav_text {
   text-align: center;
-  font-family: Suit-Light;
+  font-family: Suit-Regular;
   font-size: 16px;
   color: #000;
   border-top: 2px solid transparent;
@@ -195,7 +195,7 @@ select {
 }
 
 .side_nav_list {
-  font-family: Suit-Light;
+  font-family: Suit-Regular;
   font-size: 16px;
   color: #555;
   box-sizing: border-box;

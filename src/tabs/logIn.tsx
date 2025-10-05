@@ -192,8 +192,6 @@ export default function Login() {
                     maxWidth: "250px",
                     height: "40px",
                     borderRadius: "10px",
-                    fontFamily: "Suit-Light",
-                    fontSize: "18px",
                   }}
                 />
                 <div
@@ -230,8 +228,6 @@ export default function Login() {
                     maxWidth: "360px",
                     height: "40px",
                     borderRadius: "10px",
-                    fontFamily: "Suit-Light",
-                    fontSize: "18px",
                   }}
                 />
                 {isPasswordVisible ? (

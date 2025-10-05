@@ -380,7 +380,7 @@ export default function SignUp() {
                     border: "none",
                     borderBottom: "1px solid #777",
                     marginBottom: "20px",
-                    fontFamily: "Suit-Light",
+                    fontFamily: "Suit-Regular",
                     fontSize: "clamp(14px, 2.2vw, 18px)",
                     color: selectedMajor === "학과 선택" ? "#aaa" : "#000",
                     cursor: "pointer",
