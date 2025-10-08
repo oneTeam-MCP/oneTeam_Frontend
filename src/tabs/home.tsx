@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Button from "../components/button.tsx";
@@ -7,6 +7,37 @@ import BottomInfo from "../components/bottomInfo.tsx";
 import "../App.css";
 
 export default function Home() {
+  const [fistText, setFirstText] = useState("");
+  const [showSecond, setShowSecond] = useState(false);
+  const [secondText, setSecontText] = useState("");
+
+  const fistFull = "Campus Life Assistant,";
+  const secontFull = "powered by MCP";
+
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      setFirstText(fistFull.slice(0, index + 1));
+      index++;
+      if (index >= fistFull.length) {
+        clearInterval(interval);
+        setTimeout(() => setShowSecond(true), 200);
+      }
+    }, 100);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (!showSecond) return;
+    let index = 0;
+    const interval = setInterval(() => {
+      setSecontText(secontFull.slice(0, index + 1));
+      index++;
+      if (index >= secontFull.length) clearInterval(interval);
+    }, 100);
+    return () => clearInterval(interval);
+  }, [showSecond]);
+
   return (
     <div>
       <Nav type="login" />
@@ -31,35 +62,7 @@ export default function Home() {
               objectFit: "cover",
             }}
           />
-          {/* <video
-            className="main"
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{
-              filter: "grayscale(1)",
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          >
-            <source src="../../main_background.mp4" type="video/mp4" />
-          </video> */}
         </div>
-        {/* <div
-          style={{
-            position: "absolute",
-            top: "0",
-            left: "0",
-            width: "100%",
-            height: "100vh",
-            border: "none",
-            opacity: "0.3",
-            backgroundColor: "#000",
-            zIndex: "-1",
-          }}
-        ></div> */}
 
         <motion.div
           id="home"
@@ -68,7 +71,7 @@ export default function Home() {
           viewport={{ once: false }}
           transition={{
             ease: "easeInOut",
-            duration: 3,
+            duration: 0,
           }}
           style={{
             position: "relative",
@@ -89,9 +92,9 @@ export default function Home() {
                 marginTop: "80px",
               }}
             >
-              Campus Life Assistant,
+              {fistText}
               <br />
-              powered by MCP
+              {showSecond && secondText}
             </div>
             <div
               style={{
