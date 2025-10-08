@@ -68,7 +68,7 @@ export default function Home() {
           viewport={{ once: false }}
           transition={{
             ease: "easeInOut",
-            duration: 1,
+            duration: 3,
           }}
           style={{
             position: "relative",
@@ -157,11 +157,18 @@ export default function Home() {
               >
                 Scroll
               </div>
-              <img
-                src="../icon/scroll.png"
-                alt="scroll"
-                style={{ width: "30px" }}
-              />
+              <div
+                style={{
+                  fontSize: "25px",
+                  width: "40px",
+                  height: "40px",
+                  margin: "0 auto",
+                  border: "2px solid #fff",
+                  borderRadius: "50%",
+                }}
+              >
+                ↓
+              </div>
             </motion.div>
           </div>
         </motion.div>

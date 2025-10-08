@@ -3,11 +3,21 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import styled from "styled-components";
 import moment from "moment";
-import PlanData from "../mockup/planData.tsx";
+
+import GetSchedulesAPI from "../api/api/schedules/getSchedulesAPI.tsx";
+
 import "../App.css";
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
+
+type CalendarList = {
+  id: number;
+  startDate: number[];
+  endDate: number[];
+  content: string;
+  createdAt: number[];
+};
 
 const StyledCalendarWrapper = styled.div`
   width: 100%;
@@ -16,14 +26,16 @@ const StyledCalendarWrapper = styled.div`
   position: relative;
   .react-calendar {
     width: 100%;
-    border: none;
-    background-color: none;
+    border: 1px solid #fff;
+    border-radius: 15px;
+    background-color: transparent;
   }
 
   /* 전체 폰트 컬러 */
   .react-calendar__month-view {
     abbr {
       font-size: 18px;
+      color: #fff;
     }
   }
 
@@ -35,18 +47,18 @@ const StyledCalendarWrapper = styled.div`
   .react-calendar__navigation button {
     font-family: Suit-SemiBold;
     font-size: 30px;
-    color: #000;
+    color: #fff;
     border-radius: 10px;
   }
 
   /* 네비게이션 버튼 컬러 */
   .react-calendar__navigation button:focus {
-    background-color: #fff;
+    background-color: transparent;
   }
 
   /* 네비게이션 비활성화 됐을때 스타일 */
   .react-calendar__navigation button:disabled {
-    background-color: #fff;
+    background-color: transparent;
   }
 
   /* 년/월 상단 네비게이션 칸 크기 줄이기 */
@@ -66,21 +78,20 @@ const StyledCalendarWrapper = styled.div`
   .react-calendar__month-view__weekdays abbr {
     font-family: Suit-ExtraBold;
     font-size: 20px;
-    color: #0d2259;
+    color: #fff;
     text-decoration: none;
   }
 
   /* 오늘 날짜 폰트 컬러 */
   .react-calendar__tile--now {
-    border-radius: 10px;
-    background-color: #fff;
+    background-color: transparent;
     color: #114df0;
   }
 
   /* 네비게이션 현재 월 스타일 적용*/
   .react-calendar__tile--hasActive {
     box-shadow: 0 0 0 2px #114df0 inset;
-    background-color: #fff;
+    background-color: transparent;
     border-radius: 10px;
     abbr {
       color: #114df0;
@@ -89,7 +100,7 @@ const StyledCalendarWrapper = styled.div`
 
   /* 일 날짜 스타일 적용 */
   .react-calendar__month-view__days__day {
-    border-bottom: 2px #eee solid;
+    // border-bottom: 2px #eee solid;
     font-family: Suit-SemiBold;
     padding: 10px 5px 80px;
     position: relative;
@@ -110,19 +121,19 @@ const StyledCalendarWrapper = styled.div`
     padding: 30px 6.6667px;
     font-family: Suit-ExtraBold;
     font-size: 14px;
-    color: #000;
+    color: #fff;
   }
 
   /* 월 hover, focus 스타일 적용 */
   .react-calendar__tile:enabled:hover {
-    background-color: #eee;
+    background-color: transparent;
     border-radius: 15px;
-    color: #666;
+    color: #fff;
   }
   .react-calendar__tile:enabled:focus,
   .react-calendar__tile--active {
     box-shadow: 0 0 0 2px #114df0 inset;
-    background-color: #fff;
+    background-color: transparent;
     border-radius: 15px;
     color: #114df0;
   }
@@ -130,7 +141,7 @@ const StyledCalendarWrapper = styled.div`
   /* 근처 월 스타일 적용 */
   .react-calendar__month-view__days__day--neighboringMonth {
     abbr {
-      color: #aaa;
+      color: #777;
     }
   }
 `;
@@ -163,8 +174,6 @@ interface BigCalendarProps {
   onDateSelect: DateSelectionHandler;
 }
 
-const calendarPlanList = PlanData();
-
 const BigCalendar: React.FC<BigCalendarProps> = ({ onDateSelect }) => {
   const today = new Date();
   const [date, setDate] = useState<Value>(today);
@@ -172,6 +181,8 @@ const BigCalendar: React.FC<BigCalendarProps> = ({ onDateSelect }) => {
     new Date()
   );
   const [currentMonthDays, setCurrentMonthDays] = useState<Date[]>([]);
+
+  const [calendarPlanList, setCalendarPlanList] = useState<CalendarList[]>([]);
 
   // 날짜 범위를 돌면서 rowIndex 배정
   const eventRowMap = useMemo(() => {
@@ -215,6 +226,14 @@ const BigCalendar: React.FC<BigCalendarProps> = ({ onDateSelect }) => {
       setCurrentMonthDays(days);
     }
   }, [activeStartDate]);
+
+  useEffect(() => {
+    async function fetchSchedules() {
+      const schedules = await GetSchedulesAPI();
+      setCalendarPlanList(schedules);
+    }
+    fetchSchedules();
+  }, []);
 
   const handleDateChange = (newDate: Value) => {
     setDate(newDate);
@@ -283,16 +302,17 @@ const BigCalendar: React.FC<BigCalendarProps> = ({ onDateSelect }) => {
                 position: "absolute",
                 top: `${40 + weekRow * 111.2 + rowIndex * 30}px`,
                 left: `${(colStart / 7) * 100}%`,
-                width:
-                  isOneDay || isStartWeek || isEndWeek
-                    ? `calc(${(colSpan / 7) * 100}% - 20px)`
-                    : `${(colSpan / 7) * 100}%`,
+                width: isOneDay
+                  ? `calc(${(colSpan / 7) * 100}% - 20px)`
+                  : isStartWeek || isEndWeek
+                  ? `calc(${(colSpan / 7) * 100}% - 15px)`
+                  : `calc(${(colSpan / 7) * 100}% - 10px)`,
                 marginLeft: isStartWeek || isOneDay ? "5px" : "0",
-                marginRight: isEndWeek || isOneDay ? "5px" : "0",
                 height: "25px",
                 backgroundColor: rowIndex === 0 ? "#EEF0FE" : "#C9D9FD",
+                fontFamily: "Suit-SemiBold",
                 fontSize: "13px",
-                fontFamily: "Suit-Regular",
+                color: "#000",
                 padding: "0 5px",
                 display: "flex",
                 alignItems: "center",
@@ -308,7 +328,7 @@ const BigCalendar: React.FC<BigCalendarProps> = ({ onDateSelect }) => {
                   flex: 1,
                 }}
               >
-                {isStartWeek || isOneDay ? event.title : ""}
+                {isStartWeek || isOneDay ? event.content : ""}
               </span>
             </div>
           );
@@ -323,7 +343,7 @@ const BigCalendar: React.FC<BigCalendarProps> = ({ onDateSelect }) => {
                 height: "20px",
                 fontSize: "12px",
                 fontFamily: "Suit-Regular",
-                color: "#666",
+                color: "#000",
                 textAlign: "center",
                 lineHeight: "20px",
                 pointerEvents: "none",

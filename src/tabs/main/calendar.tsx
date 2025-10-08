@@ -6,17 +6,36 @@ import Nav from "../../components/nav.tsx";
 import SideNav from "../../components/side_nav.tsx";
 import BigCalendar from "../../components/bigCalendar.tsx";
 
-import PlanData from "../../mockup/planData.tsx";
+// import PlanData from "../../mockup/planData.tsx";
+
+import GetSchedulesAPI from "../../api/api/schedules/getSchedulesAPI.tsx";
 
 import "../../App.css";
 
 const SIDENAV_WIDTH = 200;
 const today = new Date();
 
+type CalendarList = {
+  id: number;
+  startDate: number[];
+  endDate: number[];
+  content: string;
+  createdAt: number[];
+};
+
 export default function Calendar() {
   const [open, setOpen] = useState(true);
   const [selectedDate, setSelectedDate] = useState<Date>(today);
-  const calendarPlanList = PlanData();
+  const [calendarPlanList, setCalendarPlanList] = useState<CalendarList[]>([]);
+  // const calendarPlanList = PlanData();
+
+  useEffect(() => {
+    async function fetchSchedules() {
+      const schedules = await GetSchedulesAPI();
+      setCalendarPlanList(schedules);
+    }
+    fetchSchedules();
+  }, []);
 
   const handleDateSelect = (selectedDate: Date) => {
     setSelectedDate(selectedDate); // Update the selected date in the state
@@ -61,7 +80,7 @@ export default function Calendar() {
           <div
             style={{
               fontFamily: "Suit-SemiBold",
-              fontSize: "25px",
+              fontSize: "30px",
               width: "250px",
               minWidth: "200px",
               height: "6vh",
@@ -93,8 +112,7 @@ export default function Calendar() {
               transition={{ duration: 0.5 }}
               style={{
                 width: "370px",
-                background: "#FAFAFC",
-                border: "1px solid #CED0F8",
+                border: "1px solid #fff",
                 borderRadius: "20px",
               }}
             >
@@ -182,10 +200,11 @@ export default function Calendar() {
                               fontFamily: "Suit-Regular",
                               fontSize: "12px",
                               padding: "5px 0",
-                              background: "#eee",
+                              border: "1px solid #fff",
+                              borderRadius: "10px",
                             }}
                           >
-                            {event.category}
+                            일정
                           </div>
                         </div>
                         <div>
@@ -195,7 +214,7 @@ export default function Calendar() {
                               fontSize: "18px",
                             }}
                           >
-                            {event.title}
+                            {event.content}
                           </div>
                           <div
                             style={{

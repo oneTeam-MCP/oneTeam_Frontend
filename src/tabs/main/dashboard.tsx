@@ -51,7 +51,8 @@ export default function Dashboard() {
           <div
             style={{
               fontFamily: "Suit-SemiBold",
-              fontSize: "25px",
+              fontSize: "30px",
+              color: "#fff",
               width: "250px",
               minWidth: "200px",
               height: "6vh",
