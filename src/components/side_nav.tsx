@@ -20,7 +20,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
         style={{
           position: "fixed",
           top: "15px",
-          left: open ? WIDTH + 5 : 130,
+          left: open ? WIDTH + 5 : 120,
           width: 36,
           height: 36,
           color: "#fff",
@@ -73,7 +73,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
           <Link to="/">
             <img
               src="../logo/logo.png"
-              style={{ display: "block", width: "100px" }}
+              style={{ display: "block", width: "80px" }}
             />
           </Link>
         </div>

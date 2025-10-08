@@ -194,7 +194,7 @@ export default function Chatbot() {
   const [showLogo, setShowLogo] = useState(false);
   const [endText, setEndText] = useState("");
 
-  const helloFull = "안녕하세요.";
+  const helloFull = "안녕하세요,";
   const endFull = "입니다.";
 
   useEffect(() => {
@@ -404,7 +404,7 @@ export default function Chatbot() {
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
-                        fontFamily: "Suit-Bold",
+                        fontFamily: "Suit-SemiBold",
                         fontSize: "30px",
                       }}
                     >
@@ -412,7 +412,7 @@ export default function Chatbot() {
                         <>
                           <img
                             src="../logo/logo.png"
-                            style={{ width: "200px" }}
+                            style={{ width: "150px" }}
                           />
                           <span style={{ marginLeft: "10px" }}>{endText}</span>
                         </>

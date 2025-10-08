@@ -48,7 +48,7 @@ export default function Nav({ type }: NavProps) {
           <Link to="/">
             <img
               src="../logo/logo.png"
-              style={{ display: "block", width: "100px" }}
+              style={{ display: "block", width: "80px" }}
             />
           </Link>
         </div>

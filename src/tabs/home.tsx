@@ -28,7 +28,12 @@ export default function Home() {
             muted
             loop
             playsInline
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            style={{
+              filter: "grayscale(1)",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
           >
             <source src="../../main_background.mp4" type="video/mp4" />
           </video>

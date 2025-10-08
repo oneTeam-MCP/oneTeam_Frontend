@@ -361,6 +361,44 @@ export default function SignUp() {
                   )}
                 </div>
               </div>
+
+              <div>
+                <div
+                  style={{
+                    fontFamily: "Suit-Regular",
+                    fontSize: "16px",
+                  }}
+                >
+                  이름
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    height: "30px",
+                    borderBottom: "1px solid #777",
+                    margin: "0 auto",
+                    marginBottom: "20px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <input
+                    id="name"
+                    placeholder="이름 입력"
+                    type="text"
+                    autoComplete="off"
+                    {...register("Name", {
+                      required: "이름을 입력해주세요.",
+                    })}
+                    style={{
+                      width: "100%",
+                      maxWidth: "360px",
+                    }}
+                  />
+                </div>
+              </div>
+
               <div>
                 <div
                   style={{
