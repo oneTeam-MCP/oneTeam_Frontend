@@ -44,10 +44,6 @@ export default function LogInAPI(email: string, password: string) {
         path: "/",
         expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), // 1일 뒤 삭제
       });
-
-      setTimeout(() => {
-        window.location.href = "/dashboard";
-      }, 100); // 100ms 딜레이
     })
     .catch((error) => {
       console.error("LogIn failed:", error);
