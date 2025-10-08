@@ -99,7 +99,7 @@ export default function Login() {
         }}
       >
         <img
-          src="..\login_background.png"
+          src="..\home_background3.png"
           alt="login_background"
           style={{
             display: "block",
@@ -109,7 +109,7 @@ export default function Login() {
           }}
         />
       </div>
-      <div
+      {/* <div
         style={{
           position: "absolute",
           top: "0",
@@ -120,7 +120,7 @@ export default function Login() {
           zIndex: "-1",
           background: "#2156C6",
         }}
-      ></div>
+      ></div> */}
 
       <div
         style={{

@@ -32,7 +32,7 @@ export default function Nav({ type }: NavProps) {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#fff",
+          backgroundColor: "rgba(11,15,14, 0.85)",
         }}
       >
         <div
@@ -47,8 +47,8 @@ export default function Nav({ type }: NavProps) {
         >
           <Link to="/">
             <img
-              src="../logo/logo.png"
-              style={{ display: "block", width: "80px" }}
+              src="../logo/logo_w.png"
+              style={{ display: "block", width: "90px" }}
             />
           </Link>
         </div>

@@ -73,7 +73,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
           <Link to="/">
             <img
               src="../logo/logo.png"
-              style={{ display: "block", width: "80px" }}
+              style={{ display: "block", width: "90px" }}
             />
           </Link>
         </div>

@@ -22,7 +22,16 @@ export default function Home() {
             zIndex: "-2",
           }}
         >
-          <video
+          <img
+            src="../../home_background3.png"
+            alt="main_background"
+            style={{
+              width: "100%",
+              height: "120%",
+              objectFit: "cover",
+            }}
+          />
+          {/* <video
             className="main"
             autoPlay
             muted
@@ -36,9 +45,9 @@ export default function Home() {
             }}
           >
             <source src="../../main_background.mp4" type="video/mp4" />
-          </video>
+          </video> */}
         </div>
-        <div
+        {/* <div
           style={{
             position: "absolute",
             top: "0",
@@ -50,7 +59,7 @@ export default function Home() {
             backgroundColor: "#000",
             zIndex: "-1",
           }}
-        ></div>
+        ></div> */}
 
         <motion.div
           id="home"
@@ -64,28 +73,50 @@ export default function Home() {
           style={{
             position: "relative",
             width: "100%",
-            height: "100vh",
+            height: "120vh",
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "left",
             alignItems: "center",
           }}
         >
-          <div style={{ width: "400px", padding: "50px" }}>
+          <div style={{ textAlign: "left", width: "800px", padding: "80px" }}>
             <div
               style={{
-                fontFamily: "Suit-Regular",
-                fontSize: "25px",
+                fontFamily: "Suit-ExtraBold",
+                fontSize: "65px",
+                lineHeight: "1.5",
                 color: "#fff",
-                marginBottom: "15px",
+                marginTop: "80px",
               }}
             >
-              상명대학교 통합관리 LLM 서비스
+              Campus Life Assistant,
+              <br />
+              powered by MCP
             </div>
-            <img
-              src="../../logo/logo.png"
-              alt="main_logo"
-              style={{ width: "400px" }}
-            />
+            <div
+              style={{
+                marginTop: "40px",
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: "Suit-SemiBold",
+                  fontSize: "20px",
+                  color: "#fff",
+                  width: "100px",
+                  border: "1px solid #fff",
+                  borderRadius: "10px",
+                  textAlign: "center",
+                  padding: "5px",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  window.location.href = "/logIn";
+                }}
+              >
+                Start
+              </div>
+            </div>
           </div>
           <div
             style={{
@@ -93,10 +124,10 @@ export default function Home() {
               bottom: "0",
               width: "100%",
               height: "150px",
-              background:
-                "linear-gradient(0deg, #111015 -10%, rgba(255, 255, 255, 0) 100%",
+              // background:
+              //   "linear-gradient(0deg, #111015 -10%, rgba(255, 255, 255, 0) 100%",
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "right",
               alignItems: "center",
             }}
           >
@@ -111,7 +142,8 @@ export default function Home() {
               }}
               style={{
                 position: "absolute",
-                bottom: "30px",
+                bottom: "25vh",
+                right: "80px",
                 width: "100px",
               }}
             >
@@ -155,7 +187,7 @@ export default function Home() {
                 fontFamily: "Suit-Bold",
                 fontSize: "40px",
                 marginBottom: "20px",
-                color: "#111",
+                color: "#fff",
               }}
             >
               Introduction
@@ -198,7 +230,6 @@ export default function Home() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            background: "#EEF0FE",
           }}
         >
           <div
@@ -226,7 +257,7 @@ export default function Home() {
                   fontFamily: "Suit-Bold",
                   fontSize: "40px",
                   marginBottom: "20px",
-                  color: "#111",
+                  color: "#fff",
                 }}
               >
                 What is MCP?
@@ -274,7 +305,7 @@ export default function Home() {
               fontFamily: "Suit-Bold",
               fontSize: "40px",
               marginBottom: "40px",
-              color: "#111",
+              color: "#fff",
             }}
           >
             Team
@@ -318,7 +349,7 @@ export default function Home() {
               <div
                 key={member.name}
                 style={{
-                  background: "#fff",
+                  border: "1px solid #fff",
                   borderRadius: "16px",
                   boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
                   padding: "20px",
@@ -341,6 +372,7 @@ export default function Home() {
                   style={{
                     fontFamily: "Suit-SemiBold",
                     fontSize: "20px",
+                    color: "#fff",
                     marginBottom: "8px",
                   }}
                 >
