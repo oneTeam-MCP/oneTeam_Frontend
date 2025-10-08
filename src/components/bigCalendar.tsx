@@ -254,7 +254,7 @@ const BigCalendar: React.FC<BigCalendarProps> = ({ onDateSelect }) => {
     const lastDay = currentMonthDays[currentMonthDays.length - 1];
     if (!firstDay || !lastDay) return null;
 
-    const dayEventsMap: Record<string, string[]> = {};
+    const dayEventsMap: Record<number, string[]> = {};
     calendarPlanList.forEach((event) => {
       const start = moment.max(moment(event.startDate), moment(firstDay));
       const end = moment.min(moment(event.endDate), moment(lastDay));
