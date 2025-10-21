@@ -77,14 +77,24 @@ export default function Login() {
     const email = e.StudentNum + "@sangmyung.kr";
 
     try {
-      console.log(e, "onValid");
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      await LogInAPI(email, e.Password);
+      const res = await LogInAPI(email, e.Password);
+
+      if (res instanceof Response) {
+        if (!res.ok) {
+          const text = await res.text().catch(() => "");
+          throw new Error(`HTTP ${res.status} ${text}`);
+        }
+      } else if (!res) {
+        throw new Error("로그인 API 응답이 없습니다.");
+      }
 
       setStudentNum(e.StudentNum);
       setIsPopupOpen(true);
     } catch (error) {
       console.error("로그인 실패:", error);
+      alert("아이디나 비밀번호를 확인하세요.");
+      setIsPopupOpen(false);
     } finally {
       setIsSubmitting(false);
     }
@@ -100,7 +110,7 @@ export default function Login() {
 
     console.log(studentNum, e.PasswordSamul);
 
-    fetch(
+    await fetch(
       "https://685hwzfiu3.execute-api.ap-northeast-2.amazonaws.com/funcionecampus/smu-dash",
       {
         method: "POST",
@@ -159,36 +169,27 @@ export default function Login() {
         }}
       >
         <img
-          src="..\home_background3.png"
+          src="..\login_background.png"
           alt="login_background"
           style={{
             display: "block",
             width: "100%",
             height: "100%",
             objectFit: "cover",
+            opacity: "0.6",
           }}
         />
       </div>
-      {/* <div
-        style={{
-          position: "absolute",
-          top: "0",
-          left: "0",
-          width: "100%",
-          height: "100%",
-          opacity: "0.2",
-          zIndex: "-1",
-          background: "#2156C6",
-        }}
-      ></div> */}
 
       <div
         style={{
           maxWidth: "650px",
           margin: "15vh auto",
-          border: "1px solid #000",
-          borderRadius: "20px",
-          backgroundColor: "#fff",
+          border: "1px solid #A0B5C9",
+          background: "rgba(19, 37, 57, 0.6)",
+          backdropFilter: "blur(6px)",
+          WebkitBackdropFilter: "blur(6px)", // 사파리
+          borderRadius: "15px",
         }}
       >
         <div
@@ -200,7 +201,7 @@ export default function Login() {
           }}
         >
           <img
-            src="..\logo\logo.png"
+            src="..\logo\logo_w.png"
             alt="login_logo"
             style={{ width: "100%" }}
           />
@@ -379,7 +380,7 @@ export default function Login() {
               </button>
             </div>
           </form>
-          <hr
+          {/* <hr
             style={{
               maxWidth: "1200px",
               height: "1px",
@@ -387,9 +388,10 @@ export default function Login() {
               margin: "5px 0",
               backgroundColor: "#aaa",
             }}
-          />
+          /> */}
           <div
             style={{
+              marginTop: "10px",
               maxWidth: "100%",
               display: "flex",
               justifyContent: "center",
@@ -408,7 +410,7 @@ export default function Login() {
             style={{
               fontFamily: "Suit-Light",
               fontSize: "14px",
-              color: "#333",
+              color: "#aaa",
               marginTop: "80px",
               marginBottom: "50px",
             }}
@@ -522,7 +524,7 @@ export default function Login() {
               title="취소"
               onClick={() => {
                 const deleteEnd = window.confirm(
-                  "스터디 추가를 취소하시겠습니까?\n(변경 사항은 저장되지 않습니다.)"
+                  "샘물 비밀번호 미 입력 시 정보가 업데이트 되지 않습니다."
                 );
                 if (deleteEnd) {
                   setIsPopupOpen(false);

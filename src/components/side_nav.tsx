@@ -25,7 +25,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
           height: 36,
           color: "#fff",
           transition: "left .25s ease",
-          zIndex: 100,
+          zIndex: "100",
         }}
         title={open ? "사이드바 닫기" : "사이드바 열기"}
       >
@@ -49,9 +49,9 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
           left: "0",
           height: "100%",
           width: `${WIDTH}px`,
-          background: "#fff",
           textAlign: "left",
-          boxShadow: "0 0 5px rgba(0, 0, 0, 0.3)",
+          background: "#0b0f0e",
+          boxShadow: "inset 0 0 5px rgba(255, 255, 255, 0.3)",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -72,7 +72,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
         >
           <Link to="/">
             <img
-              src="../logo/logo.png"
+              src="../logo/logo_w.png"
               style={{ display: "block", width: "90px" }}
             />
           </Link>

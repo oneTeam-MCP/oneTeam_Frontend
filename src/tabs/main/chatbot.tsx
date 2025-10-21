@@ -40,9 +40,14 @@ function IntroBubble({
         position: "absolute",
         width: "35%",
         height: "40px",
-        background: "#EEF0FE",
-        borderRadius: "30px",
-        boxShadow: "0 0 5px rgba(0, 0, 0, 0.5)",
+        border: "1px solid rgba(99, 89, 191, 0.5)",
+        background: "rgba(255,255,255,0.1)",
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)", // 사파리
+        borderRadius: "20px",
+        fontFamily: "Suit-Light",
+        fontSize: "16px",
+        color: "#fff",
         textAlign: "center",
         display: "flex",
         justifyContent: "center",
@@ -369,8 +374,10 @@ export default function Chatbot() {
                 boxSizing: "border-box",
                 width: "100%",
                 height: "100%",
-                background: "#FAFAFC",
-                border: "1px solid #CED0F8",
+                border: "1px solid rgba(99, 89, 191, 0.5)",
+                background: "rgba(255,255,255,0.1)",
+                backdropFilter: "blur(6px)",
+                WebkitBackdropFilter: "blur(6px)", // 사파리
                 borderRadius: "20px",
                 display: "flex",
                 flexDirection: "column",
@@ -383,7 +390,7 @@ export default function Chatbot() {
                     width: "100%",
                     height: "100%",
                     textAlign: "center",
-                    paddingTop: "110px",
+                    paddingTop: "80px",
                     position: "relative",
                     animation:
                       messages.length > 0
@@ -391,11 +398,11 @@ export default function Chatbot() {
                         : "none",
                   }}
                 >
-                  <div style={{ height: "100px", marginBottom: "10px" }}>
+                  <div style={{ height: "100px", marginBottom: "20px" }}>
                     <div
                       style={{
                         fontFamily: "Suit-SemiBold",
-                        fontSize: "25px",
+                        fontSize: "30px",
                       }}
                     >
                       {helloText}
@@ -406,13 +413,13 @@ export default function Chatbot() {
                         justifyContent: "center",
                         alignItems: "center",
                         fontFamily: "Suit-SemiBold",
-                        fontSize: "30px",
+                        fontSize: "50px",
                       }}
                     >
                       {showLogo && (
                         <>
                           <img
-                            src="../logo/logo.png"
+                            src="../logo/logo_w.png"
                             style={{ width: "150px" }}
                           />
                           <span style={{ marginLeft: "10px" }}>{endText}</span>

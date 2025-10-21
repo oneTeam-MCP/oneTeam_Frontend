@@ -9,6 +9,7 @@ import "../App.css";
 export default function Home() {
   const [fistText, setFirstText] = useState("");
   const [showSecond, setShowSecond] = useState(false);
+  const [showThird, setShowThird] = useState(false);
   const [secondText, setSecontText] = useState("");
 
   const fistFull = "Campus Life Assistant,";
@@ -23,7 +24,7 @@ export default function Home() {
         clearInterval(interval);
         setTimeout(() => setShowSecond(true), 200);
       }
-    }, 100);
+    }, 50);
     return () => clearInterval(interval);
   }, []);
 
@@ -33,8 +34,11 @@ export default function Home() {
     const interval = setInterval(() => {
       setSecontText(secontFull.slice(0, index + 1));
       index++;
-      if (index >= secontFull.length) clearInterval(interval);
-    }, 100);
+      if (index >= secontFull.length) {
+        clearInterval(interval);
+        setTimeout(() => setShowThird(true), 300);
+      }
+    }, 50);
     return () => clearInterval(interval);
   }, [showSecond]);
 
@@ -94,31 +98,54 @@ export default function Home() {
             >
               {fistText}
               <br />
-              {showSecond && secondText}
+              <span style={{ fontSize: "50px" }}>
+                {showSecond && secondText}
+              </span>
             </div>
             <div
               style={{
                 marginTop: "40px",
               }}
             >
-              <div
-                style={{
-                  fontFamily: "Suit-SemiBold",
-                  fontSize: "20px",
-                  color: "#fff",
-                  width: "100px",
-                  border: "1px solid #fff",
-                  borderRadius: "10px",
-                  textAlign: "center",
-                  padding: "5px",
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  window.location.href = "/logIn";
-                }}
-              >
-                Start
-              </div>
+              {showThird && (
+                <div
+                  style={{
+                    position: "relative",
+                    display: "inline-block",
+                    padding: "2px",
+                    borderRadius: "12px",
+                    animation: "spinGlow 3s linear infinite", // CSS 애니메이션만 외부로 분리
+                    cursor: "pointer",
+                  }}
+                  onClick={() => (window.location.href = "/logIn")}
+                >
+                  <div
+                    style={{
+                      fontFamily: "Suit-SemiBold",
+                      fontSize: "20px",
+                      color: "#fff",
+                      backgroundColor: "rgba(0,0,0,0.85)",
+                      width: "100px",
+                      height: "30px",
+                      textAlign: "center",
+                      border: " 1px solid #fff",
+                      borderRadius: "10px",
+                      padding: "8px 10px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.fontSize = "22px";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.fontSize = "20px";
+                    }}
+                  >
+                    Start
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div
@@ -127,9 +154,8 @@ export default function Home() {
               bottom: "0",
               width: "100%",
               height: "150px",
-              // background:
-              //   "linear-gradient(0deg, #111015 -10%, rgba(255, 255, 255, 0) 100%",
-              display: "flex",
+              background:
+                "linear-gradient(0deg, rgba(11, 15, 14, 1) -10%, rgba(11, 15, 14, 0) 100%",
               justifyContent: "right",
               alignItems: "center",
             }}
@@ -178,7 +204,7 @@ export default function Home() {
 
         <motion.div
           id="introduction"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 200 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ ease: "easeInOut", duration: 1 }}
@@ -189,47 +215,45 @@ export default function Home() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            zIndex: "5",
           }}
         >
-          <div style={{ width: "70%", textAlign: "center" }}>
+          <div style={{ width: "80%", textAlign: "left" }}>
             <div
               style={{
                 fontFamily: "Suit-Bold",
                 fontSize: "40px",
-                marginBottom: "20px",
+                marginBottom: "40px",
                 color: "#fff",
+                lineHeight: "1.6",
               }}
             >
-              Introduction
+              상명대학교 통합관리 LLM 서비스
+              <br />
+              SMU's는 학교 내 정보 통합과 MCP 기반 기능을 지원합니다.
             </div>
             <div
               style={{
-                fontFamily: "Suit-Regular",
-                fontSize: "20px",
-                color: "#555",
-                lineHeight: "1.6",
-                maxWidth: "800px",
+                fontFamily: "Suit-Light",
+                fontSize: "16px",
+                color: "#fff",
+                lineHeight: "1.8",
                 margin: "0 auto",
               }}
             >
-              상명대학교 통합관리 LLM 서비스는{" "}
-              <span style={{ fontFamily: "Suit-SemiBold", color: "#4E7AF4" }}>
-                학내 정보 통합
-              </span>
-              과{" "}
-              <span style={{ fontFamily: "Suit-SemiBold", color: "#4E7AF4" }}>
-                AI 기반 지원
-              </span>
-              을 통해 학생과 교직원 모두에게 더 편리한 환경을 제공합니다.
+              SMU's는 상명대학교 학생들을 위한 AI 기반 통합관리 서비스로, 학교
+              생활에 필요한 주요한 정보를 한 눈에 제공합니다.
               <br />
-              이제 행정, 공지, 상담까지 하나의 플랫폼에서 해결하세요.
+              MCP(Model Context Protocol)를 활용하여, 학사 일정, 강의 정보, 학교
+              공지 등 다양한 데이터를 통합 관리하며, 학생들에게 보다 효율적인
+              학교 생활을 지원합니다.
             </div>
           </div>
         </motion.div>
 
         <motion.div
           id="what_is_mcp"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ ease: "easeInOut", duration: 0.8 }}
@@ -244,24 +268,41 @@ export default function Home() {
         >
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "50px",
               alignItems: "center",
               width: "80%",
               maxWidth: "1100px",
             }}
           >
-            <img
-              src="../mcp.png"
-              alt="mcp"
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
               style={{
+                position: "absolute",
+                top: "0",
+                left: "0",
                 width: "100%",
-                borderRadius: "20px",
-                boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+                height: "100vh",
+                objectFit: "cover",
+                opacity: "0.4",
+                zIndex: "-1",
               }}
-            />
-            <div>
+            >
+              <source src="../../background_2.mp4" type="video/mp4" />
+            </video>
+            <div
+              style={{
+                border: "1px solid rgba(99, 89, 191, 0.5)",
+                background: "rgba(255,255,255,0.1)",
+                backdropFilter: "blur(6px)",
+                WebkitBackdropFilter: "blur(6px)", // 사파리
+                borderRadius: "15px",
+                padding: "24px",
+                zIndex: "2",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+              }}
+            >
               <div
                 style={{
                   fontFamily: "Suit-Bold",
@@ -272,23 +313,7 @@ export default function Home() {
               >
                 What is MCP?
               </div>
-              <div
-                style={{
-                  fontFamily: "Suit-Regular",
-                  fontSize: "20px",
-                  color: "#555",
-                  lineHeight: "1.6",
-                }}
-              >
-                MCP(Model Context Protocol)은{" "}
-                <span style={{ fontFamily: "Suit-SemiBold", color: "#4F46E5" }}>
-                  모델과 애플리케이션을 안전하고 일관된 방식으로 연결
-                </span>
-                하기 위한 오픈 표준입니다.
-                <br />
-                이를 통해 다양한 서비스가 손쉽게 LLM과 통신하며, 확장성과
-                보안성을 동시에 확보할 수 있습니다.
-              </div>
+              <div style={{}}></div>
             </div>
           </div>
         </motion.div>
@@ -359,9 +384,11 @@ export default function Home() {
               <div
                 key={member.name}
                 style={{
-                  border: "1px solid #fff",
-                  borderRadius: "16px",
-                  boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
+                  border: "1px solid rgba(99, 89, 191, 0.5)",
+                  background: "rgba(255,255,255,0.1)",
+                  backdropFilter: "blur(6px)",
+                  WebkitBackdropFilter: "blur(6px)", // 사파리
+                  borderRadius: "15px",
                   padding: "20px",
                   textAlign: "center",
                   transition: "transform 0.2s",

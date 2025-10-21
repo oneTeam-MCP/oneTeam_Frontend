@@ -113,6 +113,18 @@
   }
 }
 
+@keyframes spinGlow {
+  0% {
+    filter: drop-shadow(0 0 8px #fff);
+  }
+  50% {
+    filter: drop-shadow(0 0 16px #fff);
+  }
+  100% {
+    filter: drop-shadow(0 0 8px #fff);
+  }
+}
+
 body {
   position: relative;
   width: 100%;
@@ -130,7 +142,7 @@ body {
   padding: 0;
 }
 a {
-  color: #000;
+  color: #fff;
   text-decoration: inherit;
 }
 
@@ -140,7 +152,7 @@ input {
   background-color: transparent;
   font-family: Suit-Regular;
   font-size: clamp(14px, 2.2vw, 18px);
-  color: #000;
+  color: #fff;
   outline: none;
 }
 input::placeholder {
@@ -151,7 +163,7 @@ input::placeholder {
 textarea::placeholder {
   font-family: Suit-Regular;
   font-size: 16px;
-  color: #777;
+  color: #aaa;
 }
 input[type="time"]::-webkit-calendar-picker-indicator,
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -197,7 +209,7 @@ select {
 .side_nav_list {
   font-family: Suit-Regular;
   font-size: 16px;
-  color: #555;
+  color: #fff;
   box-sizing: border-box;
   width: 100%;
   text-align: left;
