@@ -41,10 +41,9 @@ function IntroBubble({
         position: "absolute",
         width: "35%",
         height: "40px",
-        border: "1px solid rgba(99, 89, 191, 0.5)",
-        background: "rgba(255,255,255,0.1)",
-        backdropFilter: "blur(6px)",
-        WebkitBackdropFilter: "blur(6px)", // 사파리
+        border: "#444",
+        // boxShadow: "0 0 8px rgba(255,255,255,0.3)",
+        background: "#3c4043",
         borderRadius: "20px",
         fontFamily: "Suit-Light",
         fontSize: "16px",
@@ -88,8 +87,8 @@ function Bubble({
           wordBreak: "break-word",
           padding: "12px 15px",
           borderRadius: "16px",
-          background: isUser ? "#4E7AF4" : "#EEF0FE",
-          color: isUser ? "#fff" : "#111",
+          background: isUser ? "#4285F4" : "#3c4043",
+          color: "#fff",
           boxShadow: "0 0 5px rgba(0,0,0,0.3)",
         }}
       >
@@ -102,7 +101,7 @@ function Bubble({
               a: (props) => (
                 <a
                   {...props}
-                  style={{ color: "blue" }}
+                  style={{ color: "#4285F4" }}
                   target="_blank"
                   rel="noopener noreferrer"
                 />
@@ -155,7 +154,7 @@ function Dot({ style }: { style?: React.CSSProperties }) {
         width: 8,
         height: 8,
         borderRadius: "50%",
-        background: "#4E7AF4",
+        background: "#fff",
         display: "inline-block",
         animation: "blink 1.1s infinite ease-in-out",
         ...style,
@@ -346,7 +345,8 @@ export default function Chatbot() {
           width: `calc(100% - ${open ? SIDENAV_WIDTH : 0}px)`,
           marginLeft: open ? `${SIDENAV_WIDTH}px` : "0px",
           height: "92vh",
-          marginTop: "8vh",
+          marginTop: "4vh",
+          marginBottom: "8vh",
           display: "flex",
           justifyContent: "center",
           transition: "width .25s ease, margin-left .25s ease",
@@ -368,6 +368,7 @@ export default function Chatbot() {
               width: "250px",
               minWidth: "200px",
               height: "6vh",
+              marginBottom: "10px",
             }}
           >
             Chatbot AI
@@ -379,7 +380,6 @@ export default function Chatbot() {
             transition={{ duration: 0.5 }}
             style={{
               position: "relative",
-              height: "85vh",
             }}
           >
             <div
@@ -387,10 +387,6 @@ export default function Chatbot() {
                 boxSizing: "border-box",
                 width: "100%",
                 height: "100%",
-                border: "1px solid rgba(99, 89, 191, 0.5)",
-                background: "rgba(255,255,255,0.05)",
-                backdropFilter: "blur(6px)",
-                WebkitBackdropFilter: "blur(6px)", // 사파리
                 borderRadius: "20px",
                 display: "flex",
                 flexDirection: "column",
@@ -518,83 +514,84 @@ export default function Chatbot() {
                 </div>
               )}
             </div>
-
-            <form
-              onSubmit={handleSubmit}
-              style={{
-                position: "absolute",
-                bottom: "10px",
-                width: "100%",
-              }}
-            >
-              <div
-                style={{
-                  width: "95%",
-                  height: `${inputHeight}px`,
-                  borderRadius: "30px",
-                  background: "#fff",
-                  boxShadow: "0 0 5px rgba(0, 0, 0, 0.5)",
-                  margin: "0 auto",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "flex-end",
-                }}
-              >
-                <div
-                  style={{ width: "5%", height: "100%", maxHeight: "150px" }}
-                />
-                <textarea
-                  ref={textareaRef}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  onInput={autoResize}
-                  onKeyDown={handleKeyDown}
-                  placeholder="메시지를 입력하세요..."
-                  style={{
-                    fontFamily: "Suit-Regular",
-                    fontSize: "18px",
-                    lineHeight: `${LINE_HEIGHT_PX}px`,
-                    width: "90%",
-                    minHeight: `${LINE_HEIGHT_PX}px`,
-                    maxHeight: `${MAX_HEIGHT}px`,
-                    overflowY: "hidden",
-                    resize: "none",
-                    border: "none",
-                    outline: "none",
-                    boxShadow: "none",
-                    padding: "0",
-                    marginBottom: "12px",
-                  }}
-                  rows={1}
-                />
-                <div
-                  style={{
-                    position: "relative",
-                    width: "5%",
-                    minWidth: "35px",
-                    paddingRight: "5px",
-                    height: "50px",
-                  }}
-                >
-                  <img
-                    onClick={() => handleSubmit()}
-                    alt="send"
-                    src="../btn/upload_enabled.png"
-                    style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      width: "35px",
-                      cursor: message.trim() ? "pointer" : "default",
-                      opacity: message.trim() ? 1 : 0.5,
-                    }}
-                  />
-                </div>
-              </div>
-            </form>
           </motion.div>
         </div>
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            width: "1200px",
+            minWidth: "40vw",
+            padding: "0 20px",
+          }}
+        >
+          <div
+            style={{
+              width: "100%",
+              height: `${inputHeight}px`,
+              borderRadius: "15px",
+              background: "#0b0f0e",
+              boxShadow: "0 0 8px rgba(255,255,255,0.6)",
+              margin: "0 auto",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+            }}
+          >
+            <div style={{ width: "5%", height: "100%", maxHeight: "150px" }} />
+            <textarea
+              ref={textareaRef}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              onInput={autoResize}
+              onKeyDown={handleKeyDown}
+              placeholder="메시지를 입력하세요..."
+              style={{
+                fontFamily: "Suit-Regular",
+                fontSize: "18px",
+                lineHeight: `${LINE_HEIGHT_PX}px`,
+                width: "90%",
+                minHeight: `${LINE_HEIGHT_PX}px`,
+                maxHeight: `${MAX_HEIGHT}px`,
+                overflowY: "hidden",
+                resize: "none",
+                border: "none",
+                outline: "none",
+                boxShadow: "none",
+                padding: "0",
+                marginBottom: "12px",
+                background: "#0b0f0e",
+                color: "#fff",
+              }}
+              rows={1}
+            />
+            <div
+              style={{
+                position: "relative",
+                width: "5%",
+                minWidth: "35px",
+                paddingRight: "5px",
+                height: "50px",
+              }}
+            >
+              <img
+                onClick={() => handleSubmit()}
+                alt="send"
+                src="../btn/upload_enabled.png"
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: "35px",
+                  cursor: message.trim() ? "pointer" : "default",
+                  opacity: message.trim() ? 1 : 0.5,
+                }}
+              />
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );

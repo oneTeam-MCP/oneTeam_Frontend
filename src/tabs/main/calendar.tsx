@@ -17,6 +17,8 @@ const today = new Date();
 
 type CalendarList = {
   id: number;
+  type: string;
+  userId: number | null;
   startDate: number[];
   endDate: number[];
   content: string;
@@ -27,7 +29,6 @@ export default function Calendar() {
   const [open, setOpen] = useState(true);
   const [selectedDate, setSelectedDate] = useState<Date>(today);
   const [calendarPlanList, setCalendarPlanList] = useState<CalendarList[]>([]);
-  // const calendarPlanList = PlanData();
 
   useEffect(() => {
     async function fetchSchedules() {
@@ -62,7 +63,7 @@ export default function Calendar() {
           width: `calc(100% - ${open ? SIDENAV_WIDTH : 0}px)`,
           marginLeft: open ? `${SIDENAV_WIDTH}px` : "0px",
           minHeight: "92vh",
-          marginTop: "8vh",
+          marginTop: "4vh",
           marginBottom: "8vh",
           display: "flex",
           justifyContent: "center",
@@ -84,6 +85,7 @@ export default function Calendar() {
               width: "250px",
               minWidth: "200px",
               height: "6vh",
+              marginBottom: "10px",
             }}
           >
             Calendar
@@ -112,7 +114,8 @@ export default function Calendar() {
               transition={{ duration: 0.5 }}
               style={{
                 width: "370px",
-                border: "1px solid #fff",
+                background: "#1b1c1d",
+                border: "1px solid #444",
                 borderRadius: "20px",
               }}
             >
@@ -123,7 +126,7 @@ export default function Calendar() {
                   fontSize: "20px",
                   width: "100%",
                   padding: "10px 15px",
-                  borderBottom: "1px solid #CED0F8",
+                  borderBottom: "1px solid #444",
                   marginBottom: "20px",
                 }}
               >
@@ -159,7 +162,7 @@ export default function Calendar() {
                       style={{
                         fontFamily: "Suit-Regular",
                         fontSize: "13px",
-                        color: "#888",
+                        color: "#444",
                         marginTop: "8px",
                       }}
                     >
@@ -200,7 +203,8 @@ export default function Calendar() {
                               fontFamily: "Suit-Regular",
                               fontSize: "12px",
                               padding: "5px 0",
-                              border: "1px solid #fff",
+                              background: "#4285F4",
+                              border: "1px solid #444",
                               borderRadius: "10px",
                             }}
                           >

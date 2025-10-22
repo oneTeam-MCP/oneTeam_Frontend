@@ -1,20 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/button.tsx";
+
+import { getCookie } from "../api/cookies.tsx";
+
 import "../App.css";
 
-type NavType = "login" | "logout";
+type NavType = "home" | "inner";
 type NavProps = {
   type?: NavType;
 };
 
 export default function Nav({ type }: NavProps) {
+  const [checkAuth, setCheckAuth] = useState<number>(1);
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" }); // 🔹 부드럽게 이동
     }
   };
+
+  useEffect(() => {
+    const accessToken = getCookie("accessToken");
+    if (!accessToken) {
+      setCheckAuth(0);
+    } else {
+      setCheckAuth(1);
+    }
+  }, []);
 
   return (
     <div
@@ -32,25 +45,31 @@ export default function Nav({ type }: NavProps) {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "rgba(11,15,14, 0.85)",
+          backgroundColor: checkAuth
+            ? "rgba(11,15,14, 0)"
+            : "rgba(11,15,14, 0.85)",
         }}
       >
         <div
           style={{
             position: "absolute",
-            left: "30px",
-            top: "15px",
+            left: "15px",
+            top: "20px",
             height: "30px",
             display: "flex",
             alignItems: "center",
           }}
         >
-          <Link to="/">
-            <img
-              src="../logo/logo_w.png"
-              style={{ display: "block", width: "90px" }}
-            />
-          </Link>
+          {type === "home" ? (
+            <Link to="/">
+              <img
+                src="../logo/logo_w.png"
+                style={{ display: "block", width: "100px" }}
+              />
+            </Link>
+          ) : (
+            <></>
+          )}
         </div>
 
         <div
@@ -61,7 +80,7 @@ export default function Nav({ type }: NavProps) {
             alignItems: "center",
           }}
         >
-          {type === "login" ? (
+          {!checkAuth ? (
             <>
               <div
                 className="nav_text"
@@ -100,7 +119,6 @@ export default function Nav({ type }: NavProps) {
           ) : (
             <>
               <div
-                onClick={() => scrollToSection("team")}
                 style={{
                   marginRight: "20px",
                   display: "flex",

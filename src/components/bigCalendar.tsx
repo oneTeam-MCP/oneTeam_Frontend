@@ -26,7 +26,7 @@ const StyledCalendarWrapper = styled.div`
   position: relative;
   .react-calendar {
     width: 100%;
-    border: 1px solid #fff;
+    border: 1px solid #444;
     border-radius: 15px;
     background-color: transparent;
   }
@@ -48,7 +48,6 @@ const StyledCalendarWrapper = styled.div`
     font-family: Suit-SemiBold;
     font-size: 30px;
     color: #fff;
-    border-radius: 10px;
   }
 
   /* 네비게이션 버튼 컬러 */
@@ -70,8 +69,8 @@ const StyledCalendarWrapper = styled.div`
   .react-calendar__month-view__weekdays {
     box-sizing: border-box;
     padding: 15px 0;
-    border-top: 2px #eef0fe solid;
-    border-bottom: 2px #eee solid;
+    border-top: 2px #444 solid;
+    border-bottom: 2px #444 solid;
   }
 
   /* 요일 밑줄 제거 */
@@ -92,7 +91,6 @@ const StyledCalendarWrapper = styled.div`
   .react-calendar__tile--hasActive {
     box-shadow: 0 0 0 2px #114df0 inset;
     background-color: transparent;
-    border-radius: 10px;
     abbr {
       color: #114df0;
     }
@@ -100,7 +98,7 @@ const StyledCalendarWrapper = styled.div`
 
   /* 일 날짜 스타일 적용 */
   .react-calendar__month-view__days__day {
-    // border-bottom: 2px #eee solid;
+    border-bottom: 2px #444 solid;
     font-family: Suit-SemiBold;
     padding: 10px 5px 80px;
     position: relative;
@@ -112,8 +110,7 @@ const StyledCalendarWrapper = styled.div`
 
   /* 네비게이션 월 스타일 적용 */
   .react-calendar__year-view__months__month {
-    border-radius: 15px;
-    background-color: #fff;
+    background-color: transparent;
     flex: 0 0 calc(33.3333% - 10px) !important;
     margin-inline-start: 5px !important;
     margin-inline-end: 5px !important;
@@ -127,14 +124,12 @@ const StyledCalendarWrapper = styled.div`
   /* 월 hover, focus 스타일 적용 */
   .react-calendar__tile:enabled:hover {
     background-color: transparent;
-    border-radius: 15px;
     color: #fff;
   }
   .react-calendar__tile:enabled:focus,
   .react-calendar__tile--active {
     box-shadow: 0 0 0 2px #114df0 inset;
     background-color: transparent;
-    border-radius: 15px;
     color: #114df0;
   }
 
@@ -343,7 +338,7 @@ const BigCalendar: React.FC<BigCalendarProps> = ({ onDateSelect }) => {
                 height: "20px",
                 fontSize: "12px",
                 fontFamily: "Suit-Regular",
-                color: "#000",
+                color: "#fff",
                 textAlign: "center",
                 lineHeight: "20px",
                 pointerEvents: "none",

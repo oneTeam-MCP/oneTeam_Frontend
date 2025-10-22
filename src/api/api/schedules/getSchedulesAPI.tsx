@@ -1,14 +1,18 @@
-// import { getCookie, removeCookie } from "../../cookies.tsx";
+import { getCookie, removeCookie } from "../../cookies.tsx";
 // import getAccessTokenWithRefreshToken from "../getAccessTokenWithRefreshToken.tsx";
 
 const API_SERVER_DOMAIN = "https://api.oneteam-mcp.site";
 
 export default async function GetSchedulesAPI() {
+  const accessToken = getCookie("accessToken");
+  const refreshToken = getCookie("refreshToken");
+
   try {
     const response = await fetch(API_SERVER_DOMAIN + `/api/v1/schedules`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + accessToken,
       },
     });
 
@@ -21,7 +25,8 @@ export default async function GetSchedulesAPI() {
     });
   } catch (error) {
     console.error(error);
-    alert("서버 오류 발생");
+    removeCookie("accessToken");
+    alert("다시 로그인 해주세요.");
     window.location.href = "/";
     return;
   }

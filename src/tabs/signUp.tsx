@@ -116,36 +116,27 @@ export default function SignUp() {
         }}
       >
         <img
-          src="..\home_background.png"
+          src="..\login_background.png"
           alt="login_background"
           style={{
             display: "block",
             width: "100%",
             height: "100%",
             objectFit: "cover",
+            opacity: "0.6",
           }}
         />
       </div>
-      {/* <div
-        style={{
-          position: "absolute",
-          top: "0",
-          left: "0",
-          width: "100%",
-          height: "100%",
-          opacity: "0.2",
-          zIndex: "-1",
-          background: "#2156C6",
-        }}
-      ></div> */}
 
       <div
         style={{
           maxWidth: "650px",
           margin: "15vh auto",
-          border: "1px solid #000",
+          border: "1px solid #777",
+          background: "rgba(19, 37, 57, 0.6)",
+          backdropFilter: "blur(6px)",
+          WebkitBackdropFilter: "blur(6px)", // 사파리
           borderRadius: "20px",
-          backgroundColor: "#fff",
         }}
       >
         <div
@@ -420,7 +411,7 @@ export default function SignUp() {
                     marginBottom: "20px",
                     fontFamily: "Suit-Regular",
                     fontSize: "clamp(14px, 2.2vw, 18px)",
-                    color: selectedMajor === "학과 선택" ? "#aaa" : "#000",
+                    color: selectedMajor === "학과 선택" ? "#aaa" : "#fff",
                     cursor: "pointer",
                   }}
                   {...register("Major", {

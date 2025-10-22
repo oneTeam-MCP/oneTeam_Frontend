@@ -52,6 +52,14 @@ const data = [
 
 export default function Dashboard() {
   const [open, setOpen] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setProgress(53);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const timetable: (null | {
     title: string;
@@ -90,7 +98,7 @@ export default function Dashboard() {
           width: `calc(100% - ${open ? SIDENAV_WIDTH : 0}px)`,
           marginLeft: open ? `${SIDENAV_WIDTH}px` : "0px",
           minHeight: "92vh",
-          marginTop: "8vh",
+          marginTop: "4vh",
           marginBottom: "8vh",
           display: "flex",
           justifyContent: "center",
@@ -113,6 +121,7 @@ export default function Dashboard() {
               width: "250px",
               minWidth: "200px",
               height: "6vh",
+              marginBottom: "10px",
             }}
           >
             Subject
@@ -139,7 +148,7 @@ export default function Dashboard() {
                   boxSizing: "border-box",
                   width: "100%",
                   marginBottom: "10px",
-                  border: "1px solid #CED0F8",
+                  border: "1px solid #444",
                   borderRadius: "12px",
                   overflow: "hidden",
                 }}
@@ -160,7 +169,7 @@ export default function Dashboard() {
                         style={{
                           width: "20px",
                           height: "30px",
-                          border: "1px solid #eee",
+                          border: "1px solid #444",
                         }}
                       ></th>
                       {days.map((d) => (
@@ -170,7 +179,7 @@ export default function Dashboard() {
                             fontFamily: "Suit-SemiBold",
                             fontSize: "16px",
                             width: "40px",
-                            border: "1px solid #eee",
+                            border: "1px solid #444",
                           }}
                         >
                           {d}
@@ -185,7 +194,7 @@ export default function Dashboard() {
                           style={{
                             fontFamily: "Suit-SemiBold",
                             fontSize: "14px",
-                            border: "1px solid #eee",
+                            border: "1px solid #444",
                           }}
                         >
                           {i + 1}
@@ -205,7 +214,7 @@ export default function Dashboard() {
                             return (
                               <td
                                 key={j}
-                                style={{ border: "1px solid #eee" }}
+                                style={{ border: "1px solid #444" }}
                               ></td>
                             );
 
@@ -272,8 +281,8 @@ export default function Dashboard() {
                   width: "100%",
                   height: "400px",
                   marginBottom: "10px",
-                  background: "#FAFAFC",
-                  border: "1px solid #CED0F8",
+                  background: "#1b1c1d",
+                  border: "1px solid #444",
                   borderRadius: "20px",
                 }}
               >
@@ -281,10 +290,9 @@ export default function Dashboard() {
                   style={{
                     boxSizing: "border-box",
                     fontFamily: "Suit-SemiBold",
-                    fontSize: "20px",
+                    fontSize: "22px",
                     width: "100%",
-                    padding: "10px 15px",
-                    borderBottom: "1px solid #CED0F8",
+                    padding: "10px 3%",
                     marginBottom: "20px",
                   }}
                 >
@@ -293,16 +301,15 @@ export default function Dashboard() {
                 <div
                   style={{
                     boxSizing: "border-box",
-                    width: "96%",
-                    height: "60px",
-                    background: "#fff",
+                    width: "94%",
+                    height: "80px",
+                    background: "#3c4043",
                     borderRadius: "10px",
-                    margin: "10px 2%",
+                    margin: "10px 3%",
                     padding: "0 10px",
                     display: "flex",
                     justifyContent: "left",
                     alignItems: "center",
-                    border: "1px solid #eee",
                   }}
                 >
                   <div
@@ -315,7 +322,7 @@ export default function Dashboard() {
                       color: "#E82E2E",
                       borderRadius: "10px",
                       textAlign: "center",
-                      border: "1px solid #F8CEDB",
+                      border: "1px solid #FFD9CF",
                     }}
                   >
                     D-1
@@ -323,7 +330,7 @@ export default function Dashboard() {
                   <div
                     style={{
                       boxSizing: "border-box",
-                      width: "35%",
+                      width: "40%",
                       padding: "0 10px",
                       fontFamily: "Suit-Regular",
                       fontSize: "16px",
@@ -333,7 +340,7 @@ export default function Dashboard() {
                   </div>
                   <div
                     style={{
-                      width: "45%",
+                      width: "40%",
                       height: "10px",
                       background: "#ddd",
                       borderRadius: "8px",
@@ -343,94 +350,22 @@ export default function Dashboard() {
                     <div
                       style={{
                         position: "absolute",
-                        width: "53%",
+                        width: `${progress}%`,
                         height: "10px",
-                        background: "green",
+                        background: "#4285F4",
                         borderRadius: "8px",
+                        transition: "width 0.8s ease-in-out",
                       }}
                     ></div>
                   </div>
                   <div
                     style={{
                       boxSizing: "border-box",
-                      width: "10%",
+                      width: "5%",
                       padding: "0 10px",
                       fontFamily: "Suit-Light",
                       fontSize: "12px",
-                      color: "#555",
-                    }}
-                  >
-                    53%
-                  </div>
-                </div>
-                <div
-                  style={{
-                    boxSizing: "border-box",
-                    width: "96%",
-                    height: "50px",
-                    background: "#fff",
-                    borderRadius: "10px",
-                    margin: "0 2%",
-                    padding: "0 10px",
-                    display: "flex",
-                    justifyContent: "left",
-                    alignItems: "center",
-                    border: "1px solid #eee",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "10%",
-                      padding: "3px 0",
-                      background: "#FFD9CF",
-                      fontFamily: "Suit-SemiBold",
-                      fontSize: "18px",
-                      color: "#E82E2E",
-                      borderRadius: "10px",
-                      textAlign: "center",
-                      border: "1px solid #F8CEDB",
-                    }}
-                  >
-                    D-1
-                  </div>
-                  <div
-                    style={{
-                      boxSizing: "border-box",
-                      width: "35%",
-                      padding: "0 10px",
-                      fontFamily: "Suit-Regular",
-                      fontSize: "16px",
-                    }}
-                  >
-                    컴퓨터네트워크프로그래밍
-                  </div>
-                  <div
-                    style={{
-                      width: "45%",
-                      height: "10px",
-                      background: "#ddd",
-                      borderRadius: "8px",
-                      position: "relative",
-                    }}
-                  >
-                    <div
-                      style={{
-                        position: "absolute",
-                        width: "53%",
-                        height: "10px",
-                        background: "green",
-                        borderRadius: "8px",
-                      }}
-                    ></div>
-                  </div>
-                  <div
-                    style={{
-                      boxSizing: "border-box",
-                      width: "10%",
-                      padding: "0 10px",
-                      fontFamily: "Suit-Light",
-                      fontSize: "12px",
-                      color: "#555",
+                      color: "#fff",
                     }}
                   >
                     53%
@@ -441,8 +376,9 @@ export default function Dashboard() {
                 style={{
                   width: "100%",
                   height: "400px",
-                  background: "#FAFAFC",
-                  border: "1px solid #CED0F8",
+                  marginBottom: "10px",
+                  background: "#1b1c1d",
+                  border: "1px solid #444",
                   borderRadius: "20px",
                 }}
               >
@@ -450,10 +386,9 @@ export default function Dashboard() {
                   style={{
                     boxSizing: "border-box",
                     fontFamily: "Suit-SemiBold",
-                    fontSize: "20px",
+                    fontSize: "22px",
                     width: "100%",
-                    padding: "10px 15px",
-                    borderBottom: "1px solid #CED0F8",
+                    padding: "10px 3%",
                     marginBottom: "20px",
                   }}
                 >
@@ -462,16 +397,15 @@ export default function Dashboard() {
                 <div
                   style={{
                     boxSizing: "border-box",
-                    width: "96%",
-                    height: "60px",
-                    background: "#fff",
+                    width: "94%",
+                    height: "80px",
+                    background: "#3c4043",
                     borderRadius: "10px",
-                    margin: "10px 2%",
+                    margin: "10px 3%",
                     padding: "0 10px",
                     display: "flex",
                     justifyContent: "left",
                     alignItems: "center",
-                    border: "1px solid #eee",
                   }}
                 >
                   <div
@@ -484,7 +418,7 @@ export default function Dashboard() {
                       color: "#E82E2E",
                       borderRadius: "10px",
                       textAlign: "center",
-                      border: "1px solid #F8CEDB",
+                      border: "1px solid #FFD9CF",
                     }}
                   >
                     D-1
@@ -492,7 +426,7 @@ export default function Dashboard() {
                   <div
                     style={{
                       boxSizing: "border-box",
-                      width: "35%",
+                      width: "40%",
                       padding: "0 10px",
                       fontFamily: "Suit-Regular",
                       fontSize: "16px",
@@ -502,7 +436,7 @@ export default function Dashboard() {
                   </div>
                   <div
                     style={{
-                      width: "45%",
+                      width: "40%",
                       height: "10px",
                       background: "#ddd",
                       borderRadius: "8px",
@@ -512,21 +446,22 @@ export default function Dashboard() {
                     <div
                       style={{
                         position: "absolute",
-                        width: "53%",
+                        width: `${progress}%`,
                         height: "10px",
-                        background: "green",
+                        background: "#4285F4",
                         borderRadius: "8px",
+                        transition: "width 0.8s ease-in-out",
                       }}
                     ></div>
                   </div>
                   <div
                     style={{
                       boxSizing: "border-box",
-                      width: "10%",
+                      width: "5%",
                       padding: "0 10px",
                       fontFamily: "Suit-Light",
                       fontSize: "12px",
-                      color: "#555",
+                      color: "#fff",
                     }}
                   >
                     53%

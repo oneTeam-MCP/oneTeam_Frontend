@@ -185,7 +185,7 @@ export default function Login() {
         style={{
           maxWidth: "650px",
           margin: "15vh auto",
-          border: "1px solid #A0B5C9",
+          border: "1px solid #777",
           background: "rgba(19, 37, 57, 0.6)",
           backdropFilter: "blur(6px)",
           WebkitBackdropFilter: "blur(6px)", // 사파리
@@ -568,7 +568,7 @@ export default function Login() {
               width: "50px",
               height: "50px",
               animation: "spin 1s linear infinite",
-              marginRight: "50px",
+              marginRight: "30px",
             }}
           />
           <div>샘물에서 정보를 가져오는 중입니다...</div>

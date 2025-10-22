@@ -19,7 +19,7 @@ async function getMember(accessToken) {
 
 export default async function GetMember() {
   const accessToken = getCookie("accessToken");
-  // const refreshToken = getCookie("refreshToken");
+  const refreshToken = getCookie("refreshToken");
 
   if (accessToken) {
     try {

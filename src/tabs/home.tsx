@@ -44,7 +44,7 @@ export default function Home() {
 
   return (
     <div>
-      <Nav type="login" />
+      <Nav type="home" />
       <div style={{ width: "100%" }}>
         <div
           style={{
@@ -268,6 +268,16 @@ export default function Home() {
         >
           <div
             style={{
+              position: "absolute",
+              top: "0",
+              width: "100%",
+              height: "150px",
+              justifyContent: "right",
+              alignItems: "center",
+            }}
+          ></div>
+          <div
+            style={{
               alignItems: "center",
               width: "80%",
               maxWidth: "1100px",
@@ -314,6 +324,47 @@ export default function Home() {
                 What is MCP?
               </div>
               <div style={{}}></div>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          id="start"
+          initial={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ ease: "easeInOut", duration: 0.8 }}
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "60vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ width: "80%", textAlign: "left" }}>
+            <div
+              style={{
+                fontFamily: "Suit-Bold",
+                fontSize: "40px",
+                marginBottom: "40px",
+                color: "#fff",
+                lineHeight: "1.6",
+              }}
+            >
+              똑똑한 캠퍼스 생활, 지금 바로 시작하세요.
+            </div>
+            <div
+              style={{
+                fontFamily: "Suit-Light",
+                fontSize: "16px",
+                color: "#fff",
+                lineHeight: "1.8",
+                margin: "0 auto",
+              }}
+            >
+              질문 하나로 간단하게
             </div>
           </div>
         </motion.div>

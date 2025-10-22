@@ -19,25 +19,25 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
         onClick={() => setOpen((v) => !v)}
         style={{
           position: "fixed",
-          top: "15px",
-          left: open ? WIDTH + 5 : 120,
+          top: "20px",
+          left: open ? WIDTH - 40 : 20,
           width: 36,
           height: 36,
           color: "#fff",
           transition: "left .25s ease",
-          zIndex: "100",
+          zIndex: 102,
         }}
         title={open ? "사이드바 닫기" : "사이드바 열기"}
       >
         {open ? (
           <img
             src="../btn/sidebar_close.png"
-            style={{ display: "block", width: "30px", cursor: "pointer" }}
+            style={{ display: "block", width: "20px", cursor: "pointer" }}
           />
         ) : (
           <img
             src="../btn/sidebar_open.png"
-            style={{ display: "block", width: "30px", cursor: "pointer" }}
+            style={{ display: "block", width: "20px", cursor: "pointer" }}
           />
         )}
       </div>
@@ -50,8 +50,9 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
           height: "100%",
           width: `${WIDTH}px`,
           textAlign: "left",
-          background: "#0b0f0e",
-          boxShadow: "inset 0 0 5px rgba(255, 255, 255, 0.3)",
+          background: "#1b1c1d",
+          // boxShadow: "inset 0 0 5px rgba(255, 255, 255, 0.3)",
+          borderRight: "1px solid #444",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -63,8 +64,8 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
         <div
           style={{
             position: "absolute",
-            left: "30px",
-            top: "15px",
+            left: "15px",
+            top: "20px",
             height: "30px",
             display: "flex",
             alignItems: "center",
@@ -73,7 +74,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
           <Link to="/">
             <img
               src="../logo/logo_w.png"
-              style={{ display: "block", width: "90px" }}
+              style={{ display: "block", width: "100px" }}
             />
           </Link>
         </div>
@@ -85,7 +86,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
                 type === "dashboard"
                   ? {
                       color: "#fff",
-                      background: "#8AA7F8",
+                      background: "#4285F4",
                       borderRadius: "5px",
                     }
                   : {}
@@ -95,7 +96,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
                 src={
                   type === "dashboard"
                     ? "../icon/dashboard_enabled.png"
-                    : "../icon/dashboard_disabled.png"
+                    : "../icon/dashboard_enabled.png"
                 }
                 alt="dashboard"
                 style={{ width: "20px" }}
@@ -110,7 +111,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
                 type === "calendar"
                   ? {
                       color: "#fff",
-                      background: "#8AA7F8",
+                      background: "#4285F4",
                       borderRadius: "5px",
                     }
                   : {}
@@ -120,7 +121,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
                 src={
                   type === "calendar"
                     ? "../icon/calendar_enabled.png"
-                    : "../icon/calendar_disabled.png"
+                    : "../icon/calendar_enabled.png"
                 }
                 alt="calendar"
                 style={{ width: "20px" }}
@@ -135,7 +136,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
                 type === "subject"
                   ? {
                       color: "#fff",
-                      background: "#8AA7F8",
+                      background: "#4285F4",
                       borderRadius: "5px",
                     }
                   : {}
@@ -145,7 +146,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
                 src={
                   type === "subject"
                     ? "../icon/subject_enabled.png"
-                    : "../icon/subject_disabled.png"
+                    : "../icon/subject_enabled.png"
                 }
                 alt="subject"
                 style={{ width: "20px" }}
@@ -160,7 +161,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
                 type === "chatbot"
                   ? {
                       color: "#fff",
-                      background: "#8AA7F8",
+                      background: "#4285F4",
                       borderRadius: "5px",
                     }
                   : {}
@@ -170,7 +171,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
                 src={
                   type === "chatbot"
                     ? "../icon/chatbot_enabled.png"
-                    : "../icon/chatbot_disabled.png"
+                    : "../icon/chatbot_enabled.png"
                 }
                 alt="chatbot"
                 style={{ width: "20px" }}
