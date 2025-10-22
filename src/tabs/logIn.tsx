@@ -125,6 +125,9 @@ export default function Login() {
     )
       .then((res) => {
         console.log(res.json());
+        if (res.status !== 200) {
+          throw new Error(`HTTP ${res.status}`);
+        }
       })
       .then((data) => {
         alert("로그인 성공");
@@ -133,7 +136,7 @@ export default function Login() {
       })
       .catch((error) => {
         console.error("LogIn failed:", error);
-        alert("샘물 로그인 실패");
+        alert("샘물 로그인 실패:\n샘물 비밀번호를 다시 확인해주세요.");
       })
       .finally(() => {
         setIsSamulSubmitting(false);

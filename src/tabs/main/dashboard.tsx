@@ -366,7 +366,7 @@ export default function Dashboard() {
                 }}
               >
                 <img
-                  src="../ad/ad_2.webp"
+                  src="../ad/ad_3.png"
                   alt="add"
                   style={{
                     width: "100%",

@@ -10,14 +10,13 @@ import "../../App.css";
 const SIDENAV_WIDTH = 200;
 const days = ["월", "화", "수", "목", "금", "토"];
 const COLORS = [
-  "#FFCDD2",
-  "#FFF9C4",
-  "#C8E6C9",
-  "#BBDEFB",
-  "#F8BBD0",
-  "#B2EBF2",
-  "#C5CAE9",
-  "#E1BEE7",
+  "#CEA95B",
+  "#B87475",
+  "#76A6CC",
+  "#83BE92",
+  "#5F7FB0",
+  "#9191CF",
+  "#777777",
 ];
 const data = [
   {
@@ -239,7 +238,7 @@ export default function Dashboard() {
                               key={j}
                               rowSpan={span}
                               style={{
-                                border: "1px solid #eee",
+                                // border: "1px solid #444",
                                 background: cell.color,
                                 verticalAlign: "middle",
                               }}

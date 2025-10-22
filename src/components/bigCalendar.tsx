@@ -178,6 +178,28 @@ const BigCalendar: React.FC<BigCalendarProps> = ({ onDateSelect }) => {
   const [currentMonthDays, setCurrentMonthDays] = useState<Date[]>([]);
 
   const [calendarPlanList, setCalendarPlanList] = useState<CalendarList[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (activeStartDate) {
+      const start = moment(activeStartDate).startOf("month").startOf("week"); // 주의 시작 (일요일 기준)
+      const end = moment(activeStartDate).endOf("month").endOf("week"); // 주의 끝
+      const days: Date[] = [];
+      for (let d = start.clone(); d.isSameOrBefore(end); d.add(1, "day")) {
+        days.push(d.toDate());
+      }
+      setCurrentMonthDays(days);
+    }
+  }, [activeStartDate]);
+
+  useEffect(() => {
+    async function fetchSchedules() {
+      const schedules = await GetSchedulesAPI();
+      setCalendarPlanList(schedules);
+      setLoading(false);
+    }
+    fetchSchedules();
+  }, []);
 
   // 날짜 범위를 돌면서 rowIndex 배정
   const eventRowMap = useMemo(() => {
@@ -208,27 +230,7 @@ const BigCalendar: React.FC<BigCalendarProps> = ({ onDateSelect }) => {
     });
 
     return rowMap;
-  }, []);
-
-  useEffect(() => {
-    if (activeStartDate) {
-      const start = moment(activeStartDate).startOf("month").startOf("week"); // 주의 시작 (일요일 기준)
-      const end = moment(activeStartDate).endOf("month").endOf("week"); // 주의 끝
-      const days: Date[] = [];
-      for (let d = start.clone(); d.isSameOrBefore(end); d.add(1, "day")) {
-        days.push(d.toDate());
-      }
-      setCurrentMonthDays(days);
-    }
-  }, [activeStartDate]);
-
-  useEffect(() => {
-    async function fetchSchedules() {
-      const schedules = await GetSchedulesAPI();
-      setCalendarPlanList(schedules);
-    }
-    fetchSchedules();
-  }, []);
+  }, [calendarPlanList, loading]);
 
   const handleDateChange = (newDate: Value) => {
     setDate(newDate);
@@ -245,6 +247,8 @@ const BigCalendar: React.FC<BigCalendarProps> = ({ onDateSelect }) => {
   };
 
   const renderEventBars = () => {
+    if (loading || !calendarPlanList.length) return null; // 데이터가 로드되었을 때만 렌더링
+
     const firstDay = currentMonthDays[0];
     const lastDay = currentMonthDays[currentMonthDays.length - 1];
     if (!firstDay || !lastDay) return null;
