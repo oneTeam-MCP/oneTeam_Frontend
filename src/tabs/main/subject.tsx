@@ -238,7 +238,7 @@ export default function Dashboard() {
                               key={j}
                               rowSpan={span}
                               style={{
-                                // border: "1px solid #444",
+                                border: "1px solid #444",
                                 background: cell.color,
                                 verticalAlign: "middle",
                               }}
@@ -248,12 +248,20 @@ export default function Dashboard() {
                                   {cell.title}
                                 </div>
                                 <div
-                                  style={{ fontSize: "12px", color: "#555" }}
+                                  style={{
+                                    fontFamily: "Suit-Regular",
+                                    fontSize: "12px",
+                                    color: "#eee",
+                                  }}
                                 >
                                   {cell.place}
                                 </div>
                                 <div
-                                  style={{ fontSize: "12px", color: "#888" }}
+                                  style={{
+                                    fontFamily: "Suit-Light",
+                                    fontSize: "12px",
+                                    color: "#eee",
+                                  }}
                                 >
                                   {cell.prof}
                                 </div>

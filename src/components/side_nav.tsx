@@ -18,6 +18,7 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
       <div
         onClick={() => setOpen((v) => !v)}
         style={{
+          boxSizing: "border-box",
           position: "fixed",
           top: "20px",
           left: open ? WIDTH - 40 : 20,

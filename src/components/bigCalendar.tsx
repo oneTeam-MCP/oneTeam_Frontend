@@ -308,7 +308,7 @@ const BigCalendar: React.FC<BigCalendarProps> = ({ onDateSelect }) => {
                   : `calc(${(colSpan / 7) * 100}% - 10px)`,
                 marginLeft: isStartWeek || isOneDay ? "5px" : "0",
                 height: "25px",
-                backgroundColor: rowIndex === 0 ? "#EEF0FE" : "#C9D9FD",
+                backgroundColor: rowIndex === 0 ? "#6D75E2" : "#6D75E2",
                 fontFamily: "Suit-SemiBold",
                 fontSize: "13px",
                 color: "#000",

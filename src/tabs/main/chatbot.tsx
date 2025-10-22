@@ -516,11 +516,21 @@ export default function Chatbot() {
             </div>
           </motion.div>
         </div>
+      </div>
+      <div
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          left: open ? `${SIDENAV_WIDTH}px` : "0px",
+          width: `calc(100% - ${open ? SIDENAV_WIDTH : 0}px)`,
+          display: "flex",
+          justifyContent: "center",
+          transition: "width .25s ease, left .25s ease",
+        }}
+      >
         <form
           onSubmit={handleSubmit}
           style={{
-            position: "fixed",
-            bottom: "20px",
             width: "1200px",
             minWidth: "40vw",
             padding: "0 20px",
