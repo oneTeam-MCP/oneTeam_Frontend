@@ -358,12 +358,12 @@ export default function Home() {
               {
                 name: "김재관",
                 role: "Team Leader",
-                img: "../team/kwan.png",
+                img: "../team/kwan.jpg",
               },
               {
                 name: "김정찬",
                 role: "Team Member",
-                img: "../team/chan.png",
+                img: "../team/chan.jpg",
               },
               {
                 name: "김진석",
@@ -373,12 +373,12 @@ export default function Home() {
               {
                 name: "맹의현",
                 role: "Team Member",
-                img: "../team/maeng.png",
+                img: "../team/maeng.jpg",
               },
               {
                 name: "염다인",
                 role: "Team Member",
-                img: "../team/youm.png",
+                img: "../team/youm.jpg",
               },
             ].map((member) => (
               <div

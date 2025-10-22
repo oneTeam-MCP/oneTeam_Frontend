@@ -9,6 +9,7 @@ import Nav from "../../components/nav.tsx";
 import SideNav from "../../components/side_nav.tsx";
 
 import PostChat from "../../api/mcp/postChat.tsx";
+import GetMember from "../../api/api/members/getMemberAPI.tsx";
 
 import "../../App.css";
 
@@ -199,6 +200,8 @@ export default function Chatbot() {
   const [showLogo, setShowLogo] = useState(false);
   const [endText, setEndText] = useState("");
 
+  const [myData, setMyData] = useState<any>(null);
+
   const helloFull = "안녕하세요,";
   const endFull = "입니다.";
 
@@ -235,6 +238,12 @@ export default function Chatbot() {
     el.style.overflowY = el.scrollHeight > MAX_HEIGHT ? "auto" : "hidden";
     setInputHeight(newHeight + 24);
   };
+
+  useEffect(() => {
+    GetMember().then((data) => {
+      setMyData(data);
+    });
+  }, []);
 
   useEffect(() => {
     autoResize();
@@ -276,12 +285,16 @@ export default function Chatbot() {
 
     // 2) 스트리밍 시작
     const controller = new AbortController();
+
+    const email = myData.email;
+    const studentNum = email.split("@")[0];
+
     try {
       await PostChat(
         text,
+        studentNum,
         (delta) => {
           rawBeforeNormalize += delta;
-          // 매 델타가 올 때마다 마지막 assistant 버블에 붙이기
           setMessages((prev) =>
             prev.map((m) =>
               m.id === assistantId ? { ...m, content: m.content + delta } : m
@@ -375,7 +388,7 @@ export default function Chatbot() {
                 width: "100%",
                 height: "100%",
                 border: "1px solid rgba(99, 89, 191, 0.5)",
-                background: "rgba(255,255,255,0.1)",
+                background: "rgba(255,255,255,0.05)",
                 backdropFilter: "blur(6px)",
                 WebkitBackdropFilter: "blur(6px)", // 사파리
                 borderRadius: "20px",

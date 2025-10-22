@@ -136,7 +136,7 @@ export default function Login() {
         alert("샘물 로그인 실패");
       })
       .finally(() => {
-        setIsSubmitting(false);
+        setIsSamulSubmitting(false);
       });
   };
   const onSamulInvalid = (e: any) => {
@@ -427,7 +427,7 @@ export default function Login() {
         </div>
       </div>
 
-      {isPopupOpen && (
+      {isPopupOpen && !isSamulSubmitting ? (
         <form
           style={{
             position: "fixed",
@@ -539,6 +539,51 @@ export default function Login() {
             />
           </div>
         </form>
+      ) : isPopupOpen && isSamulSubmitting ? (
+        <div
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "80%",
+            maxWidth: "500px",
+            maxHeight: "80vh",
+            overflowY: "auto",
+            backgroundColor: "#111015",
+            padding: "30px 30px 20px",
+            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+            borderRadius: "10px",
+            textAlign: "left",
+            display: "flex",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+        >
+          <div
+            style={{
+              border: "8px solid rgba(255, 255, 255, 0.3)",
+              borderTop: "8px solid #4285F4",
+              borderRadius: "50%",
+              width: "50px",
+              height: "50px",
+              animation: "spin 1s linear infinite",
+              marginRight: "50px",
+            }}
+          />
+          <div>샘물에서 정보를 가져오는 중입니다...</div>
+
+          <style>
+            {`
+              @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+              }
+            `}
+          </style>
+        </div>
+      ) : (
+        <></>
       )}
       {isPopupOpen && (
         <div

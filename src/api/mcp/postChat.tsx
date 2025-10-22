@@ -5,13 +5,18 @@ const API_SERVER_DOMAIN = "https://mcp.oneteam-mcp.site";
 
 export default async function postChat(
   text: string,
+  studentNum: string,
   onDelta: (delta: string) => void,
   signal?: AbortSignal
 ): Promise<void> {
+  console.log(`학번: ${studentNum}, question: ` + text);
+
   const res = await fetch(`${API_SERVER_DOMAIN}/chat/stream`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question: text }),
+    body: JSON.stringify({
+      question: `user_id: ${studentNum}, question: ` + text,
+    }),
     signal,
   });
 
