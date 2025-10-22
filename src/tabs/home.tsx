@@ -363,7 +363,7 @@ export default function Home() {
               {
                 name: "김정찬",
                 role: "Team Member",
-                img: "../team/chan.jpg",
+                img: "../team/chan.png",
               },
               {
                 name: "김진석",
