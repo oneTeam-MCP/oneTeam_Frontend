@@ -317,13 +317,66 @@ export default function Home() {
                 style={{
                   fontFamily: "Suit-Bold",
                   fontSize: "40px",
-                  marginBottom: "20px",
+                  marginBottom: "50px",
                   color: "#fff",
                 }}
               >
                 What is MCP?
               </div>
-              <div style={{}}></div>
+              <div
+                style={{
+                  fontFamily: "Suit-Light",
+                  fontSize: "18px",
+                  lineHeight: "1.8",
+                  marginBottom: "50px",
+                }}
+              >
+                MCP (Model Context Protocol)란 대규모 언어 모델(LLM)과 외부
+                시스템을 연결하여,
+                <br />
+                사용자의 자연어 요청을 이해 가능한 데이터로 변환하는 통합
+                프로토콜 입니다.
+              </div>
+              <div
+                style={{
+                  width: "70%",
+                  margin: "50px auto",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <div
+                  style={{
+                    width: "200px",
+                    height: "100px",
+                    background: "#fff",
+                    border: "1px solid #4285F4",
+                    borderRadius: "10px",
+                  }}
+                ></div>
+                <div style={{ fontSize: "30px" }}>➩</div>
+                <div
+                  style={{
+                    width: "200px",
+                    height: "100px",
+                    background: "#4285F4",
+                    border: "1px solid #4285F4",
+                    borderRadius: "10px",
+                  }}
+                ></div>
+                <div style={{ fontSize: "30px" }}>➩</div>
+                <div
+                  style={{
+                    width: "200px",
+                    height: "100px",
+                    background: "#fff",
+                    border: "1px solid #4285F4",
+                    borderRadius: "10px",
+                  }}
+                ></div>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -419,7 +472,7 @@ export default function Home() {
               {
                 name: "김진석",
                 role: "Team Member",
-                img: "../team/seok.png",
+                img: "../team/seok.jpg",
               },
               {
                 name: "맹의현",
@@ -450,7 +503,7 @@ export default function Home() {
                   alt={member.name}
                   style={{
                     width: "120px",
-                    height: "120px",
+                    height: "150px",
                     borderRadius: "10px",
                     objectFit: "cover",
                     marginBottom: "15px",
