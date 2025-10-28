@@ -301,7 +301,12 @@ export default function Home() {
             >
               <source src="../../background_2.mp4" type="video/mp4" />
             </video>
-            <div
+            <motion.div
+              id="introduction"
+              initial={{ opacity: 0, y: 200 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ ease: "easeInOut", duration: 1 }}
               style={{
                 border: "1px solid rgba(99, 89, 191, 0.5)",
                 background: "rgba(255,255,255,0.1)",
@@ -339,7 +344,7 @@ export default function Home() {
               </div>
               <div
                 style={{
-                  width: "70%",
+                  maxWidth: "750px",
                   margin: "50px auto",
                   display: "flex",
                   justifyContent: "space-between",
@@ -350,34 +355,85 @@ export default function Home() {
                 <div
                   style={{
                     width: "200px",
-                    height: "100px",
+                    height: "120px",
                     background: "#fff",
                     border: "1px solid #4285F4",
                     borderRadius: "10px",
+                    color: "#000",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
-                ></div>
+                >
+                  <div
+                    style={{ fontFamily: "suit-ExtrABold", fontSize: "20px" }}
+                  >
+                    LLM 모델
+                    <br />
+                    <span
+                      style={{ fontFamily: "suit-Regular", fontSize: "16px" }}
+                    >
+                      GPT-4o
+                    </span>
+                  </div>
+                </div>
                 <div style={{ fontSize: "30px" }}>➩</div>
                 <div
                   style={{
                     width: "200px",
-                    height: "100px",
+                    height: "120px",
                     background: "#4285F4",
                     border: "1px solid #4285F4",
                     borderRadius: "10px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
-                ></div>
+                >
+                  <div
+                    style={{ fontFamily: "suit-ExtrABold", fontSize: "20px" }}
+                  >
+                    MCP
+                    <br />
+                    <span
+                      style={{ fontFamily: "suit-Regular", fontSize: "16px" }}
+                    >
+                      Model Context Protocol
+                    </span>
+                  </div>
+                </div>
                 <div style={{ fontSize: "30px" }}>➩</div>
                 <div
                   style={{
                     width: "200px",
-                    height: "100px",
+                    height: "120px",
                     background: "#fff",
                     border: "1px solid #4285F4",
                     borderRadius: "10px",
+                    color: "#000",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
-                ></div>
+                >
+                  <div
+                    style={{ fontFamily: "suit-ExtrABold", fontSize: "20px" }}
+                  >
+                    외부 시스템
+                    <br />
+                    <span
+                      style={{ fontFamily: "suit-Regular", fontSize: "16px" }}
+                    >
+                      DB, API, 파일
+                    </span>
+                  </div>
+                </div>
               </div>
-            </div>
+              <div style={{ fontFamily: "suit-SemiBold", fontSize: "18px" }}>
+                SMU's는 MCP를 통해 분산된 학사•행정 정보를 하나의 대화형
+                인터페이스로 통합하여 제공합니다.
+              </div>
+            </motion.div>
           </div>
         </motion.div>
 
