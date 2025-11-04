@@ -208,7 +208,7 @@ export default function Calendar() {
                               borderRadius: "10px",
                             }}
                           >
-                            학사
+                            {event.type == "common" ? "학사" : "개인"}
                           </div>
                         </div>
                         <div>

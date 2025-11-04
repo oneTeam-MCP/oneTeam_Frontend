@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 // import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Button from "../components/button.tsx";
@@ -12,8 +12,48 @@ export default function Home() {
   const [showThird, setShowThird] = useState(false);
   const [secondText, setSecontText] = useState("");
 
+  const vRef = useRef<HTMLVideoElement | null>(null);
+  const [isMuted, setIsMuted] = useState(true); // 처음엔 자동재생 위해 음소거
+
   const fistFull = "Campus Life Assistant,";
   const secontFull = "powered by MCP";
+
+  const handleToggleMute = async () => {
+    const v = vRef.current;
+    if (!v) return;
+
+    try {
+      if (isMuted) {
+        // 🔊 언뮤트
+        v.muted = false;
+        v.removeAttribute("muted");
+        v.volume = 1.0;
+        await v.play(); // 사용자 제스처 안에서라 OK
+        setIsMuted(false);
+      } else {
+        // 🔇 다시 음소거
+        v.muted = true;
+        v.setAttribute("muted", ""); // iOS/Safari 호환
+        // 어떤 브라우저는 muted 변경 시 재생상태 흔들릴 수 있어 play 보강
+        try {
+          await v.play();
+        } catch {}
+        setIsMuted(true);
+      }
+    } catch {
+      // 정책에 막히면 컨트롤 노출
+      v.setAttribute("controls", "controls");
+    }
+  };
+
+  const handleError = (e) => {
+    const v = e.currentTarget;
+    const hasAudio =
+      (v.audioTracks && v.audioTracks.length > 0) ||
+      v.mozHasAudio ||
+      v.webkitAudioDecodedByteCount > 0;
+    console.log("hasAudio:", !!hasAudio, v.error); // 콘솔에서 바로 확인
+  };
 
   useEffect(() => {
     let index = 0;
@@ -438,7 +478,7 @@ export default function Home() {
         </motion.div>
 
         <motion.div
-          id="start"
+          id="demo"
           initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -452,21 +492,45 @@ export default function Home() {
             alignItems: "center",
           }}
         >
-          <div style={{ width: "80%", textAlign: "left" }}>
+          <div
+            style={{
+              width: "80%",
+              textAlign: "left",
+              position: "relative",
+            }}
+          >
             <video
+              ref={vRef}
               autoPlay
               muted
               loop
               playsInline
+              preload="metadata"
+              onError={handleError}
+              style={{ width: "100%", height: "88vh", objectFit: "contain" }}
+            >
+              <source src="/demo2.webm" type="video/webm" />
+              <source src="/demo2.mp4" type="video/mp4" />
+            </video>
+            <div
+              onClick={handleToggleMute}
               style={{
-                width: "100%",
-                height: "88vh",
-                objectFit: "contain",
-                zIndex: "-1",
+                position: "absolute",
+                right: "0",
+                bottom: "0",
+                padding: "10px 16px",
+                borderRadius: "10px",
+                background: "rgba(0,0,0,1)",
+                color: "#fff",
+                cursor: "pointer",
               }}
             >
-              <source src="../../demo.mp4" type="video/mp4" />
-            </video>
+              {isMuted ? (
+                <img src="/btn/sound_enabled.png" style={{ width: 30 }} />
+              ) : (
+                <img src="/btn/sound_disabled.png" style={{ width: 30 }} />
+              )}
+            </div>
           </div>
         </motion.div>
 

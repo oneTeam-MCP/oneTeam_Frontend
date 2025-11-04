@@ -104,6 +104,13 @@ export default function Nav({ type }: NavProps) {
               </div>
               <div
                 className="nav_text"
+                onClick={() => scrollToSection("demo")}
+                style={{ width: "50px", margin: "30px" }}
+              >
+                Teaser
+              </div>
+              <div
+                className="nav_text"
                 onClick={() => scrollToSection("team")}
                 style={{ width: "50px", margin: "30px" }}
               >
