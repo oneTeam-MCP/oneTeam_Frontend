@@ -1,29 +1,50 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import moment from "moment";
 import Button from "../../components/button.tsx";
 import Nav from "../../components/nav.tsx";
 import SideNav from "../../components/side_nav.tsx";
 
+import GetSchedulesAPI from "../../api/api/schedules/getSchedulesAPI.tsx";
+import GetNoticesAPI from "../../api/api/notices/getNoticesAPI.tsx";
 import "../../App.css";
 
 const SIDENAV_WIDTH = 200;
+const today = new Date();
 
 export default function Dashboard() {
   const [open, setOpen] = useState(true);
 
-  const [alertTab, setAlertTab] = useState<"샘물" | "이캠">("샘물");
+  const [assignTab, setAssignTab] = useState<"미제출 과제" | "미시청 영상">(
+    "미제출 과제"
+  );
+  const [alertTab, setAlertTab] = useState<"e캠퍼스 알림" | "e캠퍼스 메세지">(
+    "e캠퍼스 알림"
+  );
   const [noticeTab, setNoticeTab] = useState<"통합" | "학과">("통합");
 
   const [adIdx, setAdIdx] = useState(0);
   const [progress, setProgress] = useState(0); // 현재 width (%)
 
-  const ADS: string[] = ["../ad/ad_1.png", "../ad/ad_2.png", "../ad/ad_3.png"];
+  const ADS: string[] = ["../ad/ad_2.png", "../ad/ad_3.png"];
   const ADS_LINK: any[] = [
-    NaN,
     "https://biohealth.smu.ac.kr/biohealth/index.do",
     "https://smu-bamboo.com/",
   ];
+  const [calendarPlanList, setCalendarPlanList] = useState<any[]>([]);
+  const [noticeList, setNoticeList] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function fetchSchedules() {
+      const schedules = await GetSchedulesAPI();
+      setCalendarPlanList(schedules);
+      const notices = await GetNoticesAPI();
+      setNoticeList(notices);
+      console.log(notices);
+    }
+    fetchSchedules();
+  }, []);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -38,6 +59,18 @@ export default function Dashboard() {
     }, 100);
     return () => clearTimeout(timer);
   }, []);
+
+  const formatDate = (selectedDate: Date) => {
+    const year = selectedDate.getFullYear();
+    const month = (selectedDate.getMonth() + 1).toString().padStart(2, "0");
+    const date = selectedDate.getDate().toString().padStart(2, "0");
+    const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
+    const weekDay = weekDays[selectedDate.getDay()];
+
+    const yearMonthDay = `${year}년 ${month}월 ${date}일 (${weekDay})`;
+    const basic = `${year}-${month}-${date}`;
+    return { yearMonthDay, weekDay, basic };
+  };
 
   return (
     <div>
@@ -112,80 +145,100 @@ export default function Dashboard() {
                     marginBottom: "20px",
                   }}
                 >
-                  TODO 리스트
+                  {formatDate(today).yearMonthDay} TODO
                 </div>
-                <div
-                  style={{
-                    boxSizing: "border-box",
-                    width: "94%",
-                    height: "80px",
-                    background: "#3c4043",
-                    borderRadius: "10px",
-                    margin: "10px 3%",
-                    padding: "0 10px",
-                    display: "flex",
-                    justifyContent: "left",
-                    alignItems: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "10%",
-                      padding: "3px 0",
-                      background: "#FFD9CF",
-                      fontFamily: "Suit-SemiBold",
-                      fontSize: "18px",
-                      color: "#E82E2E",
-                      borderRadius: "10px",
-                      textAlign: "center",
-                      border: "1px solid #FFD9CF",
-                    }}
-                  >
-                    D-1
-                  </div>
-                  <div
-                    style={{
-                      boxSizing: "border-box",
-                      width: "40%",
-                      padding: "0 10px",
-                      fontFamily: "Suit-Regular",
-                      fontSize: "16px",
-                    }}
-                  >
-                    컴퓨터네트워크프로그래밍
-                  </div>
-                  <div
-                    style={{
-                      width: "40%",
-                      height: "10px",
-                      background: "#ddd",
-                      borderRadius: "8px",
-                      position: "relative",
-                    }}
-                  >
+                <div>
+                  {calendarPlanList.filter((event) =>
+                    moment(today).isBetween(
+                      event.startDate,
+                      event.endDate,
+                      "day",
+                      "[]"
+                    )
+                  ).length === 0 ? (
                     <div
                       style={{
-                        position: "absolute",
-                        width: `${progress}%`,
-                        height: "10px",
-                        background: "#4285F4",
-                        borderRadius: "8px",
-                        transition: "width 0.8s ease-in-out",
+                        width: "100%",
+                        height: "180px",
+                        borderRadius: "20px",
+                        textAlign: "center",
                       }}
-                    ></div>
-                  </div>
-                  <div
-                    style={{
-                      boxSizing: "border-box",
-                      width: "5%",
-                      padding: "0 10px",
-                      fontFamily: "Suit-Light",
-                      fontSize: "12px",
-                      color: "#fff",
-                    }}
-                  >
-                    53%
-                  </div>
+                    >
+                      <div
+                        style={{
+                          fontFamily: "Suit-SemiBold",
+                          fontSize: "20px",
+                          paddingTop: "50px",
+                        }}
+                      >
+                        계획된 일정이 없습니다.
+                      </div>
+                    </div>
+                  ) : (
+                    calendarPlanList
+                      .filter((event) =>
+                        moment(today).isBetween(
+                          event.startDate,
+                          event.endDate,
+                          "day",
+                          "[]"
+                        )
+                      )
+                      .map((event) => (
+                        <div
+                          key={event.id}
+                          style={{
+                            boxSizing: "border-box",
+                            width: "90%",
+                            margin: "0 5% 10px",
+                            textAlign: "left",
+                            display: "flex",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "60px",
+                              marginRight: "20px",
+                              textAlign: "center",
+                            }}
+                          >
+                            <div
+                              style={{
+                                boxSizing: "border-box",
+                                fontFamily: "Suit-Regular",
+                                fontSize: "12px",
+                                padding: "5px 0",
+                                background: "#4285F4",
+                                border: "1px solid #444",
+                                borderRadius: "10px",
+                              }}
+                            >
+                              학사
+                            </div>
+                          </div>
+                          <div>
+                            <div
+                              style={{
+                                fontFamily: "Suit-SemiBold",
+                                fontSize: "18px",
+                              }}
+                            >
+                              {event.content}
+                            </div>
+                            <div
+                              style={{
+                                fontFamily: "Suit-Regular",
+                                fontSize: "12px",
+                                color: "#888",
+                                marginTop: "5px",
+                              }}
+                            >
+                              {event.startDate} ~ {event.endDate}
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                  )}
                 </div>
               </motion.div>
 
@@ -204,162 +257,166 @@ export default function Dashboard() {
               >
                 <div
                   style={{
-                    boxSizing: "border-box",
-                    fontFamily: "Suit-SemiBold",
-                    fontSize: "22px",
-                    width: "100%",
-                    padding: "10px 3%",
-                    marginBottom: "20px",
-                  }}
-                >
-                  미제출 과제
-                </div>
-                <div
-                  style={{
-                    boxSizing: "border-box",
-                    width: "94%",
-                    height: "80px",
-                    background: "#3c4043",
-                    borderRadius: "10px",
-                    margin: "10px 3%",
-                    padding: "0 10px",
                     display: "flex",
-                    justifyContent: "left",
-                    alignItems: "center",
+                    justifyContent: "space-between",
                   }}
                 >
-                  <div
-                    style={{
-                      width: "10%",
-                      padding: "3px 0",
-                      background: "#FFD9CF",
-                      fontFamily: "Suit-SemiBold",
-                      fontSize: "18px",
-                      color: "#E82E2E",
-                      borderRadius: "10px",
-                      textAlign: "center",
-                      border: "1px solid #FFD9CF",
-                    }}
-                  >
-                    D-1
-                  </div>
-                  <div
-                    style={{
-                      boxSizing: "border-box",
-                      width: "40%",
-                      padding: "0 10px",
-                      fontFamily: "Suit-Regular",
-                      fontSize: "16px",
-                    }}
-                  >
-                    컴퓨터네트워크프로그래밍
-                  </div>
-                  <div
-                    style={{
-                      width: "40%",
-                      height: "10px",
-                      background: "#ddd",
-                      borderRadius: "8px",
-                      position: "relative",
-                    }}
-                  >
+                  {["미제출 과제", "미시청 영상"].map((tab) => (
+                    <div
+                      key={tab}
+                      onClick={() =>
+                        setAssignTab(tab as "미제출 과제" | "미시청 영상")
+                      }
+                      style={{
+                        boxSizing: "border-box",
+                        width: "50%",
+                        textAlign: "center",
+                        marginBottom: "20px",
+                        padding: "12px 0",
+                        cursor: "pointer",
+                        fontFamily:
+                          assignTab === tab ? "Suit-SemiBold" : "Suit-Regular",
+                        fontSize: "18px",
+                        background: assignTab === tab ? "#1b1c1d" : "#222",
+                        color: assignTab === tab ? "#4285f3" : "#aaa",
+                        borderTopLeftRadius: "20px",
+                        borderTopRightRadius: "20px",
+                        boxShadow:
+                          assignTab === tab && tab === "미제출 과제"
+                            ? "2px -4px 4px rgba(255,255,255,0.1)"
+                            : assignTab === tab && tab === "미시청 영상"
+                            ? "-2px -4px 4px rgba(255,255,255,0.1)"
+                            : assignTab !== tab
+                            ? "inset 0 -4px 4px rgba(255,255,255,0.08)"
+                            : "none",
+                        zIndex: alertTab === tab ? "10" : "0",
+                      }}
+                    >
+                      {tab}
+                    </div>
+                  ))}
+                </div>
+                {assignTab == "미제출 과제" ? (
+                  <>
                     <div
                       style={{
-                        position: "absolute",
-                        width: `${progress}%`,
-                        height: "10px",
-                        background: "#4285F4",
-                        borderRadius: "8px",
-                        transition: "width 0.8s ease-in-out",
+                        boxSizing: "border-box",
+                        width: "94%",
+                        height: "80px",
+                        background: "#3c4043",
+                        borderRadius: "10px",
+                        margin: "0px 3% 10px",
+                        padding: "0 20px",
+                        display: "flex",
+                        justifyContent: "left",
+                        alignItems: "center",
                       }}
-                    ></div>
-                  </div>
-                  <div
-                    style={{
-                      boxSizing: "border-box",
-                      width: "5%",
-                      padding: "0 10px",
-                      fontFamily: "Suit-Light",
-                      fontSize: "12px",
-                      color: "#fff",
-                    }}
-                  >
-                    53%
-                  </div>
-                </div>
-                <div
-                  style={{
-                    boxSizing: "border-box",
-                    width: "94%",
-                    height: "80px",
-                    background: "#3c4043",
-                    borderRadius: "10px",
-                    margin: "10px 3%",
-                    padding: "0 10px",
-                    display: "flex",
-                    justifyContent: "left",
-                    alignItems: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "10%",
-                      padding: "3px 0",
-                      background: "#FFD9CF",
-                      fontFamily: "Suit-SemiBold",
-                      fontSize: "18px",
-                      color: "#E82E2E",
-                      borderRadius: "10px",
-                      textAlign: "center",
-                      border: "1px solid #FFD9CF",
-                    }}
-                  >
-                    D-1
-                  </div>
-                  <div
-                    style={{
-                      boxSizing: "border-box",
-                      width: "40%",
-                      padding: "0 10px",
-                      fontFamily: "Suit-Regular",
-                      fontSize: "16px",
-                    }}
-                  >
-                    컴퓨터
-                  </div>
-                  <div
-                    style={{
-                      width: "40%",
-                      height: "10px",
-                      background: "#ddd",
-                      borderRadius: "8px",
-                      position: "relative",
-                    }}
-                  >
+                    >
+                      <div
+                        style={{
+                          width: "10%",
+                          padding: "3px 0",
+                          background: "#FFD9CF",
+                          fontFamily: "Suit-SemiBold",
+                          fontSize: "18px",
+                          color: "#E82E2E",
+                          borderRadius: "10px",
+                          textAlign: "center",
+                          border: "1px solid #FFD9CF",
+                        }}
+                      >
+                        D-1
+                      </div>
+                      <div
+                        style={{
+                          boxSizing: "border-box",
+                          width: "90%",
+                          padding: "0 20px",
+                          fontFamily: "Suit-Regular",
+                          fontSize: "18px",
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontFamily: "Suit-SemiBold",
+                            fontSize: "18px",
+                          }}
+                        >
+                          네트워크프로그래밍
+                        </div>
+                        <div
+                          style={{
+                            fontFamily: "Suit-Regular",
+                            fontSize: "12px",
+                            color: "#888",
+                          }}
+                        >
+                          2025-11-01 ~ 2025-11-05
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
                     <div
                       style={{
-                        position: "absolute",
-                        width: `${progress}%`,
-                        height: "10px",
-                        background: "#4285F4",
-                        borderRadius: "8px",
-                        transition: "width 0.8s ease-in-out",
+                        boxSizing: "border-box",
+                        width: "94%",
+                        height: "80px",
+                        background: "#3c4043",
+                        borderRadius: "10px",
+                        margin: "0 3% 10px",
+                        padding: "0 20px",
+                        display: "flex",
+                        justifyContent: "left",
+                        alignItems: "center",
                       }}
-                    ></div>
-                  </div>
-                  <div
-                    style={{
-                      boxSizing: "border-box",
-                      width: "5%",
-                      padding: "0 10px",
-                      fontFamily: "Suit-Light",
-                      fontSize: "12px",
-                      color: "#fff",
-                    }}
-                  >
-                    53%
-                  </div>
-                </div>
+                    >
+                      <div
+                        style={{
+                          width: "10%",
+                          padding: "3px 0",
+                          background: "#FFD9CF",
+                          fontFamily: "Suit-SemiBold",
+                          fontSize: "18px",
+                          color: "#E82E2E",
+                          borderRadius: "10px",
+                          textAlign: "center",
+                          border: "1px solid #FFD9CF",
+                        }}
+                      >
+                        D-2
+                      </div>
+                      <div
+                        style={{
+                          boxSizing: "border-box",
+                          width: "90%",
+                          padding: "0 20px",
+                          fontFamily: "Suit-Regular",
+                          fontSize: "18px",
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontFamily: "Suit-SemiBold",
+                            fontSize: "18px",
+                          }}
+                        >
+                          인문학특강
+                        </div>
+                        <div
+                          style={{
+                            fontFamily: "Suit-Regular",
+                            fontSize: "12px",
+                            color: "#888",
+                          }}
+                        >
+                          2025-11-01 ~ 2025-11-05
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
               </motion.div>
             </div>
 
@@ -381,7 +438,6 @@ export default function Dashboard() {
                   borderRadius: "10px",
                 }}
               >
-                {/* 슬라이드 트랙 */}
                 <div
                   style={{
                     display: "flex",
@@ -415,7 +471,7 @@ export default function Dashboard() {
                                   "_blank",
                                   "noopener,noreferrer"
                                 )
-                            : undefined // 없으면 클릭 무효
+                            : undefined
                         }
                       />
                     );
@@ -429,7 +485,7 @@ export default function Dashboard() {
                 transition={{ duration: 0.5 }}
                 style={{
                   width: "100%",
-                  height: "360px",
+                  height: "310px",
                   marginBottom: "20px",
                   background: "#1b1c1d",
                   border: "1px solid #444",
@@ -443,10 +499,12 @@ export default function Dashboard() {
                     justifyContent: "space-between",
                   }}
                 >
-                  {["샘물", "이캠"].map((tab) => (
+                  {["e캠퍼스 알림", "e캠퍼스 메세지"].map((tab) => (
                     <div
                       key={tab}
-                      onClick={() => setAlertTab(tab as "샘물" | "이캠")}
+                      onClick={() =>
+                        setAlertTab(tab as "e캠퍼스 알림" | "e캠퍼스 메세지")
+                      }
                       style={{
                         boxSizing: "border-box",
                         width: "50%",
@@ -462,9 +520,9 @@ export default function Dashboard() {
                         borderTopLeftRadius: "20px",
                         borderTopRightRadius: "20px",
                         boxShadow:
-                          alertTab === tab && tab === "샘물"
+                          alertTab === tab && tab === "e캠퍼스 알림"
                             ? "2px -4px 4px rgba(255,255,255,0.1)"
-                            : alertTab === tab && tab === "이캠"
+                            : alertTab === tab && tab === "e캠퍼스 메세지"
                             ? "-2px -4px 4px rgba(255,255,255,0.1)"
                             : alertTab !== tab
                             ? "inset 0 -4px 4px rgba(255,255,255,0.08)"
@@ -472,35 +530,65 @@ export default function Dashboard() {
                         zIndex: alertTab === tab ? "10" : "0",
                       }}
                     >
-                      {tab} 알림
+                      {tab}
                     </div>
                   ))}
                 </div>
-                <div>
-                  {alertTab === "샘물" ? (
-                    <div
-                      style={{
-                        boxSizing: "border-box",
-                        width: "96%",
-                        height: "60px",
-                        border: "1px solid #000",
-                        margin: "0 2% 10px",
-                      }}
-                    >
-                      샘물 알림
-                    </div>
+                <div
+                  style={{
+                    height: "239px",
+                    overflowY: "scroll",
+                  }}
+                >
+                  {alertTab === "e캠퍼스 알림" ? (
+                    <>
+                      <div
+                        style={{
+                          boxSizing: "border-box",
+                          width: "94%",
+                          minHeight: "60px",
+                          borderBottom: "1px solid #777",
+                          margin: "0 3% 10px",
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontFamily: "Suit-SemiBold",
+                            fontSize: "18px",
+                            marginBottom: "5px",
+                          }}
+                        >
+                          2025-2 캡스톤디자인(서울)
+                        </div>
+                        <div
+                          style={{
+                            fontFamily: "Suit-Light",
+                            fontSize: "14px",
+                            color: "#bbb",
+                            marginBottom: "5px",
+                          }}
+                        >
+                          ?? ? ? ? ?? ? ? ? ??? ? ? ? ? ?? ? ? ? ? ? ?? ?? ? ? ?
+                          ? ? ?ddddd d d d d d d d d d d d d d d d d d d d d d
+                          dd d dd d dd d d d d d d d d d d d d d d d d d d d dd
+                          d d d d d d d dd d d d d d d d d d d
+                        </div>
+                      </div>
+                    </>
                   ) : (
-                    <div
-                      style={{
-                        boxSizing: "border-box",
-                        width: "96%",
-                        height: "60px",
-                        border: "1px solid #000",
-                        margin: "0 2% 10px",
-                      }}
-                    >
-                      이캠 알림
-                    </div>
+                    <>
+                      <div
+                        style={{
+                          boxSizing: "border-box",
+                          width: "94%",
+                          height: "60px",
+                          borderBottom: "1px solid #777",
+                          margin: "0 3% 10px",
+                        }}
+                      >
+                        이캠 메세지
+                      </div>
+                    </>
                   )}
                 </div>
               </motion.div>
@@ -511,7 +599,7 @@ export default function Dashboard() {
                 transition={{ duration: 0.5 }}
                 style={{
                   width: "100%",
-                  height: "350px",
+                  height: "400px",
                   background: "#1b1c1d",
                   border: "1px solid #444",
                   borderRadius: "20px",
@@ -557,31 +645,75 @@ export default function Dashboard() {
                     </div>
                   ))}
                 </div>
-                <div>
+                <div
+                  style={{
+                    height: "329px",
+                    overflowY: "auto",
+                  }}
+                >
                   {noticeTab === "통합" ? (
-                    <div
-                      style={{
-                        boxSizing: "border-box",
-                        width: "96%",
-                        height: "60px",
-                        border: "1px solid #000",
-                        margin: "0 2% 10px",
-                      }}
-                    >
-                      통합 공지
-                    </div>
+                    <>
+                      {noticeList.length > 0 ? (
+                        noticeList?.map((notice) => (
+                          <div
+                            key={notice.id}
+                            style={{
+                              boxSizing: "border-box",
+                              width: "94%",
+                              minHeight: "80px",
+                              borderBottom: "1px solid #777",
+                              margin: "0 3% 10px",
+                            }}
+                          >
+                            <div
+                              style={{
+                                fontFamily: "Suit-Light",
+                                fontSize: "14px",
+                                color:
+                                  notice.campus == "서울"
+                                    ? "#99A3D5"
+                                    : "#D5AE99",
+                              }}
+                            >
+                              {notice.campus} {notice.category}
+                            </div>
+                            <div
+                              style={{
+                                fontFamily: "Suit-SemiBold",
+                                fontSize: "18px",
+                                cursor: "pointer",
+                                marginBottom: "5px",
+                              }}
+                              onClick={() =>
+                                window.open(
+                                  notice.link,
+                                  "_blank",
+                                  "noopener,noreferrer"
+                                )
+                              }
+                            >
+                              {notice.title}
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <></>
+                      )}
+                    </>
                   ) : (
-                    <div
-                      style={{
-                        boxSizing: "border-box",
-                        width: "96%",
-                        height: "60px",
-                        border: "1px solid #000",
-                        margin: "0 2% 10px",
-                      }}
-                    >
-                      학과 공지
-                    </div>
+                    <>
+                      <div
+                        style={{
+                          boxSizing: "border-box",
+                          width: "94%",
+                          minHeight: "85px",
+                          borderBottom: "1px solid #777",
+                          margin: "0 3% 10px",
+                        }}
+                      >
+                        학과 공지
+                      </div>
+                    </>
                   )}
                 </div>
               </motion.div>
