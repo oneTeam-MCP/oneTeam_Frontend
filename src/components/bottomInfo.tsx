@@ -94,7 +94,7 @@ export default function BottomInfo() {
             color: "#fff",
           }}
         >
-          hah
+          Contact
         </div>
       </div>
     </div>

@@ -112,7 +112,6 @@ export default function Home() {
                   style={{
                     position: "relative",
                     display: "inline-block",
-                    padding: "2px",
                     borderRadius: "12px",
                     animation: "spinGlow 3s linear infinite", // CSS 애니메이션만 외부로 분리
                     cursor: "pointer",
@@ -228,9 +227,10 @@ export default function Home() {
                 lineHeight: "1.6",
               }}
             >
-              상명대학교 통합관리 LLM 서비스
+              상명대학교 통합관리 LLM 서비스{" "}
+              <span style={{ color: "#4285f4" }}>SMU's</span>는
               <br />
-              SMU's는 학교 내 정보 통합과 MCP 기반 기능을 지원합니다.
+              학교 내 정보 통합과 MCP 기반 기능을 지원합니다.
             </div>
             <div
               style={{
@@ -446,7 +446,40 @@ export default function Home() {
           style={{
             position: "relative",
             width: "100%",
-            height: "60vh",
+            height: "100vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ width: "80%", textAlign: "left" }}>
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{
+                width: "100%",
+                height: "88vh",
+                objectFit: "contain",
+                zIndex: "-1",
+              }}
+            >
+              <source src="../../demo.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </motion.div>
+
+        <motion.div
+          id="start"
+          initial={{ opacity: 0, y: 200 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ ease: "easeInOut", duration: 1 }}
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "85vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -457,7 +490,7 @@ export default function Home() {
               style={{
                 fontFamily: "Suit-Bold",
                 fontSize: "40px",
-                marginBottom: "40px",
+                marginBottom: "20px",
                 color: "#fff",
                 lineHeight: "1.6",
               }}
@@ -467,32 +500,84 @@ export default function Home() {
             <div
               style={{
                 fontFamily: "Suit-Light",
-                fontSize: "16px",
+                fontSize: "20px",
                 color: "#fff",
                 lineHeight: "1.8",
                 margin: "0 auto",
+                marginBottom: "60px",
               }}
             >
-              질문 하나로 간단하게
+              흩어진 학교와 학생의 학사 정보를{" "}
+              <span style={{ fontFamily: "Suit-SemiBold", color: "#4285f4" }}>
+                하나로
+              </span>
+              !
+              <br />
+              AI Agent가 함께하는 스마트 캠퍼스 라이프의{" "}
+              <span style={{ fontFamily: "Suit-SemiBold", color: "#4285f4" }}>
+                중심
+              </span>
+              !
+              <br />
+              당신만의 캠퍼스 허브{" "}
+              <span style={{ fontFamily: "Suit-SemiBold", color: "#4285f4" }}>
+                SMU's
+              </span>
+              !
+            </div>
+            <div
+              style={{
+                position: "relative",
+                display: "inline-block",
+                animation: "spinGlow 3s linear infinite", // CSS 애니메이션만 외부로 분리
+                cursor: "pointer",
+              }}
+              onClick={() => (window.location.href = "/logIn")}
+            >
+              <div
+                style={{
+                  fontFamily: "Suit-Regular",
+                  fontSize: "14px",
+                  color: "#fff",
+                  backgroundColor: "rgba(0,0,0,0.85)",
+                  width: "100px",
+                  height: "25px",
+                  textAlign: "center",
+                  border: " 1px solid #fff",
+                  borderRadius: "20px",
+                  padding: "8px 10px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.fontSize = "15px";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.fontSize = "14px";
+                }}
+              >
+                시작하러 가기
+              </div>
             </div>
           </div>
         </motion.div>
 
         <motion.div
           id="team"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 200 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ ease: "easeInOut", duration: 0.8 }}
+          transition={{ ease: "easeInOut", duration: 1 }}
           style={{
             position: "relative",
             width: "100%",
-            minHeight: "100vh",
+            minHeight: "80vh",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            padding: "60px 20px",
+            padding: "0 20px 30px",
           }}
         >
           <div
