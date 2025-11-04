@@ -371,7 +371,7 @@ export default function Chatbot() {
               marginBottom: "10px",
             }}
           >
-            Chatbot AI
+            AI Agent
           </div>
 
           <motion.div

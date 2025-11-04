@@ -100,9 +100,9 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
                     : "../icon/dashboard_enabled.png"
                 }
                 alt="dashboard"
-                style={{ width: "20px" }}
+                style={{ width: "22px", objectFit: "contain" }}
               />
-              <div style={{ marginLeft: "5px" }}>Dashboard</div>
+              <div style={{ marginLeft: "10px" }}>Dashboard</div>
             </div>
           </Link>
           <Link to="/calendar" style={{ textDecoration: "none" }}>
@@ -125,9 +125,9 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
                     : "../icon/calendar_enabled.png"
                 }
                 alt="calendar"
-                style={{ width: "20px" }}
+                style={{ width: "22px", objectFit: "contain" }}
               />
-              <div style={{ marginLeft: "5px" }}>Calendar</div>
+              <div style={{ marginLeft: "10px" }}>Calendar</div>
             </div>
           </Link>
           <Link to="/subject" style={{ textDecoration: "none" }}>
@@ -150,9 +150,9 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
                     : "../icon/subject_enabled.png"
                 }
                 alt="subject"
-                style={{ width: "20px" }}
+                style={{ width: "22px", objectFit: "contain" }}
               />
-              <div style={{ marginLeft: "5px" }}>Subject</div>
+              <div style={{ marginLeft: "10px" }}>Subject</div>
             </div>
           </Link>
           <Link to="/chatbot" style={{ textDecoration: "none" }}>
@@ -175,9 +175,9 @@ export default function SideNav({ type, open, setOpen }: NavProps) {
                     : "../icon/chatbot_enabled.png"
                 }
                 alt="chatbot"
-                style={{ width: "20px" }}
+                style={{ width: "22px", objectFit: "contain" }}
               />
-              <div style={{ marginLeft: "5px" }}>Chatbot AI</div>
+              <div style={{ marginLeft: "10px" }}>AI Agent</div>
             </div>
           </Link>
         </div>

@@ -45,9 +45,8 @@ export default function Nav({ type }: NavProps) {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: checkAuth
-            ? "rgba(11,15,14, 0)"
-            : "rgba(11,15,14, 0.85)",
+          backgroundColor:
+            type == "home" ? "rgba(11,15,14, 0.85)" : "rgba(11,15,14, 0)",
         }}
       >
         <div
@@ -80,41 +79,55 @@ export default function Nav({ type }: NavProps) {
             alignItems: "center",
           }}
         >
-          {!checkAuth ? (
+          {type == "home" ? (
             <>
               <div
                 className="nav_text"
                 onClick={() => scrollToSection("home")}
-                style={{ width: "120px" }}
+                style={{ width: "50px", margin: "30px" }}
               >
                 Home
               </div>
               <div
                 className="nav_text"
                 onClick={() => scrollToSection("introduction")}
-                style={{ width: "140px" }}
+                style={{ width: "100px", margin: "30px" }}
               >
                 Introduction
               </div>
               <div
                 className="nav_text"
                 onClick={() => scrollToSection("what_is_mcp")}
-                style={{ width: "150px" }}
+                style={{ width: "120px", margin: "30px" }}
               >
                 What is MCP
               </div>
               <div
                 className="nav_text"
                 onClick={() => scrollToSection("team")}
-                style={{ width: "120px" }}
+                style={{ width: "50px", margin: "30px" }}
               >
                 Team
               </div>
-              <Link to="/login">
-                <div className="nav_text" style={{ width: "120px" }}>
-                  Log In
-                </div>
-              </Link>
+              {!checkAuth ? (
+                <Link to="/login">
+                  <div
+                    className="nav_text"
+                    style={{ width: "60px", margin: "30px" }}
+                  >
+                    Log In
+                  </div>
+                </Link>
+              ) : (
+                <Link to="/dashboard">
+                  <div
+                    className="nav_text"
+                    style={{ width: "60px", margin: "30px" }}
+                  >
+                    Start
+                  </div>
+                </Link>
+              )}
             </>
           ) : (
             <>

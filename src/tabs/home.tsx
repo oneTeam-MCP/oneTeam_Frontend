@@ -90,7 +90,7 @@ export default function Home() {
             <div
               style={{
                 fontFamily: "Suit-ExtraBold",
-                fontSize: "65px",
+                fontSize: "clamp(40px, 6vw, 65px)",
                 lineHeight: "1.5",
                 color: "#fff",
                 marginTop: "80px",
@@ -98,7 +98,7 @@ export default function Home() {
             >
               {fistText}
               <br />
-              <span style={{ fontSize: "50px" }}>
+              <span style={{ fontSize: "clamp(30px, 4.5vw, 50px)" }}>
                 {showSecond && secondText}
               </span>
             </div>
@@ -577,7 +577,7 @@ export default function Home() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            padding: "0 20px 30px",
+            padding: "0 0 30px",
           }}
         >
           <div
