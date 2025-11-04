@@ -15,7 +15,22 @@ export default function Dashboard() {
   const [alertTab, setAlertTab] = useState<"샘물" | "이캠">("샘물");
   const [noticeTab, setNoticeTab] = useState<"통합" | "학과">("통합");
 
+  const [adIdx, setAdIdx] = useState(0);
   const [progress, setProgress] = useState(0); // 현재 width (%)
+
+  const ADS: string[] = ["../ad/ad_1.png", "../ad/ad_2.png", "../ad/ad_3.png"];
+  const ADS_LINK: any[] = [
+    NaN,
+    "https://biohealth.smu.ac.kr/biohealth/index.do",
+    "https://smu-bamboo.com/",
+  ];
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setAdIdx((i) => (i + 1) % ADS.length);
+    }, 3000); // 5초마다 다음 배너
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -358,22 +373,54 @@ export default function Dashboard() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 style={{
+                  position: "relative",
                   width: "100%",
                   height: "70px",
                   marginBottom: "20px",
-                  display: "flex",
-                  alignItems: "center",
+                  overflow: "hidden",
+                  borderRadius: "10px",
                 }}
               >
-                <img
-                  src="../ad/ad_3.png"
-                  alt="add"
+                {/* 슬라이드 트랙 */}
+                <div
                   style={{
-                    width: "100%",
+                    display: "flex",
+                    width: `${ADS.length * 100}%`,
                     height: "100%",
-                    objectFit: "cover",
+                    transform: `translateX(-${adIdx * (100 / ADS.length)}%)`,
+                    transition: "transform 0.6s ease",
                   }}
-                />
+                >
+                  {ADS.map((src, i) => {
+                    const hasLink = !!ADS_LINK[i]; // 링크 존재 여부 확인
+
+                    return (
+                      <img
+                        key={src}
+                        src={src}
+                        alt={`ad-${i}`}
+                        style={{
+                          width: `${100 / ADS.length}%`,
+                          height: "100%",
+                          objectFit: "cover",
+                          flexShrink: 0,
+                          cursor: hasLink ? "pointer" : "default", // 링크 없으면 커서 기본
+                          opacity: hasLink ? 1 : 0.8, // 시각적으로 비활성화 느낌 (선택)
+                        }}
+                        onClick={
+                          hasLink
+                            ? () =>
+                                window.open(
+                                  ADS_LINK[i],
+                                  "_blank",
+                                  "noopener,noreferrer"
+                                )
+                            : undefined // 없으면 클릭 무효
+                        }
+                      />
+                    );
+                  })}
+                </div>
               </motion.div>
 
               <motion.div

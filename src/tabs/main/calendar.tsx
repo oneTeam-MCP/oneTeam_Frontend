@@ -208,7 +208,7 @@ export default function Calendar() {
                               borderRadius: "10px",
                             }}
                           >
-                            일정
+                            학사
                           </div>
                         </div>
                         <div>
