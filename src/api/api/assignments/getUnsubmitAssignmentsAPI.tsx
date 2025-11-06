@@ -3,26 +3,28 @@ import { getCookie, removeCookie } from "../../cookies.tsx";
 
 const API_SERVER_DOMAIN = "https://api.oneteam-mcp.site";
 
-export default async function GetNotificationsAPI() {
+export default async function GetUnsubmitAssignmentsAPI() {
   const accessToken = getCookie("accessToken");
-  const refreshToken = getCookie("refreshToken");
+  //   const refreshToken = getCookie("refreshToken");
 
   try {
-    const response = await fetch(API_SERVER_DOMAIN + `/api/v1/notifications`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + accessToken,
-      },
-    });
-
-    // if (!response.ok) {
-    //   throw new Error("Failed to get inventory");
-    // }
+    const response = await fetch(
+      API_SERVER_DOMAIN + `/api/v1/assignments/unsubmitted`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + accessToken,
+        },
+      }
+    );
 
     return response.json().then((data) => {
+      if (!response.ok) {
+        throw new Error("Failed to get inventory");
+      }
       console.log(data);
-      return data.content;
+      return data;
     });
   } catch (error) {
     console.error(error);

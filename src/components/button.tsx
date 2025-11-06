@@ -35,7 +35,7 @@ const ButtonContainer = styled.div<{ $variant: ButtonType; $size: Size }>`
       : p.$variant === "secondary"
       ? "#8AA7F8"
       : p.$variant === "third"
-      ? "#EEF0FE"
+      ? "#555"
       : p.$variant === "disabled"
       ? "#555"
       : "#114DF0"};
@@ -46,7 +46,7 @@ const ButtonContainer = styled.div<{ $variant: ButtonType; $size: Size }>`
       : p.$variant === "secondary"
       ? "#114DF0"
       : p.$variant === "third"
-      ? "#114DF0"
+      ? "#999"
       : p.$variant === "disabled"
       ? "#999"
       : "#fff"};

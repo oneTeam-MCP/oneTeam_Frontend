@@ -13,6 +13,7 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 type CalendarList = {
   id: number;
+  type: string;
   startDate: number[];
   endDate: number[];
   content: string;
@@ -63,6 +64,14 @@ const StyledCalendarWrapper = styled.div`
   /* 년/월 상단 네비게이션 칸 크기 줄이기 */
   .react-calendar__navigation__label {
     flex-grow: 0 !important;
+    width: 150px;
+    margin-top: 5px;
+  }
+  .react-calendar__navigation__label:hover {
+    background-color: transparent !important;
+  }
+  .react-calendar__navigation__arrow:hover {
+    background-color: transparent !important;
   }
 
   /* 요일 간격 */
@@ -84,15 +93,17 @@ const StyledCalendarWrapper = styled.div`
   /* 오늘 날짜 폰트 컬러 */
   .react-calendar__tile--now {
     background-color: transparent;
-    color: #114df0;
+    abbr {
+      color: #4285f4;
+    }
   }
 
   /* 네비게이션 현재 월 스타일 적용*/
   .react-calendar__tile--hasActive {
-    box-shadow: 0 0 0 2px #114df0 inset;
+    box-shadow: 0 0 0 2px #4285f4inset;
     background-color: transparent;
     abbr {
-      color: #114df0;
+      color: #4285f4;
     }
   }
 
@@ -123,14 +134,15 @@ const StyledCalendarWrapper = styled.div`
 
   /* 월 hover, focus 스타일 적용 */
   .react-calendar__tile:enabled:hover {
+    box-shadow: 0 0 0 2px #4285f4 inset;
     background-color: transparent;
     color: #fff;
   }
   .react-calendar__tile:enabled:focus,
   .react-calendar__tile--active {
-    box-shadow: 0 0 0 2px #114df0 inset;
+    box-shadow: 0 0 0 2px #4285f4 inset;
     background-color: transparent;
-    color: #114df0;
+    color: #4285f4;
   }
 
   /* 근처 월 스타일 적용 */
@@ -148,7 +160,7 @@ const StyledTodayBtn = styled.div`
   position: absolute;
   right: 10px;
   top: 35px;
-  background-color: #8aa7f8;
+  background-color: #4285f4;
   color: #fff;
   width: 60px;
   min-width: fit-content;
@@ -308,7 +320,8 @@ const BigCalendar: React.FC<BigCalendarProps> = ({ onDateSelect }) => {
                   : `calc(${(colSpan / 7) * 100}% - 10px)`,
                 marginLeft: isStartWeek || isOneDay ? "5px" : "0",
                 height: "25px",
-                backgroundColor: rowIndex === 0 ? "#82ABEB" : "#90BEAE",
+                backgroundColor:
+                  event.type === "personal" ? "#EC8E90" : "#82ABEB",
                 fontFamily: "Suit-SemiBold",
                 fontSize: "13px",
                 color: "#000",

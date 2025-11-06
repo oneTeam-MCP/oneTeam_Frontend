@@ -12,10 +12,11 @@ export default async function GetSchedulesAPI() {
       },
     });
 
+    if (!response.ok) {
+      throw new Error("Failed to get inventory");
+    }
+
     return response.json().then((data) => {
-      if (!response.ok) {
-        throw new Error("Failed to get inventory");
-      }
       console.log(data);
       return data.content;
     });

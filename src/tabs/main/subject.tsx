@@ -5,6 +5,8 @@ import Button from "../../components/button.tsx";
 import Nav from "../../components/nav.tsx";
 import SideNav from "../../components/side_nav.tsx";
 
+import GetUnsubmitAssignmentsAPI from "../../api/api/assignments/getUnsubmitAssignmentsAPI.tsx";
+
 import "../../App.css";
 
 const SIDENAV_WIDTH = 200;
@@ -52,6 +54,15 @@ const data = [
 export default function Dashboard() {
   const [open, setOpen] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [AssignList, setAssignList] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function fetchSchedules() {
+      const assignments = await GetUnsubmitAssignmentsAPI();
+      setAssignList(assignments);
+    }
+    fetchSchedules();
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -303,80 +314,82 @@ export default function Dashboard() {
                     marginBottom: "20px",
                   }}
                 >
-                  미시청 강의
+                  미제출 과제
                 </div>
                 <div
                   style={{
                     boxSizing: "border-box",
-                    width: "94%",
-                    height: "80px",
-                    background: "#3c4043",
+                    width: "100%",
+                    height: "330px",
                     borderRadius: "10px",
-                    margin: "10px 3%",
+                    margin: "10px 0",
                     padding: "0 10px",
-                    display: "flex",
-                    justifyContent: "left",
-                    alignItems: "center",
+                    overflowY: "auto",
                   }}
                 >
-                  <div
-                    style={{
-                      width: "10%",
-                      padding: "3px 0",
-                      background: "#FFD9CF",
-                      fontFamily: "Suit-SemiBold",
-                      fontSize: "18px",
-                      color: "#E82E2E",
-                      borderRadius: "10px",
-                      textAlign: "center",
-                      border: "1px solid #FFD9CF",
-                    }}
-                  >
-                    D-1
-                  </div>
-                  <div
-                    style={{
-                      boxSizing: "border-box",
-                      width: "40%",
-                      padding: "0 10px",
-                      fontFamily: "Suit-Regular",
-                      fontSize: "16px",
-                    }}
-                  >
-                    컴퓨터네트워크프로그래밍
-                  </div>
-                  <div
-                    style={{
-                      width: "40%",
-                      height: "10px",
-                      background: "#ddd",
-                      borderRadius: "8px",
-                      position: "relative",
-                    }}
-                  >
-                    <div
-                      style={{
-                        position: "absolute",
-                        width: `${progress}%`,
-                        height: "10px",
-                        background: "#4285F4",
-                        borderRadius: "8px",
-                        transition: "width 0.8s ease-in-out",
-                      }}
-                    ></div>
-                  </div>
-                  <div
-                    style={{
-                      boxSizing: "border-box",
-                      width: "5%",
-                      padding: "0 10px",
-                      fontFamily: "Suit-Light",
-                      fontSize: "12px",
-                      color: "#fff",
-                    }}
-                  >
-                    53%
-                  </div>
+                  {AssignList.length > 0 ? (
+                    AssignList.map((assign) => (
+                      <div
+                        style={{
+                          boxSizing: "border-box",
+                          width: "94%",
+                          height: "80px",
+                          background: "#3c4043",
+                          borderRadius: "10px",
+                          margin: "0px 3% 10px",
+                          padding: "0 20px",
+                          display: "flex",
+                          justifyContent: "left",
+                          alignItems: "center",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "10%",
+                            padding: "3px 0",
+                            background: "#FFD9CF",
+                            fontFamily: "Suit-SemiBold",
+                            fontSize: "18px",
+                            color: "#E82E2E",
+                            borderRadius: "10px",
+                            textAlign: "center",
+                            border: "1px solid #FFD9CF",
+                          }}
+                        >
+                          D-{assign.endDate}
+                        </div>
+                        <div
+                          style={{
+                            boxSizing: "border-box",
+                            width: "90%",
+                            padding: "0 20px",
+                            fontFamily: "Suit-Regular",
+                            fontSize: "18px",
+                          }}
+                        >
+                          <div
+                            style={{
+                              fontFamily: "Suit-SemiBold",
+                              fontSize: "18px",
+                            }}
+                          >
+                            [{assign.courseName}] {assign.assignmentName}
+                          </div>
+                          <div
+                            style={{
+                              fontFamily: "Suit-Light",
+                              fontSize: "12px",
+                              color: "#888",
+                            }}
+                          >
+                            {assign.week}
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
               <div
@@ -399,80 +412,82 @@ export default function Dashboard() {
                     marginBottom: "20px",
                   }}
                 >
-                  미제출 과제
+                  미시청 영상
                 </div>
                 <div
                   style={{
                     boxSizing: "border-box",
-                    width: "94%",
-                    height: "80px",
-                    background: "#3c4043",
+                    width: "100%",
+                    height: "330px",
                     borderRadius: "10px",
-                    margin: "10px 3%",
+                    margin: "10px 0",
                     padding: "0 10px",
-                    display: "flex",
-                    justifyContent: "left",
-                    alignItems: "center",
+                    overflowY: "auto",
                   }}
                 >
-                  <div
-                    style={{
-                      width: "10%",
-                      padding: "3px 0",
-                      background: "#FFD9CF",
-                      fontFamily: "Suit-SemiBold",
-                      fontSize: "18px",
-                      color: "#E82E2E",
-                      borderRadius: "10px",
-                      textAlign: "center",
-                      border: "1px solid #FFD9CF",
-                    }}
-                  >
-                    D-1
-                  </div>
-                  <div
-                    style={{
-                      boxSizing: "border-box",
-                      width: "40%",
-                      padding: "0 10px",
-                      fontFamily: "Suit-Regular",
-                      fontSize: "16px",
-                    }}
-                  >
-                    컴퓨터네트워크프로그래밍
-                  </div>
-                  <div
-                    style={{
-                      width: "40%",
-                      height: "10px",
-                      background: "#ddd",
-                      borderRadius: "8px",
-                      position: "relative",
-                    }}
-                  >
-                    <div
-                      style={{
-                        position: "absolute",
-                        width: `${progress}%`,
-                        height: "10px",
-                        background: "#4285F4",
-                        borderRadius: "8px",
-                        transition: "width 0.8s ease-in-out",
-                      }}
-                    ></div>
-                  </div>
-                  <div
-                    style={{
-                      boxSizing: "border-box",
-                      width: "5%",
-                      padding: "0 10px",
-                      fontFamily: "Suit-Light",
-                      fontSize: "12px",
-                      color: "#fff",
-                    }}
-                  >
-                    53%
-                  </div>
+                  {AssignList.length > 0 ? (
+                    AssignList.map((assign) => (
+                      <div
+                        style={{
+                          boxSizing: "border-box",
+                          width: "94%",
+                          height: "80px",
+                          background: "#3c4043",
+                          borderRadius: "10px",
+                          margin: "0px 3% 10px",
+                          padding: "0 20px",
+                          display: "flex",
+                          justifyContent: "left",
+                          alignItems: "center",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "10%",
+                            padding: "3px 0",
+                            background: "#FFD9CF",
+                            fontFamily: "Suit-SemiBold",
+                            fontSize: "18px",
+                            color: "#E82E2E",
+                            borderRadius: "10px",
+                            textAlign: "center",
+                            border: "1px solid #FFD9CF",
+                          }}
+                        >
+                          D-1
+                        </div>
+                        <div
+                          style={{
+                            boxSizing: "border-box",
+                            width: "90%",
+                            padding: "0 20px",
+                            fontFamily: "Suit-Regular",
+                            fontSize: "18px",
+                          }}
+                        >
+                          <div
+                            style={{
+                              fontFamily: "Suit-SemiBold",
+                              fontSize: "18px",
+                            }}
+                          >
+                            [{assign.courseName}] {assign.assignmentName}
+                          </div>
+                          <div
+                            style={{
+                              fontFamily: "Suit-Light",
+                              fontSize: "12px",
+                              color: "#888",
+                            }}
+                          >
+                            {assign.week}
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
             </motion.div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/button.tsx";
 
-import { getCookie } from "../api/cookies.tsx";
+import { getCookie, removeCookie } from "../api/cookies.tsx";
 
 import "../App.css";
 
@@ -13,6 +13,8 @@ type NavProps = {
 
 export default function Nav({ type }: NavProps) {
   const [checkAuth, setCheckAuth] = useState<number>(1);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -149,12 +151,56 @@ export default function Nav({ type }: NavProps) {
                 <img
                   src="../icon/profile.png"
                   style={{ width: "35px", cursor: "pointer" }}
+                  onClick={() => setIsPopupOpen(!isPopupOpen)}
                 />
               </div>
             </>
           )}
         </div>
       </div>
+      {isPopupOpen && (
+        <div
+          style={{
+            position: "absolute",
+            top: "50px",
+            right: "30px",
+            width: "200px",
+            background: "#1b1c1d",
+            borderRadius: "10px",
+            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
+            zIndex: 10,
+          }}
+        >
+          <div
+            style={{
+              padding: "10px",
+              borderBottom: "1px solid #444",
+              cursor: "pointer",
+              fontFamily: "Suit-SemiBold",
+              fontSize: "18px",
+              color: "#4285f4",
+            }}
+            onClick={() => alert("개발 중...")}
+          >
+            개인 설정
+          </div>
+          <div
+            style={{
+              padding: "10px",
+              cursor: "pointer",
+              fontFamily: "Suit-SemiBold",
+              fontSize: "18px",
+              color: "#f44336",
+            }}
+            onClick={async () => {
+              await removeCookie("accessToken");
+              window.location.href = "/";
+            }}
+          >
+            로그아웃
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -4,9 +4,13 @@ import { motion } from "framer-motion";
 import Button from "../components/button.tsx";
 import Nav from "../components/nav.tsx";
 import BottomInfo from "../components/bottomInfo.tsx";
+
+import { getCookie, removeCookie } from "../api/cookies.tsx";
+
 import "../App.css";
 
 export default function Home() {
+  const [checkAuth, setCheckAuth] = useState<number>(1);
   const [fistText, setFirstText] = useState("");
   const [showSecond, setShowSecond] = useState(false);
   const [showThird, setShowThird] = useState(false);
@@ -54,6 +58,15 @@ export default function Home() {
       v.webkitAudioDecodedByteCount > 0;
     console.log("hasAudio:", !!hasAudio, v.error); // 콘솔에서 바로 확인
   };
+
+  useEffect(() => {
+    const accessToken = getCookie("accessToken");
+    if (!accessToken) {
+      setCheckAuth(0);
+    } else {
+      setCheckAuth(1);
+    }
+  }, []);
 
   useEffect(() => {
     let index = 0;
@@ -156,7 +169,13 @@ export default function Home() {
                     animation: "spinGlow 3s linear infinite", // CSS 애니메이션만 외부로 분리
                     cursor: "pointer",
                   }}
-                  onClick={() => (window.location.href = "/logIn")}
+                  onClick={() => {
+                    if (checkAuth === 1) {
+                      window.location.href = "/dashboard";
+                    } else {
+                      window.location.href = "/logIn";
+                    }
+                  }}
                 >
                   <div
                     style={{
@@ -520,7 +539,6 @@ export default function Home() {
                 bottom: "0",
                 padding: "10px 16px",
                 borderRadius: "10px",
-                background: "rgba(0,0,0,1)",
                 color: "#fff",
                 cursor: "pointer",
               }}
@@ -596,7 +614,13 @@ export default function Home() {
                 animation: "spinGlow 3s linear infinite", // CSS 애니메이션만 외부로 분리
                 cursor: "pointer",
               }}
-              onClick={() => (window.location.href = "/logIn")}
+              onClick={() => {
+                if (checkAuth === 1) {
+                  window.location.href = "/dashboard";
+                } else {
+                  window.location.href = "/logIn";
+                }
+              }}
             >
               <div
                 style={{
@@ -724,7 +748,7 @@ export default function Home() {
                 >
                   {member.name}
                 </div>
-                <div
+                {/* <div
                   style={{
                     fontFamily: "Suit-Light",
                     fontSize: "16px",
@@ -732,7 +756,7 @@ export default function Home() {
                   }}
                 >
                   {member.role}
-                </div>
+                </div> */}
               </div>
             ))}
           </div>
