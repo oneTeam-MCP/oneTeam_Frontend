@@ -201,6 +201,9 @@ export default function Chatbot() {
 
   const [myData, setMyData] = useState<any>(null);
 
+  const [autoStick, setAutoStick] = useState(true);
+  const bottomRef = useRef<HTMLDivElement | null>(null);
+
   const helloFull = "안녕하세요,";
   const endFull = "입니다.";
 
@@ -227,6 +230,26 @@ export default function Chatbot() {
     }, 150);
     return () => clearInterval(interval);
   }, [showLogo]);
+
+  // 바닥 근처 판별 함수
+  const isNearBottom = (el: HTMLElement, threshold = 20) => {
+    const { scrollTop, scrollHeight, clientHeight } = el;
+    return scrollHeight - (scrollTop + clientHeight) <= threshold;
+  };
+
+  // 스크롤 핸들러
+  const onListScroll = () => {
+    if (!listRef.current) return;
+    setAutoStick(isNearBottom(listRef.current));
+  };
+
+  useEffect(() => {
+    if (!listRef.current || !bottomRef.current) return;
+    if (autoStick) {
+      // 사용자가 바닥 근처에 있을 때만 자연스럽게 붙이기
+      bottomRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  }, [messages, isTyping, autoStick]);
 
   const autoResize = () => {
     const el = textareaRef.current;
@@ -346,7 +369,7 @@ export default function Chatbot() {
           marginLeft: open ? `${SIDENAV_WIDTH}px` : "0px",
           height: "92vh",
           marginTop: "4vh",
-          marginBottom: "8vh",
+          marginBottom: "6vh",
           display: "flex",
           justifyContent: "center",
           transition: "width .25s ease, margin-left .25s ease",
@@ -494,6 +517,7 @@ export default function Chatbot() {
               ) : (
                 <div
                   ref={listRef}
+                  onScroll={onListScroll}
                   style={{
                     flex: 1,
                     overflowY: "auto",
@@ -514,6 +538,7 @@ export default function Chatbot() {
                 </div>
               )}
             </div>
+            <div ref={bottomRef} />
           </motion.div>
         </div>
       </div>

@@ -336,7 +336,11 @@ export default function Dashboard() {
                               border: "1px solid #FFD9CF",
                             }}
                           >
-                            D-{assign.endDate}
+                            {assign.daysLeft === null
+                              ? `기한X`
+                              : assign.daysLeft > 0
+                              ? `D-${assign.daysLeft}`
+                              : `D+${-assign.daysLeft}`}
                           </div>
                           <div
                             style={{
@@ -557,7 +561,7 @@ export default function Dashboard() {
                 >
                   {alertTab === "e캠퍼스 알림" ? (
                     <>
-                      {/* {notificationList.length > 0 ? (
+                      {notificationList.length > 0 ? (
                         notificationList.map((notification) => (
                           <div
                             style={{
@@ -571,11 +575,11 @@ export default function Dashboard() {
                             <div
                               style={{
                                 fontFamily: "Suit-SemiBold",
-                                fontSize: "18px",
+                                fontSize: "16px",
                                 marginBottom: "5px",
                               }}
                             >
-                              2025-2 캡스톤디자인(서울)
+                              {notification.title}
                             </div>
                             <div
                               style={{
@@ -585,10 +589,17 @@ export default function Dashboard() {
                                 marginBottom: "5px",
                               }}
                             >
-                              ?? ? ? ? ?? ? ? ? ??? ? ? ? ? ?? ? ? ? ? ? ?? ?? ?
-                              ? ? ? ? ?ddddd d d d d d d d d d d d d d d d d d d
-                              d d d dd d dd d dd d d d d d d d d d d d d d d d d
-                              d d d dd d d d d d d d dd d d d d d d d d d d
+                              {notification.content}
+                            </div>
+                            <div
+                              style={{
+                                fontFamily: "Suit-Light",
+                                fontSize: "12px",
+                                color: "#bbb",
+                                marginBottom: "5px",
+                              }}
+                            >
+                              {notification.timeInfo}
                             </div>
                           </div>
                         ))
@@ -610,7 +621,7 @@ export default function Dashboard() {
                             알림이 없습니다.
                           </div>
                         </div>
-                      )} */}
+                      )}
                     </>
                   ) : (
                     <>

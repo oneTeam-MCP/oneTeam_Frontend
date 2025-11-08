@@ -356,7 +356,11 @@ export default function Dashboard() {
                             border: "1px solid #FFD9CF",
                           }}
                         >
-                          D-{assign.endDate}
+                          {assign.daysLeft === null
+                            ? `기한X`
+                            : assign.daysLeft > 0
+                            ? `D-${assign.daysLeft}`
+                            : `D+${-assign.daysLeft}`}
                         </div>
                         <div
                           style={{
@@ -454,7 +458,11 @@ export default function Dashboard() {
                             border: "1px solid #FFD9CF",
                           }}
                         >
-                          D-1
+                          {assign.daysLeft === null
+                            ? `기한X`
+                            : assign.daysLeft > 0
+                            ? `D-${assign.daysLeft}`
+                            : `D+${-assign.daysLeft}`}
                         </div>
                         <div
                           style={{
