@@ -23,10 +23,7 @@ export default async function DeleteSchedulesAPI(scheduleId) {
       throw new Error("Failed to get inventory");
     }
 
-    return response.json().then((data) => {
-      console.log(data);
-      return data;
-    });
+    window.location.reload();
   } catch (error) {
     console.error(error);
     removeCookie("accessToken");

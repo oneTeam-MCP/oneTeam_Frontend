@@ -13,6 +13,7 @@ import Button from "../../components/button.tsx";
 
 import GetSchedulesAPI from "../../api/api/schedules/getSchedulesAPI.tsx";
 import PostSchedulesAPI from "../../api/api/schedules/postSchedulesAPI.tsx";
+import DeleteSchedulesAPI from "../../api/api/schedules/deleteSchedulesAPI.tsx";
 
 import "../../App.css";
 
@@ -377,9 +378,10 @@ export default function Calendar() {
                         style={{
                           boxSizing: "border-box",
                           width: "100%",
-                          padding: "10px",
+                          padding: "10px 15px",
                           textAlign: "left",
                           display: "flex",
+                          justifyContent: "space-between",
                           alignItems: "center",
                         }}
                       >
@@ -406,7 +408,7 @@ export default function Calendar() {
                             {event.type == "common" ? "학사" : "개인"}
                           </div>
                         </div>
-                        <div>
+                        <div style={{ width: "80%" }}>
                           <div
                             style={{
                               fontFamily: "Suit-SemiBold",
@@ -424,6 +426,33 @@ export default function Calendar() {
                           >
                             {event.startDate} ~ {event.endDate}
                           </div>
+                        </div>
+                        <div
+                          style={{
+                            fontFamily: "Suit-SemiBold",
+                            fontSize: "20px",
+                            color: "#fff",
+                          }}
+                        >
+                          <img
+                            src="../btn/delete_disabled.png"
+                            style={{ width: "14px", cursor: "pointer" }}
+                            onMouseEnter={(e) =>
+                              (e.currentTarget.src =
+                                "../btn/delete_enabled.png")
+                            }
+                            onMouseLeave={(e) =>
+                              (e.currentTarget.src =
+                                "../btn/delete_disabled.png")
+                            }
+                            onClick={async () => {
+                              const confirm =
+                                window.confirm("일정을 삭제하시겠습니까?");
+                              if (confirm) {
+                                await DeleteSchedulesAPI(event.id);
+                              }
+                            }}
+                          />
                         </div>
                       </div>
                     ))
