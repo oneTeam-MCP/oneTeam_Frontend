@@ -22,29 +22,29 @@ const COLORS = [
 ];
 const data = [
   {
-    title: "자료구조",
+    title: "강화학습",
     time: { 월: [7, 8, 9] },
-    place: "G310",
-    prof: "홍철의",
+    place: "G305",
+    prof: "오영민",
     color: "",
   },
   {
-    title: "컴퓨터네트워크프로그래밍",
-    time: { 수: [4, 5, 6] },
+    title: "문화다양성과글로벌시민",
+    time: { 화: [3, 4] },
     place: "G311",
     prof: "정진우",
     color: "",
   },
   {
-    title: "잉파",
-    time: { 화: [4, 5], 목: [3] },
+    title: "인문학특강",
+    time: { 수: [7] },
     place: "N202",
     prof: "줄리엔",
     color: "",
   },
   {
     title: "휴먼지능종합설계2",
-    time: { 금: [1], 토: [1] },
+    time: { 금: [0], 토: [0] },
     place: "G308",
     prof: "이의철, 김동근",
     color: "",
@@ -89,7 +89,7 @@ export default function Dashboard() {
     Object.entries(subject.time).forEach(([day, times]) => {
       const col = days.indexOf(day);
       times.forEach((t) => {
-        timetable[t - 1][col] = {
+        timetable[t][col] = {
           title: subject.title,
           place: subject.place,
           prof: subject.prof,
@@ -207,7 +207,7 @@ export default function Dashboard() {
                             border: "1px solid #444",
                           }}
                         >
-                          {i + 1}
+                          {i}
                           <br />
                           <span
                             style={{
@@ -429,73 +429,74 @@ export default function Dashboard() {
                     overflowY: "auto",
                   }}
                 >
-                  {AssignList.length > 0 ? (
-                    AssignList.map((assign) => (
+                  <div
+                    style={{
+                      boxSizing: "border-box",
+                      width: "94%",
+                      height: "80px",
+                      background: "#3c4043",
+                      borderRadius: "10px",
+                      margin: "0 3% 10px",
+                      padding: "0 20px",
+                      display: "flex",
+                      justifyContent: "left",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: "10%",
+                        padding: "3px 0",
+                        background: "#FFD9CF",
+                        fontFamily: "Suit-SemiBold",
+                        fontSize: "18px",
+                        color: "#E82E2E",
+                        borderRadius: "10px",
+                        textAlign: "center",
+                        border: "1px solid #FFD9CF",
+                      }}
+                    >
+                      D-1
+                    </div>
+                    <div
+                      style={{
+                        boxSizing: "border-box",
+                        width: "70%",
+                        padding: "0 20px",
+                        fontFamily: "Suit-Regular",
+                        fontSize: "18px",
+                      }}
+                    >
                       <div
                         style={{
-                          boxSizing: "border-box",
-                          width: "94%",
-                          height: "80px",
-                          background: "#3c4043",
-                          borderRadius: "10px",
-                          margin: "0px 3% 10px",
-                          padding: "0 20px",
-                          display: "flex",
-                          justifyContent: "left",
-                          alignItems: "center",
+                          fontFamily: "Suit-SemiBold",
+                          fontSize: "18px",
                         }}
                       >
-                        <div
-                          style={{
-                            width: "10%",
-                            padding: "3px 0",
-                            background: "#FFD9CF",
-                            fontFamily: "Suit-SemiBold",
-                            fontSize: "18px",
-                            color: "#E82E2E",
-                            borderRadius: "10px",
-                            textAlign: "center",
-                            border: "1px solid #FFD9CF",
-                          }}
-                        >
-                          {assign.daysLeft === null
-                            ? `기한X`
-                            : assign.daysLeft > 0
-                            ? `D-${assign.daysLeft}`
-                            : `D+${-assign.daysLeft}`}
-                        </div>
-                        <div
-                          style={{
-                            boxSizing: "border-box",
-                            width: "90%",
-                            padding: "0 20px",
-                            fontFamily: "Suit-Regular",
-                            fontSize: "18px",
-                          }}
-                        >
-                          <div
-                            style={{
-                              fontFamily: "Suit-SemiBold",
-                              fontSize: "18px",
-                            }}
-                          >
-                            [{assign.courseName}] {assign.assignmentName}
-                          </div>
-                          <div
-                            style={{
-                              fontFamily: "Suit-Light",
-                              fontSize: "12px",
-                              color: "#888",
-                            }}
-                          >
-                            {assign.week}
-                          </div>
-                        </div>
+                        [인문학특강] 이승택 교수님
                       </div>
-                    ))
-                  ) : (
-                    <></>
-                  )}
+                      <div
+                        style={{
+                          fontFamily: "Suit-Regular",
+                          fontSize: "12px",
+                          color: "#888",
+                        }}
+                      >
+                        2025-11-07 ~ 2025-11-12
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        width: "20%",
+                        fontFamily: "Suit-Regular",
+                        fontSize: "14px",
+                        color: "#aaa",
+                        textAlign: "right",
+                      }}
+                    >
+                      진도욜: 57%
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>

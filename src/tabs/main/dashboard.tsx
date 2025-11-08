@@ -305,137 +305,155 @@ export default function Dashboard() {
                     </div>
                   ))}
                 </div>
-                {assignTab == "미제출 과제" ? (
-                  <>
-                    {AssignList.length > 0 ? (
-                      AssignList.map((assign) => (
-                        <div
-                          style={{
-                            boxSizing: "border-box",
-                            width: "94%",
-                            height: "80px",
-                            background: "#3c4043",
-                            borderRadius: "10px",
-                            margin: "0px 3% 10px",
-                            padding: "0 20px",
-                            display: "flex",
-                            justifyContent: "left",
-                            alignItems: "center",
-                          }}
-                        >
-                          <div
-                            style={{
-                              width: "10%",
-                              padding: "3px 0",
-                              background: "#FFD9CF",
-                              fontFamily: "Suit-SemiBold",
-                              fontSize: "18px",
-                              color: "#E82E2E",
-                              borderRadius: "10px",
-                              textAlign: "center",
-                              border: "1px solid #FFD9CF",
-                            }}
-                          >
-                            {assign.daysLeft === null
-                              ? `기한X`
-                              : assign.daysLeft > 0
-                              ? `D-${assign.daysLeft}`
-                              : `D+${-assign.daysLeft}`}
-                          </div>
+                <div
+                  style={{
+                    height: "329px",
+                    overflowY: "auto",
+                  }}
+                >
+                  {assignTab == "미제출 과제" ? (
+                    <>
+                      {AssignList.length > 0 ? (
+                        AssignList.map((assign) => (
                           <div
                             style={{
                               boxSizing: "border-box",
-                              width: "90%",
+                              width: "94%",
+                              height: "80px",
+                              background: "#3c4043",
+                              borderRadius: "10px",
+                              margin: "0px 3% 10px",
                               padding: "0 20px",
-                              fontFamily: "Suit-Regular",
-                              fontSize: "18px",
+                              display: "flex",
+                              justifyContent: "left",
+                              alignItems: "center",
                             }}
                           >
                             <div
                               style={{
+                                width: "10%",
+                                padding: "3px 0",
+                                background: "#FFD9CF",
                                 fontFamily: "Suit-SemiBold",
                                 fontSize: "18px",
+                                color: "#E82E2E",
+                                borderRadius: "10px",
+                                textAlign: "center",
+                                border: "1px solid #FFD9CF",
                               }}
                             >
-                              [{assign.courseName}] {assign.assignmentName}
+                              {assign.daysLeft === null
+                                ? `기한X`
+                                : assign.daysLeft > 0
+                                ? `D-${assign.daysLeft}`
+                                : `D+${-assign.daysLeft}`}
                             </div>
                             <div
                               style={{
-                                fontFamily: "Suit-Light",
-                                fontSize: "12px",
-                                color: "#888",
+                                boxSizing: "border-box",
+                                width: "90%",
+                                padding: "0 20px",
+                                fontFamily: "Suit-Regular",
+                                fontSize: "18px",
                               }}
                             >
-                              {assign.week}
+                              <div
+                                style={{
+                                  fontFamily: "Suit-SemiBold",
+                                  fontSize: "18px",
+                                }}
+                              >
+                                [{assign.courseName}] {assign.assignmentName}
+                              </div>
+                              <div
+                                style={{
+                                  fontFamily: "Suit-Light",
+                                  fontSize: "12px",
+                                  color: "#888",
+                                }}
+                              >
+                                {assign.week}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ))
-                    ) : (
-                      <></>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <div
-                      style={{
-                        boxSizing: "border-box",
-                        width: "94%",
-                        height: "80px",
-                        background: "#3c4043",
-                        borderRadius: "10px",
-                        margin: "0 3% 10px",
-                        padding: "0 20px",
-                        display: "flex",
-                        justifyContent: "left",
-                        alignItems: "center",
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: "10%",
-                          padding: "3px 0",
-                          background: "#FFD9CF",
-                          fontFamily: "Suit-SemiBold",
-                          fontSize: "18px",
-                          color: "#E82E2E",
-                          borderRadius: "10px",
-                          textAlign: "center",
-                          border: "1px solid #FFD9CF",
-                        }}
-                      >
-                        D-2
-                      </div>
+                        ))
+                      ) : (
+                        <></>
+                      )}
+                    </>
+                  ) : (
+                    <>
                       <div
                         style={{
                           boxSizing: "border-box",
-                          width: "90%",
+                          width: "94%",
+                          height: "80px",
+                          background: "#3c4043",
+                          borderRadius: "10px",
+                          margin: "0 3% 10px",
                           padding: "0 20px",
-                          fontFamily: "Suit-Regular",
-                          fontSize: "18px",
+                          display: "flex",
+                          justifyContent: "left",
+                          alignItems: "center",
                         }}
                       >
                         <div
                           style={{
+                            width: "10%",
+                            padding: "3px 0",
+                            background: "#FFD9CF",
                             fontFamily: "Suit-SemiBold",
                             fontSize: "18px",
+                            color: "#E82E2E",
+                            borderRadius: "10px",
+                            textAlign: "center",
+                            border: "1px solid #FFD9CF",
                           }}
                         >
-                          인문학특강
+                          D-1
                         </div>
                         <div
                           style={{
+                            boxSizing: "border-box",
+                            width: "70%",
+                            padding: "0 20px",
                             fontFamily: "Suit-Regular",
-                            fontSize: "12px",
-                            color: "#888",
+                            fontSize: "18px",
                           }}
                         >
-                          2025-11-01 ~ 2025-11-05
+                          <div
+                            style={{
+                              fontFamily: "Suit-SemiBold",
+                              fontSize: "18px",
+                            }}
+                          >
+                            [인문학특강] 이승택 교수님
+                          </div>
+                          <div
+                            style={{
+                              fontFamily: "Suit-Regular",
+                              fontSize: "12px",
+                              color: "#888",
+                            }}
+                          >
+                            2025-11-07 ~ 2025-11-12
+                          </div>
+                        </div>
+                        <div
+                          style={{
+                            width: "20%",
+                            fontFamily: "Suit-Regular",
+                            fontSize: "14px",
+                            color: "#aaa",
+                            textAlign: "right",
+                          }}
+                        >
+                          진도욜: 57%
                         </div>
                       </div>
-                    </div>
-                  </>
-                )}
+                    </>
+                  )}
+                </div>
               </motion.div>
             </div>
 
