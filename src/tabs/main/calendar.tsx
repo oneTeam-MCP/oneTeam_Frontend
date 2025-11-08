@@ -427,9 +427,7 @@ export default function Calendar() {
                             {event.startDate} ~ {event.endDate}
                           </div>
                         </div>
-                        {event.type == "common" ? (
-                          <div style={{ width: "14px" }}></div>
-                        ) : (
+                        {event.type == "personal" ? (
                           <div
                             style={{
                               fontFamily: "Suit-SemiBold",
@@ -457,6 +455,8 @@ export default function Calendar() {
                               }}
                             />
                           </div>
+                        ) : (
+                          <div style={{ width: "14px" }}></div>
                         )}
                       </div>
                     ))
