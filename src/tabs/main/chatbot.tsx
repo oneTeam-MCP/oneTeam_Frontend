@@ -485,7 +485,7 @@ export default function Chatbot() {
                       animate="upDown2"
                       text="자료구조 기출 찾아줘."
                       onClick={() =>
-                        handleSubmit(undefined, "알림 온 거 있어?")
+                        handleSubmit(undefined, "자료구조 기출 찾아줘.")
                       }
                     />
                     <IntroBubble
