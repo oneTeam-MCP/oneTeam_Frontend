@@ -9,7 +9,7 @@ export default async function postChat(
   onDelta: (delta: string) => void,
   signal?: AbortSignal
 ): Promise<void> {
-  console.log(`학번: ${studentNum}, question: ` + text);
+  console.log(`학번: ${studentNum}, question: 올해는 2025년이야. ` + text);
 
   const res = await fetch(`${API_SERVER_DOMAIN}/chat/stream`, {
     method: "POST",
