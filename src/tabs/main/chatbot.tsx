@@ -483,7 +483,7 @@ export default function Chatbot() {
                     <IntroBubble
                       style={{ top: 50, right: "2.5vw" }}
                       animate="upDown2"
-                      text="알림 온 거 있어?"
+                      text="자료구조 기출 찾아줘."
                       onClick={() =>
                         handleSubmit(undefined, "알림 온 거 있어?")
                       }

@@ -528,8 +528,8 @@ export default function Home() {
               onError={handleError}
               style={{ width: "100%", height: "88vh", objectFit: "contain" }}
             >
-              <source src="/demo2.webm" type="video/webm" />
-              <source src="/demo2.mp4" type="video/mp4" />
+              <source src="/demo.webm" type="video/webm" />
+              <source src="/demo.mp4" type="video/mp4" />
             </video>
             <div
               onClick={handleToggleMute}
