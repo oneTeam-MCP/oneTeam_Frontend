@@ -810,7 +810,7 @@ export default function Dashboard() {
                     </>
                   ) : (
                     <>
-                      <div
+                      {/* <div
                         style={{
                           boxSizing: "border-box",
                           width: "94%",
@@ -820,6 +820,17 @@ export default function Dashboard() {
                         }}
                       >
                         학과 공지
+                      </div> */}
+                      <div
+                        style={{
+                          boxSizing: "border-box",
+                          width: "94%",
+                          minHeight: "85px",
+                          margin: "5% 3% 10px",
+                          textAlign: "center",
+                        }}
+                      >
+                        준비 중...
                       </div>
                     </>
                   )}

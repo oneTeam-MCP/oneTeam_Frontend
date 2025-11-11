@@ -50,7 +50,7 @@ export default async function LogInAPI(
   // 쿠키 저장
   setCookie("accessToken", accessToken, {
     path: "/",
-    expires: new Date(Date.now() + 1 * 60 * 60 * 1000),
+    expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
   });
   setCookie("refreshToken", refreshToken, {
     path: "/",
